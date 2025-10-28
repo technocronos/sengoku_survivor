@@ -17,6 +17,12 @@ namespace MyGame
                 return;
             }
             instance = this.GetComponent<T>();
+            OnAwake();
+        }
+
+        protected virtual void OnAwake()
+        {
+
         }
     }
 }

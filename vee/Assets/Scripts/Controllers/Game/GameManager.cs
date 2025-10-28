@@ -58,6 +58,15 @@ namespace Vs.Controllers.Game
 
         public SkillManager SkillManager = new SkillManager();
 
+        override protected void OnAwake()
+        {
+            //GameのシーンからでもエディターでプレイできるようにBootstrapからロード
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            }
+        }
+
         public void Initialize()
         {
             this.popupLvUp.Selected += this.OnLvUpPopupSelected;
