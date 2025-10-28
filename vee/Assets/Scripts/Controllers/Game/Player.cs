@@ -82,14 +82,15 @@ namespace Vs.Controllers.Game
             }
 
             var horizontal = Input.GetAxis("Horizontal"); // this.joystick.Horizontal;
-            var vertical = Input.GetAxis("Vertical") * 0.7f + 1;//1; // this.joystick.Vertical;
+            var vertical = Input.GetAxis("Vertical");//1; // this.joystick.Vertical;
 
-            var position = transform.position;
+            var position = transform.localPosition;
             position.x += this.calcedSpeed / 1000.0f * Time.deltaTime * horizontal;
             position.y += this.calcedSpeed / 1000.0f * Time.deltaTime * vertical;
             // this.direction.transform.LookAt(position);
             position.x = Mathf.Clamp(position.x, -4.0f, 4.0f);
-            this.transform.position = position;
+            position.y = Mathf.Clamp(position.y, -0.7f, 11.0f);
+            this.transform.localPosition = position;
             if (new Vector2(horizontal, vertical).magnitude > 0)
             {
                 this.animator.Play();
@@ -237,6 +238,11 @@ namespace Vs.Controllers.Game
                     break;
             }
             this.CalcStats();
+        }
+
+        public int GetPlayerSpeedInt()
+        {
+            return calcedSpeed;
         }
     }
 }
