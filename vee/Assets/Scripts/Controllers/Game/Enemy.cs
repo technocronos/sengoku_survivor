@@ -82,6 +82,19 @@ namespace Vs.Controllers.Game
             GameObject.Destroy(this.gameObject);
         }
 
+        public void OnWeaponTrigger(int damage, string soundId)
+        {
+            if (this.IsDead)
+            {
+                return;
+            }
+
+            var isCritical = Random.Range(0, 4) == 0;
+            this.Hit(damage, isCritical);
+            //var soundId = isCritical ? "damage_cri" : ctr.GetSoundId();
+            //SoundService.Instance.PlaySe(soundId);
+        }
+
         private void OnParticleCollision(GameObject go)
         {
             if (this.IsDead)
