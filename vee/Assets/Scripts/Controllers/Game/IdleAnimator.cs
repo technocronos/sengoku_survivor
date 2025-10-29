@@ -8,9 +8,9 @@ namespace Vs.Controllers.Game
     {
         private void Update()
         {
-            var scale = this.transform.localScale;
-            scale.y = 1 + 0.02f * Mathf.Sin(Time.time * 10);
-            this.transform.localScale = scale;
+            var scale = this.transform.localPosition;
+            scale.y = 0.2f + 0.02f * Mathf.Sin(Time.time * 10);
+            this.transform.localPosition = scale;
         }
     }
 }
