@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace SengokuSurvivors {
-    public class ScreenPosition : MonoBehaviour
+    public class PlayerContainer : MonoBehaviour
     {
         private Vs.Controllers.Game.Player player;
 
