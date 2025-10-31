@@ -21,6 +21,8 @@ namespace Vs.Controllers.Game
         public int Spd { get; private set; }
         public int DropId { get; private set; }
 
+        public SengokuSurvivors.EnemyType EnemyType { get; private set; } = SengokuSurvivors.EnemyType.Normal;
+
         private float hitElapsed;
 
         public void SetHp(int hp)
@@ -77,8 +79,15 @@ namespace Vs.Controllers.Game
             if (!force)
             {
                 GameManager.Instance.AddCount();
-                //SengokuSurvivors.DropManager.Instance.Spawn(this.transform.position, this.DropId);
-                SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position,1);
+                if (EnemyType == SengokuSurvivors.EnemyType.Normal)
+                { 
+                    SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position, 1); 
+                }
+                else
+                {
+                    int dropId = 0;//todo: dropを実装
+                    SengokuSurvivors.DropManager.Instance.DropItem(this.transform.position, dropId);//this.DropId);
+                }
             }
             GameObject.Destroy(this.gameObject);
         }
