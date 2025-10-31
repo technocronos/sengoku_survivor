@@ -7,16 +7,20 @@ namespace MyGame
     public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static T instance;
-        public static T Instance { get { return instance; } }
+        public static T Instance { get { 
+                if (instance == null)
+                {
+                    instance = FindAnyObjectByType<T>();
+                }
+                return instance; } }
 
         private void Awake()
         {
-            if (instance != null)
+            if (instance != null && instance != this)
             {
                 GameObject.Destroy(this.gameObject);
                 return;
             }
-            instance = this.GetComponent<T>();
             OnAwake();
         }
 

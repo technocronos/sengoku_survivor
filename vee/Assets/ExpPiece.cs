@@ -52,6 +52,7 @@ namespace SengokuSurvivors
         private void OnComplete()
         {
             //add exp to player
+            Vs.Controllers.Game.GameManager.Instance.AddExp(5);
         }
     }
 }
