@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SengokuSurvivors
 {
-    public class SlashController : MonoBehaviour
+    public class SlashController : MonoBehaviour, IPlayerAttack
     {
         public Animator AttackEffectAnimator;
         [System.NonSerialized]
