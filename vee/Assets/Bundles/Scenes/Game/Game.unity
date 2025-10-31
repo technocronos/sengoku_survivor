@@ -16478,6 +16478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   world: {fileID: 1488705207}
   prefab: {fileID: 5492828201003574063, guid: 5a8a74bc80abf44c79c55d8829b7b25d, type: 3}
+  expPref: {fileID: 8797061626267323491, guid: d38a63fc1ecd2b846995d034a57d333a, type: 3}
 --- !u!1 &981676856
 GameObject:
   m_ObjectHideFlags: 0

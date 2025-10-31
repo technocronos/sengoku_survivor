@@ -77,7 +77,8 @@ namespace Vs.Controllers.Game
             if (!force)
             {
                 GameManager.Instance.AddCount();
-                SkillSpawner.Instance.Spawn(this.transform.position, this.DropId);
+                //SengokuSurvivors.DropManager.Instance.Spawn(this.transform.position, this.DropId);
+                SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position,1);
             }
             GameObject.Destroy(this.gameObject);
         }
