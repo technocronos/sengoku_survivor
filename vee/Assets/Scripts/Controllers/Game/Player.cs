@@ -25,9 +25,6 @@ namespace Vs.Controllers.Game
         public event System.Action<int, int> Recovered = (damage, hp) => { };
 
         [SerializeField]
-        private UnityEngine.UI.Text hpText;
-
-        [SerializeField]
         private SpriteAnimator animator;
 
         [SerializeField]
@@ -69,7 +66,7 @@ namespace Vs.Controllers.Game
             this.Stats = new PlayerStats();
             this.CalcStats();
             this.hp = this.calcedHpMax;
-            this.hpText.text = $"{this.hp}";
+            OnScreenUi.Instance.SetCurrHp(hp);
         }
 
         private void Update()
@@ -149,7 +146,7 @@ namespace Vs.Controllers.Game
             {
                 this.hp = 0;
             }
-            this.hpText.text = $"{this.hp}";
+            OnScreenUi.Instance.SetCurrHp(hp);
             this.Damaged.Invoke(value, this.hp);
         }
 
@@ -160,7 +157,7 @@ namespace Vs.Controllers.Game
             {
                 this.hp = this.calcedHpMax;
             }
-            this.hpText.text = $"{this.hp}";
+            OnScreenUi.Instance.SetCurrHp(hp);
             this.Recovered.Invoke(value, this.hp);
         }
 
