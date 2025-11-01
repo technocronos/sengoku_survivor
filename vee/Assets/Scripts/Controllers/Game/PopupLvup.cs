@@ -12,20 +12,20 @@ namespace Vs.Controllers.Game
         [SerializeField]
         private ListItemSkill[] listItems;
 
-        private List<JsonObject> raws;
+        private List<JsonObject> rows;
 
-        public void Show(List<JsonObject> raws)
+        public void Show(List<JsonObject> rows)
         {
             this.gameObject.SetActive(true);
             Time.timeScale = 0;
-            this.raws = raws;
+            this.rows = rows;
             for (var i = 0; i < 3; i++)
             {
                 var listItem = this.listItems[i];
-                var raw = raws[i];
+                var row = rows[i];
                 listItem.Initialize(i);
-                listItem.SetName(raw["name"]);
-                listItem.SetDescription(raw["description"]);
+                listItem.SetName(row["name"]);
+                listItem.SetDescription(row["description"]);
 
                 // var sprite = Resources.Load<Sprite>($"Skills/{raw["image_id"]}");
                 // listItem.SetSprite(sprite);
@@ -42,7 +42,7 @@ namespace Vs.Controllers.Game
         {
             this.Hide();
 
-            var raw = this.raws[index];
+            var raw = this.rows[index];
             this.Selected.Invoke(raw["skill_id"]);
         }
     }

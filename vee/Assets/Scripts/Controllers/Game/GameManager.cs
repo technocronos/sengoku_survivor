@@ -55,6 +55,7 @@ namespace Vs.Controllers.Game
         private int count;
 
         private List<JsonObject> levelMst;
+        private const int initialWeaponId = 901;
 
         public SkillManager SkillManager = new SkillManager();
 
@@ -86,7 +87,7 @@ namespace Vs.Controllers.Game
             this.Player.Initialize(playerMst[0]);
 
             {
-                var skill = this.SkillManager.UpgradeSkill(1001);
+                var skill = this.SkillManager.UpgradeSkill(initialWeaponId);
                 this.Player.UpdateSkill(skill);
             }
 
