@@ -12,13 +12,17 @@ namespace Vs.Controllers.Game
 
         public void Initialize(List<JsonObject> skillMst)
         {
-            var skillIds = new int[] { 1001, 1002, 1004, 1007, 1009 };
-            this.skillMst = skillMst.FindAll(raw =>
+            var skillIds = new int[] { 901};//1001, 1002, 1004, 1007, 1009 };
+            this.skillMst = skillMst.FindAll(row =>
             {
-                var type = (int)raw["type"];
-                var skillId = (int)raw["skill_id"];
-                return type == 201 || System.Array.Exists(skillIds, i => i == skillId);
+                var category = (int)row["category"];
+                var skillId = (int)row["skill_id"];
+                return category == 201 || System.Array.Exists(skillIds, i => i == skillId);
             });
+            foreach (var entry in this.skillMst)
+            {
+                UnityEngine.Debug.Log(entry["skill_id"]);
+            }
         }
 
         public Skill UpgradeSkill(int skillId)

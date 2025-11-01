@@ -190,15 +190,23 @@ namespace Vs.Controllers.Game
         private void UpdateShooter(Skill skill)
         {
             var shooter = System.Array.Find(this.shooters, i => i.SkillId == skill.SkillId);
-            shooter.Activate();
-            shooter.SetAtk(skill.Atk);
-            shooter.SetProjectile(skill.Projectile);
-            shooter.SetCount(skill.Count);
-            shooter.SetSize(skill.Size);
-            shooter.SetSpeed(skill.Speed);
-            shooter.SetDuration(skill.CoolTime);
-            shooter.SetLifeTime(skill.LifeTime);
-            this.CalcStats();
+            if (shooter != null)
+            {
+                shooter.Activate();
+                shooter.SetAtk(skill.Atk);
+                shooter.SetProjectile(skill.Projectile);
+                shooter.SetCount(skill.Count);
+                shooter.SetSize(skill.Size);
+                shooter.SetSpeed(skill.Speed);
+                shooter.SetDuration(skill.CoolTime);
+                shooter.SetLifeTime(skill.LifeTime);
+                this.CalcStats();
+            }
+            else
+            {
+                //todo: non-particle weaponの実装
+            }
+            
         }
 
         private void UpgradeStats(Skill skill)
