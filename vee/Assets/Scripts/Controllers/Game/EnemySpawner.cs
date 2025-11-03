@@ -72,6 +72,7 @@ namespace Vs.Controllers.Game
             var gate = GameObject.Instantiate(prefeb, new Vector3(x, y, 0), Quaternion.identity, this.world);
             var skill = GameManager.Instance.SkillManager.GetSelectableSkills()[0];
             gate.Initialize(skill);
+            gate.SetDropId(raw["drop_id"]);
         }
 
         private void Spawn(int enemyId, int y, int x, int level)
@@ -93,12 +94,16 @@ namespace Vs.Controllers.Game
 
             var hp = Mathf.FloorToInt(raw["hp"] * growth["hp_rate"] / 1000.0f);
             var atk = Mathf.FloorToInt(raw["atk"] * growth["atk_rate"] / 1000.0f);
+            var enemyType = (SengokuSurvivors.EnemyType)(int)raw["enemy_type"];
+            var expAmount = (int)raw["exp_amount"];
 
             var prefeb = Resources.Load<Enemy>($"Enemies/{raw["model_id"]}");
             var enemy = GameObject.Instantiate(prefeb, new Vector3(x, y, 0), Quaternion.identity, this.world);
             enemy.SetHp(hp);
             enemy.SetAtk(atk);
             enemy.SetDropId(raw["drop_id"]);
+            enemy.SetEnemyType(enemyType);
+            enemy.SetExpAmount(expAmount);
         }
     }
 }

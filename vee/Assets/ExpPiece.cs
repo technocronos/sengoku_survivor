@@ -8,6 +8,7 @@ namespace SengokuSurvivors
     {
         private bool isObtained = false;
         private const float distance = 2.0f;
+        private int add_exp = 5;
 
         public void Obtain(GameObject target)
         {
@@ -52,7 +53,7 @@ namespace SengokuSurvivors
         private void OnComplete()
         {
             //add exp to player
-            Vs.Controllers.Game.GameManager.Instance.AddExp(5);
+            Vs.Controllers.Game.GameManager.Instance.AddExp(add_exp);
         }
     }
 }
