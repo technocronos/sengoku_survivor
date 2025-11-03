@@ -209,6 +209,11 @@ namespace Vs.Controllers.Game
             {
                 this.ShowLvUp();
             }
+            else
+            {
+                // ItemBoxから取得したスキルをPopupLvupで選択できるように表示
+                this.ShowLvUp(skillId);
+            }
         }
 
         public void Add()
@@ -239,7 +244,7 @@ namespace Vs.Controllers.Game
             }
         }
 
-        private void ShowLvUp()
+        private void ShowLvUp(int specificSkillId = 0)
         {
             if (this.isStop)
             {
@@ -247,8 +252,17 @@ namespace Vs.Controllers.Game
             }
             this.isStop = true;
 
-            var skills = this.SkillManager.GetSelectableSkills();
-            var current = this.SkillManager.GetCurrentSkills();
+            List<JsonObject> skills;
+            if (specificSkillId != 0)
+            {
+                // 特定のスキルIDの選択肢を取得
+                skills = this.SkillManager.GetSelectableSkillsForSkillId(specificSkillId);
+            }
+            else
+            {
+                // 通常のレベルアップ選択肢
+                skills = this.SkillManager.GetSelectableSkills();
+            }
             this.popupLvUp.Show(skills);
 
             SoundService.Instance.PlaySe("levelup");
