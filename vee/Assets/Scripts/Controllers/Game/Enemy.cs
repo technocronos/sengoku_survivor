@@ -20,6 +20,7 @@ namespace Vs.Controllers.Game
         public int Atk { get; private set; }
         public int Spd { get; private set; }
         public int DropId { get; private set; }
+        public int ExpAmount { get; private set; }
 
         public SengokuSurvivors.EnemyType EnemyType { get; private set; } = SengokuSurvivors.EnemyType.Normal;
 
@@ -44,6 +45,16 @@ namespace Vs.Controllers.Game
         public void SetDropId(int dropId)
         {
             this.DropId = dropId;
+        }
+
+        public void SetEnemyType(SengokuSurvivors.EnemyType enemyType)
+        {
+            this.EnemyType = enemyType;
+        }
+
+        public void SetExpAmount(int expAmount)
+        {
+            this.ExpAmount = expAmount;
         }
 
         private void Update()
@@ -79,15 +90,11 @@ namespace Vs.Controllers.Game
             if (!force)
             {
                 GameManager.Instance.AddCount();
-                if (EnemyType == SengokuSurvivors.EnemyType.Normal)
-                { 
-                    SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position, 1); 
-                }
-                else
-                {
-                    int dropId = 0;//todo: dropを実装
-                    SengokuSurvivors.DropManager.Instance.DropItem(this.transform.position, dropId);//this.DropId);
-                }
+                SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position, this.ExpAmount);
+
+                if(this.DropId > 0)
+                    SengokuSurvivors.DropManager.Instance.DropItem(this.transform.position, this.DropId);
+
             }
             GameObject.Destroy(this.gameObject);
         }
