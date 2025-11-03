@@ -5713,7 +5713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &152647901
 Transform:
   m_ObjectHideFlags: 0
@@ -6462,7 +6462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e154ae0d4f7e14356a768d06b203b67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpText: {fileID: 2141585759}
   animator: {fileID: 2491538897313561984}
   avatar: {fileID: 56370948}
   blood: {fileID: 119019935}
@@ -6472,6 +6471,7 @@ MonoBehaviour:
   - {fileID: 1062950116}
   - {fileID: 1595980209}
   - {fileID: 1267266071}
+  - {fileID: 1205063843}
   direction: {fileID: 496888864}
   autoDir: {fileID: 296826399}
   joystick: {fileID: 268908202}
@@ -12093,7 +12093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &496888865
 Transform:
   m_ObjectHideFlags: 0
@@ -13266,7 +13266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &692675361
 Transform:
   m_ObjectHideFlags: 0
@@ -13731,7 +13731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &761922213
 Transform:
   m_ObjectHideFlags: 0
@@ -18737,7 +18737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &856327782
 Transform:
   m_ObjectHideFlags: 0
@@ -24705,7 +24705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1205063840
 Transform:
   m_ObjectHideFlags: 0
@@ -43357,7 +43357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.000061035, y: -320}
+  m_AnchoredPosition: {x: -0.000061035156, y: -320}
   m_SizeDelta: {x: 308.23, y: 64}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2099486180

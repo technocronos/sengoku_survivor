@@ -83,10 +83,8 @@ namespace Vs.Controllers.Game
         public void SetCalcedSpeed(float value)
         {
             var main = this.particle.main;
-            if (main.startSpeed.constant > 0)
-            {
-                main.startSpeed = value;
-            }
+            // startSpeedのモードがConstantで0以下の場合でも、速度を設定できるようにする
+            main.startSpeed = value;
         }
 
         public void SetCalcedSize(float value)

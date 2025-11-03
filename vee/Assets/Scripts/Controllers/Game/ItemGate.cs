@@ -16,10 +16,16 @@ namespace Vs.Controllers.Game
         protected override void OnComplete()
         {
             var position = this.transform.position;
-            GameManager.Instance.AddSkill(this.skillId);
+            // ItemGate通過時にスキルを直接付与せず、DropItemのみ生成する
+            // (ItemBox取得時にAddSkillが呼ばれるため、ここではAddSkillを呼ばない)
             if (this.dropId > 0)
             {
                 SengokuSurvivors.DropManager.Instance.DropItem(position, this.dropId);
+            }
+            else if (this.skillId > 0)
+            {
+                // dropIdが設定されていない場合は、直接AddSkillを呼ぶ（旧来の動作を維持）
+                GameManager.Instance.AddSkill(this.skillId);
             }
         }
 

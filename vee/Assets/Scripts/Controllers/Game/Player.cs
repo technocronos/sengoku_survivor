@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using MyGame;
 
@@ -167,10 +168,15 @@ namespace Vs.Controllers.Game
             this.calcedSpeed = Mathf.FloorToInt(this.speed * this.Stats.SpdRate / 1000.0f);
             foreach (var i in this.shooters)
             {
-                i.SetCalcedDuration((i.Duration + this.Stats.ShotDuration) / 1000.0f);
-                i.SetCalcedLifeTime((i.LifeTime + this.Stats.ShotLifeTime) / 1000.0f);
-                i.SetCalcedSpeed((i.Speed + this.Stats.ShotSpd) / 1000.0f);
-                i.SetCalcedSize((i.Size + this.Stats.ShotArea) / 1000.0f);
+                if (i == null || !i.gameObject.activeSelf) continue;
+                var calcDuration = (i.Duration + this.Stats.ShotDuration) / 1000.0f;
+                var calcLifeTime = (i.LifeTime + this.Stats.ShotLifeTime) / 1000.0f;
+                var calcSpeed = (i.Speed + this.Stats.ShotSpd) / 1000.0f;
+                var calcSize = (i.Size + this.Stats.ShotArea) / 1000.0f;
+                i.SetCalcedDuration(calcDuration);
+                i.SetCalcedLifeTime(calcLifeTime);
+                i.SetCalcedSpeed(calcSpeed);
+                i.SetCalcedSize(calcSize);
             }
         }
 
@@ -192,6 +198,25 @@ namespace Vs.Controllers.Game
             var shooter = System.Array.Find(this.shooters, i => i.SkillId == skill.SkillId);
             if (shooter != null)
             {
+                // 他のshooterを非アクティブ化（同じcategoryの場合）
+                // 全てのParticleControllerを検索して、同じcategoryのものを非アクティブ化
+                var allSkillMst = GameManager.Instance.SkillManager.GetAllSkillMst();
+                var allParticleControllers = UnityEngine.Object.FindObjectsOfType<ParticleController>();
+                foreach (var pc in allParticleControllers)
+                {
+                    if (pc != shooter && pc.SkillId != 0)
+                    {
+                        if (allSkillMst != null)
+                        {
+                            var shooterSkillData = allSkillMst.Find(row => (int)row["skill_id"] == pc.SkillId && (int)row["type"] == 0);
+                            if (shooterSkillData != null && (int)shooterSkillData["category"] == skill.Category)
+                            {
+                                pc.gameObject.SetActive(false);
+                            }
+                        }
+                    }
+                }
+                
                 shooter.Activate();
                 shooter.SetAtk(skill.Atk);
                 shooter.SetProjectile(skill.Projectile);
