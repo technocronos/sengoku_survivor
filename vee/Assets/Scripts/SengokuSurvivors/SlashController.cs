@@ -13,12 +13,12 @@ namespace SengokuSurvivors
 
         private int damage = 20;
         private float cooldown = 2f;
-        private int katanaWeaponId = 901;
+        private int weaponId = 901;
+        private string weaponUseAnim = "Slash";
         private float weaponSizeMulti = 1f;
 
         private void Start()
         {
-            
             StartCoroutine(MainRoutine());
         }
 
@@ -27,12 +27,7 @@ namespace SengokuSurvivors
             while (true)
             {
                 yield return null;
-                var weaponData = Vs.Controllers.Game.GameManager.Instance.SkillManager
-                    .GetCurrentSkills().Find(i => i.SkillId == katanaWeaponId);
-                damage = weaponData.Atk;
-                cooldown = weaponData.CoolTime / 1000f * weaponData.CoolTimeMulti;
-                weaponSizeMulti = weaponData.SizeMulti;
-                transform.localScale = new Vector3(weaponSizeMulti, weaponSizeMulti, 1);
+                UpdateWeaponParameters();
 
                 List<Collider2D> results = new();
                 var nn = GetComponent<Collider2D>().Overlap(results);
@@ -43,7 +38,7 @@ namespace SengokuSurvivors
                     enemy.OnWeaponTrigger(damage, "");
                 }
 
-                AttackEffectAnimator.Play("Slash");
+                AttackEffectAnimator.Play(weaponUseAnim);
                 isAnimationPlaying = true;
                 while (isAnimationPlaying)
                 {
@@ -51,6 +46,16 @@ namespace SengokuSurvivors
                 }
                 yield return new WaitForSecondsRealtime(cooldown);
             }
+        }
+
+        private void UpdateWeaponParameters()
+        {
+            var weaponData = Vs.Controllers.Game.GameManager.Instance.SkillManager
+                .GetCurrentSkills().Find(i => i.SkillId == weaponId);
+            damage = weaponData.Atk;
+            cooldown = weaponData.CoolTime / 1000f * weaponData.CoolTimeMulti;
+            weaponSizeMulti = weaponData.SizeMulti;
+            transform.localScale = new Vector3(weaponSizeMulti, weaponSizeMulti, 1);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
