@@ -80,14 +80,14 @@ namespace Vs.Controllers.Game
             this.countText.text = this.count.ToString();
 
             var playerMst = Backend.MstDatas.Instance.Get("player_mst");
-            var skillMst = Backend.MstDatas.Instance.Get("skill_mst");
+            var skillMst = Backend.MstDatas.Instance.Get("drop_mst");
             this.SkillManager.Initialize(skillMst);
             this.Player = GameObject.FindObjectOfType<Player>();
             this.Player.Damaged += this.OnDamaged;
             this.Player.Initialize(playerMst[0]);
 
             {
-                var skill = this.SkillManager.UpgradeSkill(initialWeaponId);
+                var skill = this.SkillManager.UpgradeSkill(initialWeaponId, 0);
                 this.Player.UpdateSkill(skill);
             }
 
@@ -172,9 +172,9 @@ namespace Vs.Controllers.Game
         public void AddExp(int value)
         {
             this.exp += value;
-            if (this.exp >= 100)
+            if (this.exp >= 10)
             {
-                this.exp -= 100;
+                this.exp -= 10;
                 this.level++;
                 ShowLvUp();
             }
@@ -268,11 +268,11 @@ namespace Vs.Controllers.Game
             SoundService.Instance.PlaySe("levelup");
         }
 
-        private void OnLvUpPopupSelected(int skillId)
+        private void OnLvUpPopupSelected(int skillId, int type)
         {
             this.isStop = false;
 
-            var skill = this.SkillManager.UpgradeSkill(skillId);
+            var skill = this.SkillManager.UpgradeSkill(skillId, type);
             this.Player.UpdateSkill(skill);
         }
 
