@@ -182,6 +182,7 @@ namespace Vs.Controllers.Game
 
         public void UpdateSkill(Skill skill)
         {
+            if (skill == null) return;
             switch (skill.Category)
             {
                 case 101:
@@ -191,6 +192,7 @@ namespace Vs.Controllers.Game
                     this.UpgradeStats(skill);
                     break;
             }
+            OnScreenUi.Instance.UpdateEquipmentView();
         }
 
         private void UpdateShooter(Skill skill)

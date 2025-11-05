@@ -19,5 +19,12 @@ namespace Vs.Controllers.Game
         public float SizeMulti = 1;
         public string EffectId;
         public int EffectValue;
+        public readonly Dictionary<int, SkillType> SkillTypes = new Dictionary<int, SkillType>();
+    }
+
+    public sealed class SkillType
+    {
+        public string Name;
+        public int Level;
     }
 }
