@@ -43,4 +43,19 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     {
         currentLevelText.text = value.ToString();
     }
+
+    public void SetDebugText1(string text)
+    {
+
+    }
+
+    public void SetDebugText2(string text)
+    {
+
+    }
+
+    public void SetDebugText3(string text)
+    {
+
+    }
 }

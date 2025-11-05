@@ -18,7 +18,7 @@ namespace Vs.Controllers.Game
 
         public int Hp = 20;
         public int Atk { get; private set; }
-        public int Spd { get; private set; }
+        public float Spd = 0f;
         public int DropId { get; private set; }
         public int ExpAmount = 1;
 
@@ -42,7 +42,7 @@ namespace Vs.Controllers.Game
             this.Atk = atk;
         }
 
-        public void SetSpd(int spd)
+        public void SetSpd(float spd)
         {
             this.Spd = spd;
         }
@@ -74,15 +74,21 @@ namespace Vs.Controllers.Game
             }
 
             var player = GameManager.Instance.Player;
-            var dir = player.transform.position - this.transform.position;
+            var dir = Vector3.down; //player.transform.position - this.transform.position;
             var pos = this.transform.position;
-            pos += this.Spd / 1000.0f * Time.deltaTime * dir.normalized;
+            pos += this.Spd * Time.deltaTime * dir.normalized;
             this.transform.position = pos;
+            RemoveIfPassed();
 
             if (this.avatar != null)
             {
                 this.avatar.flipX = dir.x < 0;
             }
+        }
+
+        private void RemoveIfPassed()
+        {
+            if (Camera.main.WorldToViewportPoint(transform.position).y < 0) Death(true);
         }
 
         public void Death(bool force = false)
