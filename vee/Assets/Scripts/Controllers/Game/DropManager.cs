@@ -73,7 +73,7 @@ namespace SengokuSurvivors
 
         public void DropExp(Vector3 pos, int amount)
         {
-            var count = amount;
+            var count = amount / expPref.GetExpAmount();
             var player = FindAnyObjectByType<Player>().gameObject;
             for (int i = 0; i < count; i++)
             {

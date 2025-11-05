@@ -8,12 +8,12 @@ namespace Vs.Controllers.Game
     public sealed class SkillManager
     {
         private List<JsonObject> skillMst;
-        private List<JsonObject> allSkillMst; // 元のskill_mst全体を保持
+        private List<JsonObject> allSkillMst; // 元のdrop_mst全体を保持
         private List<Skill> skills = new List<Skill>();
 
         public void Initialize(List<JsonObject> skillMst)
         {
-            this.allSkillMst = skillMst; // 元のskill_mst全体を保存
+            this.allSkillMst = skillMst; // 元のdrop_mst全体を保存
             var skillIds = new int[] { 901};//1001, 1002, 1004, 1007, 1009 };
             this.skillMst = skillMst.FindAll(row =>
             {
@@ -23,17 +23,17 @@ namespace Vs.Controllers.Game
             });
         }
 
-        public Skill UpgradeSkill(int skillId)
+        public Skill UpgradeSkill(int skillId, int type)
         {
             // まずskillMstから検索、見つからなければallSkillMstから検索
-            var raw = this.skillMst.Find(i => i["skill_id"] == skillId);
+            var raw = this.skillMst.Find(i => i["skill_id"] == skillId && i["type"] == type);
             if (raw == null)
             {
                 raw = this.allSkillMst.Find(i => i["skill_id"] == skillId);
             }
             if (raw == null)
             {
-                UnityEngine.Debug.LogError($"Skill {skillId} not found in skill_mst");
+                UnityEngine.Debug.LogError($"Skill {skillId} not found in drop_mst");
                 return null;
             }
             var skill = this.skills.Find(i => i.SkillId == skillId);
@@ -44,13 +44,16 @@ namespace Vs.Controllers.Game
                 skill.Category = raw["category"];
                 this.skills.Add(skill);
             }
+            UnityEngine.Debug.Log(skill.CoolTimeMulti + " [] " + raw["cooltime_multi"]);
             skill.Atk += raw["atk"];
             skill.Speed += raw["speed"];
             skill.CoolTime += raw["cooltime"]; // バグ修正: raw["atk"] → raw["cooltime"]
+            skill.CoolTimeMulti *= raw["cooltime_multi"];
             skill.LifeTime += raw["lifetime"];
             skill.Projectile += raw["projectile"];
             skill.Count += raw["count"];
             skill.Size += raw["size"];
+            skill.SizeMulti *= raw["size_multi"];
             return skill;
         }
 

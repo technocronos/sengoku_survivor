@@ -16,15 +16,20 @@ namespace Vs.Controllers.Game
         public bool IsTarget = true;
         public bool IsDead { get; private set; }
 
-        public int Hp { get; private set; }
+        public int Hp = 20;
         public int Atk { get; private set; }
         public int Spd { get; private set; }
         public int DropId { get; private set; }
-        public int ExpAmount { get; private set; }
+        public int ExpAmount = 1;
 
         public SengokuSurvivors.EnemyType EnemyType { get; private set; } = SengokuSurvivors.EnemyType.Normal;
 
         private float hitElapsed;
+
+        private void Awake()
+        {
+            this.hpText.text = $"{this.Hp}";
+        }
 
         public void SetHp(int hp)
         {

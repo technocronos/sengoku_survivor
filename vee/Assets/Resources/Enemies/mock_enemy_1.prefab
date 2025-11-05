@@ -50,6 +50,8 @@ MonoBehaviour:
   avatar: {fileID: 7838415779088480391}
   hpText: {fileID: 1213914638011461116}
   IsTarget: 1
+  Hp: 20
+  ExpAmount: 1
 --- !u!70 &-4900800217739988317
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

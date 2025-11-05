@@ -8,7 +8,11 @@ namespace SengokuSurvivors
     {
         private bool isObtained = false;
         private const float distance = 2.0f;
-        private int add_exp = 5;
+        private int add_exp = 1;
+        public int GetExpAmount()
+        {
+            return add_exp;
+        }
 
         public void Obtain(GameObject target)
         {

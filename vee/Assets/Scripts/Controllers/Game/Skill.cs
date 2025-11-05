@@ -11,10 +11,12 @@ namespace Vs.Controllers.Game
         public int Atk;
         public int Speed;
         public int CoolTime;
+        public float CoolTimeMulti = 1;
         public int LifeTime;
         public int Projectile;
         public int Count;
         public int Size;
+        public float SizeMulti = 1;
         public string EffectId;
         public int EffectValue;
     }
