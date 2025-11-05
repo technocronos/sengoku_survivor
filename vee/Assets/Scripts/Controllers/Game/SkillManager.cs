@@ -7,7 +7,7 @@ namespace Vs.Controllers.Game
 {
     public sealed class SkillManager
     {
-        private List<JsonObject> skillMst;
+        private List<JsonObject> dropMst;
         private List<JsonObject> allSkillMst; // 元のdrop_mst全体を保持
         private List<Skill> skills = new List<Skill>();
 
@@ -15,7 +15,7 @@ namespace Vs.Controllers.Game
         {
             this.allSkillMst = skillMst; // 元のdrop_mst全体を保存
             var skillIds = new int[] { 901};//1001, 1002, 1004, 1007, 1009 };
-            this.skillMst = skillMst.FindAll(row =>
+            this.dropMst = skillMst.FindAll(row =>
             {
                 var category = (int)row["category"];
                 var skillId = (int)row["skill_id"];
@@ -26,34 +26,46 @@ namespace Vs.Controllers.Game
         public Skill UpgradeSkill(int skillId, int type)
         {
             // まずskillMstから検索、見つからなければallSkillMstから検索
-            var raw = this.skillMst.Find(i => i["skill_id"] == skillId && i["type"] == type);
-            if (raw == null)
+            var row = this.dropMst.Find(i => i["skill_id"] == skillId && i["type"] == type);
+            if (row == null)
             {
-                raw = this.allSkillMst.Find(i => i["skill_id"] == skillId);
+                row = this.allSkillMst.Find(i => i["skill_id"] == skillId);
             }
-            if (raw == null)
+            if (row == null)
             {
                 UnityEngine.Debug.LogError($"Skill {skillId} not found in drop_mst");
                 return null;
             }
             var skill = this.skills.Find(i => i.SkillId == skillId);
-            if (skill == null)
+            if (skill == null)//取得していない武器やバフの場合
             {
+                if (type != 0)
+                {
+                    return null;//武装を持ってないと強化もできない。
+                    //todo: 武器を持ってない場合、強化ｇドロップされない対応
+                }
                 skill = new Skill();
                 skill.SkillId = skillId;
-                skill.Category = raw["category"];
+                skill.Category = row["category"];
+                skill.SkillTypes.Add(0, new SkillType() { Name = row["name"], Level = 0 });//Level++で1になるため0
                 this.skills.Add(skill);
             }
-            UnityEngine.Debug.Log(skill.CoolTimeMulti + " [] " + raw["cooltime_multi"]);
-            skill.Atk += raw["atk"];
-            skill.Speed += raw["speed"];
-            skill.CoolTime += raw["cooltime"]; // バグ修正: raw["atk"] → raw["cooltime"]
-            skill.CoolTimeMulti *= raw["cooltime_multi"];
-            skill.LifeTime += raw["lifetime"];
-            skill.Projectile += raw["projectile"];
-            skill.Count += raw["count"];
-            skill.Size += raw["size"];
-            skill.SizeMulti *= raw["size_multi"];
+            else if (!skill.SkillTypes.ContainsKey(type))//取得している武器で、強化を取得していない
+            {
+                skill.SkillTypes.Add(type, new SkillType() 
+                    { Name = $"{row["name"]} {row["type_name"]}", Level = 0 });//Level++で1になるため0
+            }
+            skill.SkillTypes[type].Level++;//強化を取っているのでレベルが+1上がる
+
+            skill.Atk += row["atk"];
+            skill.Speed += row["speed"];
+            skill.CoolTime += row["cooltime"]; // バグ修正: raw["atk"] → raw["cooltime"]
+            skill.CoolTimeMulti *= row["cooltime_multi"];
+            skill.LifeTime += row["lifetime"];
+            skill.Projectile += row["projectile"];
+            skill.Count += row["count"];
+            skill.Size += row["size"];
+            skill.SizeMulti *= row["size_multi"];
             return skill;
         }
 
@@ -69,7 +81,7 @@ namespace Vs.Controllers.Game
 
         public List<JsonObject> GetSelectableSkills()
         {
-            return this.skillMst
+            return this.dropMst
                 .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) ? i["type"] > 0 : i["type"] == 0)
                 .OrderBy(i => System.Guid.NewGuid()).ToList().Take(3).ToList();
         }

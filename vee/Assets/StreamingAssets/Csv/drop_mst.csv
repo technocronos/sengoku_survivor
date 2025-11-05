@@ -1,5 +1,5 @@
 skill_id,category,type,name,type_name,description,atk,speed,cooltime,cooltime_multi,lifetime,projectile,count,size,size_multi,effect_id,effect_value
-901,101,0,test武器,テスト用武器です,,20,1000,2000,1,1000,1,1,100,1,0,0
+901,101,0,test武器,,,20,1000,2000,1,1000,1,1,100,1,0,0
 901,101,1,test武器,威力UP,刀の威力をUP,1,0,0,1,0,0,0,0,"1,1",0,0
 901,101,2,test武器,間隔UP,刀のクールダウンをDOWN,0,0,0,"0,9",0,0,0,0,1,0,0
 901,101,3,test武器,範囲UP,刀の攻撃範囲をUP,0,0,0,1,0,0,0,0,1,0,0

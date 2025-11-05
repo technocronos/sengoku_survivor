@@ -44,18 +44,18 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         currentLevelText.text = value.ToString();
     }
 
-    public void SetDebugText1(string text)
+    public void UpdateEquipmentView()
     {
+        string text = "";
+        var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetCurrentSkills();
+        foreach (var entry in allEquipment)
+        {
+            foreach (var skillType in entry.SkillTypes)
+            {
+                text += string.Format("\n{0} Lvl{1}", skillType.Value.Name, skillType.Value.Level);
+            }
+        }
 
-    }
-
-    public void SetDebugText2(string text)
-    {
-
-    }
-
-    public void SetDebugText3(string text)
-    {
-
+        weaponDebugLabel1.text = text;
     }
 }
