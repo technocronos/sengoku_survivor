@@ -46,7 +46,7 @@ namespace SengokuSurvivors
                 {
                     yield return null;
                 }
-                yield return new WaitForSecondsRealtime(cooldown);
+                yield return new WaitForSeconds(cooldown);
             }
         }
 
