@@ -47,15 +47,15 @@ namespace Vs.Controllers.Game
                 skill = new Skill();
                 skill.SkillId = skillId;
                 skill.Category = row["category"];
-                skill.SkillTypes.Add(0, new SkillType() { Name = row["name"], Level = 0 });//Level++で1になるため0
+                skill.SkillTypes.Add(0, new SkillType() { Name = row["name"], Level = 0 });
                 this.skills.Add(skill);
             }
             else if (!skill.SkillTypes.ContainsKey(type))//取得している武器で、強化を取得していない
             {
                 skill.SkillTypes.Add(type, new SkillType() 
-                    { Name = $"{row["name"]} {row["type_name"]}", Level = 0 });//Level++で1になるため0
+                    { Name = $"      {row["type_name"]}", Level = 0 });
             }
-            skill.SkillTypes[type].Level++;//強化を取っているのでレベルが+1上がる
+            if (type > 0 || skill.Category == 201) skill.SkillTypes[type].Level++;//強化を取っているのでレベルが+1上がる
 
             skill.Atk += row["atk"];
             skill.Speed += row["speed"];

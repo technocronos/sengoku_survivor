@@ -48,9 +48,9 @@ namespace Vs.Controllers.Game
 
         public PlayerStats Stats { get; private set; }
         private int hp;
-        private int hpMax = 30;
+        private int hpMaxRaw = 30;
         private int speed = 2000;
-        private int calcedHpMax;
+        private int hpMax;
         private int calcedSpeed;
         private float elapsed;
 
@@ -62,12 +62,12 @@ namespace Vs.Controllers.Game
 
         public void Initialize(JsonObject raw)
         {
-            this.hpMax = raw["hp"];
+            this.hpMaxRaw = raw["hp"];
             this.speed = raw["speed"];
             this.Stats = new PlayerStats();
             this.CalcStats();
-            this.hp = this.calcedHpMax;
-            OnScreenUi.Instance.SetCurrHp(hp);
+            this.hp = this.hpMax;
+            OnScreenUi.Instance.SetCurrHp(hp, hpMax);
         }
 
         private void Update()
@@ -76,7 +76,7 @@ namespace Vs.Controllers.Game
             if (this.elapsed >= 1.0f)
             {
                 this.elapsed -= 1.0f;
-                this.Recover(Mathf.FloorToInt(this.calcedHpMax * this.Stats.AutoRecover / 1000.0f));
+                this.Recover(Mathf.FloorToInt(this.hpMax * this.Stats.AutoRecover / 1000.0f));
             }
 
             var horizontal = Input.GetAxis("Horizontal"); // this.joystick.Horizontal;
@@ -147,24 +147,24 @@ namespace Vs.Controllers.Game
             {
                 this.hp = 0;
             }
-            OnScreenUi.Instance.SetCurrHp(hp);
+            OnScreenUi.Instance.SetCurrHp(hp, hpMax);
             this.Damaged.Invoke(value, this.hp);
         }
 
         public void Recover(int value)
         {
             this.hp += value;
-            if (this.hp > this.calcedHpMax)
+            if (this.hp > this.hpMax)
             {
-                this.hp = this.calcedHpMax;
+                this.hp = this.hpMax;
             }
-            OnScreenUi.Instance.SetCurrHp(hp);
+            OnScreenUi.Instance.SetCurrHp(hp, hpMax);
             this.Recovered.Invoke(value, this.hp);
         }
 
         private void CalcStats()
         {
-            this.calcedHpMax = Mathf.FloorToInt(this.hpMax * this.Stats.HpRate / 1000.0f);
+            this.hpMax = Mathf.FloorToInt(this.hpMaxRaw * this.Stats.HpRate / 1000.0f);
             this.calcedSpeed = Mathf.FloorToInt(this.speed * this.Stats.SpdRate / 1000.0f);
             foreach (var i in this.shooters)
             {
