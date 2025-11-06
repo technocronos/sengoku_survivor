@@ -42,6 +42,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         {
             hpFadeSlider.value += (hpSlider.value - hpFadeSlider.value) * 2f * Time.deltaTime;
         }
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
     }
 
     public void SetCurrHp(int hp, int maxHp)
