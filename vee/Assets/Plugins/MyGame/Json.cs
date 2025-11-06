@@ -58,11 +58,6 @@ namespace MyGame
             return i.ToInt();
         }
 
-        public static implicit operator float(JsonObject i)
-        {
-            return i.ToFloat();
-        }
-
         public static implicit operator bool(JsonObject i)
         {
             return i.ToBool();
@@ -86,11 +81,6 @@ namespace MyGame
         public int ToInt()
         {
             return int.Parse(this.ToString());
-        }
-
-        public float ToFloat()
-        {
-            return float.Parse(this.ToString());
         }
 
         public bool ToBool()

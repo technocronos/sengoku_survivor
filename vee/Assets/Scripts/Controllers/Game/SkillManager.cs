@@ -60,12 +60,12 @@ namespace Vs.Controllers.Game
             skill.Atk += row["atk"];
             skill.Speed += row["speed"];
             skill.CoolTime += row["cooltime"]; // バグ修正: raw["atk"] → raw["cooltime"]
-            skill.CoolTimeMulti *= row["cooltime_multi"];
+            skill.CoolTimeMulti *= row["cooltime_multi"] / 1000f;
             skill.LifeTime += row["lifetime"];
             skill.Projectile += row["projectile"];
             skill.Count += row["count"];
             skill.Size += row["size"];
-            skill.SizeMulti *= row["size_multi"];
+            skill.SizeMulti *= row["size_multi"] / 1000f;
             return skill;
         }
 
