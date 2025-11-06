@@ -51,6 +51,7 @@ namespace Vs.Controllers.Game
         private int level = 1;
         private int levelCalced = 1;
         private int exp;
+        private int expToLevelUp = 10;
         private int coins;
         private int count;
 
@@ -73,8 +74,8 @@ namespace Vs.Controllers.Game
             this.popupLvUp.Selected += this.OnLvUpPopupSelected;
 
             this.CalcLevel();
-            OnScreenUi.Instance.SetCurrExp(this.exp);
-            OnScreenUi.Instance.SetCurrLevel(this.level);
+            OnScreenUi.Instance.SetExp(exp, expToLevelUp);
+            OnScreenUi.Instance.SetCurrLevel(level);
 
             this.coinsText.text = this.coins.ToString();
             this.countText.text = this.count.ToString();
@@ -172,13 +173,14 @@ namespace Vs.Controllers.Game
         public void AddExp(int value)
         {
             this.exp += value;
-            if (this.exp >= 10)
+            if (this.exp >= expToLevelUp)
             {
-                this.exp -= 10;
+                this.exp -= expToLevelUp;
+                //expToLevelUp = nextExpToLevelUp;
                 this.level++;
                 ShowLvUp();
             }
-            OnScreenUi.Instance.SetCurrExp(this.exp);
+            OnScreenUi.Instance.SetExp(this.exp, expToLevelUp);
             OnScreenUi.Instance.SetCurrLevel(this.level);
             return;
             this.exp += Mathf.FloorToInt(value * this.Player.Stats.ExpRate / 1000.0f);

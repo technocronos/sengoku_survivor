@@ -19,6 +19,13 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     [SerializeField]
     private TMP_Text weaponDebugLabel3;
 
+    [SerializeField]
+    private Slider expSlider;
+    [SerializeField]
+    private Slider hpSlider;
+    [SerializeField]
+    private Slider hpFadeSlider;
+
     private void Awake()
     {
         currentHealthText.text = "";
@@ -29,14 +36,24 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         weaponDebugLabel3.text = "";
     }
 
-    public void SetCurrHp(int hp)
+    private void Update()
     {
-        currentHealthText.text = hp.ToString();
+        if (hpFadeSlider.value != hpSlider.value)
+        {
+            hpFadeSlider.value += (hpSlider.value - hpFadeSlider.value) * 2f * Time.deltaTime;
+        }
     }
 
-    public void SetCurrExp(int value)
+    public void SetCurrHp(int hp, int maxHp)
     {
-        currentExpText.text = string.Format("{0}/100", value);
+        currentHealthText.text = string.Format("{0}/{1}", hp, maxHp);
+        hpSlider.value = (float)hp / maxHp;
+    }
+
+    public void SetExp(int currExp, int maxExp)
+    {
+        currentExpText.text = string.Format("{0}/{1}", currExp, maxExp);
+        expSlider.value = (float)currExp / maxExp;
     }
 
     public void SetCurrLevel(int value)
@@ -52,7 +69,10 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         {
             foreach (var skillType in entry.SkillTypes)
             {
-                text += string.Format("\n{0} Lvl{1}", skillType.Value.Name, skillType.Value.Level);
+                if (skillType.Value.Level > 0)
+                    text += string.Format("{0} Lvl {1}\n", skillType.Value.Name, skillType.Value.Level);
+                else
+                    text += string.Format("{0}\n", skillType.Value.Name);
             }
         }
 

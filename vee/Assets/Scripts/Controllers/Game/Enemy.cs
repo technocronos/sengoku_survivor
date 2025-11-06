@@ -29,6 +29,7 @@ namespace Vs.Controllers.Game
         private void Awake()
         {
             this.hpText.text = $"{this.Hp}";
+            SetRandomSpd(Spd);
         }
 
         public void SetHp(int hp)
@@ -42,8 +43,10 @@ namespace Vs.Controllers.Game
             this.Atk = atk;
         }
 
-        public void SetSpd(float spd)
+        public void SetRandomSpd(float spd, float dispersion = 0.5f)
         {
+            spd = Random.Range(spd - dispersion, spd + dispersion);
+            if (spd < 0) spd = 0;
             this.Spd = spd;
         }
 
