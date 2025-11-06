@@ -16,6 +16,7 @@ namespace SengokuSurvivors
         private int weaponId = 901;
         private string weaponUseAnim = "Slash";
         private float weaponSizeMulti = 1f;
+        private string soundId = "damage_slash_1";//"damage_slash_2";
 
         private void Start()
         {
@@ -40,6 +41,7 @@ namespace SengokuSurvivors
 
                 AttackEffectAnimator.Play(weaponUseAnim);
                 isAnimationPlaying = true;
+                Vs.SoundService.Instance.PlaySe(soundId);
                 while (isAnimationPlaying)
                 {
                     yield return null;
