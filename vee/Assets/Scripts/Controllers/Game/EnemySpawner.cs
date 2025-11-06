@@ -13,6 +13,12 @@ namespace Vs.Controllers.Game
 
         private void Start()
         {
+            StartCoroutine(MainRoutine());
+        }
+
+        private IEnumerator MainRoutine()
+        {
+            yield return null;
             var enemyMst = Backend.MstDatas.Instance.Get("enemy_mst");
             var growthMst = Backend.MstDatas.Instance.Get("growth_mst");
 
@@ -43,6 +49,13 @@ namespace Vs.Controllers.Game
                 var enemyId = (int)raw["enemy_id"];
                 var y = (int)raw["y"];
                 var x = (int)(raw["x"] - 1) * 2;
+
+                //プレイヤーが近くに来るまで待つ
+                while (y > Camera.main.ViewportToWorldPoint(new Vector3(1, 1, -2*Camera.main.transform.position.z)).y)
+                {
+                    yield return null;
+                }
+
                 if (enemyId == 90000001)
                 {
                     this.SpawnGate(enemyId, y, x);
