@@ -30,6 +30,12 @@ namespace Vs.Controllers.Game
         {
             this.hpText.text = $"{this.Hp}";
             SetRandomSpd(Spd);
+            if (avatar.GetComponent<SengokuSurvivors.EnemyFlashingEffect>() == null)
+            {
+                avatar.gameObject.AddComponent<SengokuSurvivors.EnemyFlashingEffect>();
+            }
+            if (hpText != null) { 
+                hpText.gameObject.SetActive(false); }
         }
 
         public void SetHp(int hp)
@@ -120,7 +126,7 @@ namespace Vs.Controllers.Game
                 return;
             }
 
-            var isCritical = Random.Range(0, 4) == 0;
+            var isCritical = false;// Random.Range(0, 4) == 0;
             this.Hit(damage, isCritical);
             //var soundId = isCritical ? "damage_cri" : ctr.GetSoundId();
             //SoundService.Instance.PlaySe(soundId);
@@ -134,7 +140,7 @@ namespace Vs.Controllers.Game
             }
 
             var ctr = go.GetComponent<ParticleController>();
-            var isCritical = Random.Range(0, 4) == 0;
+            var isCritical = false;// Random.Range(0, 4) == 0;
             this.Hit(ctr.Atk, isCritical);
 
             var soundId = isCritical ?  "damage_cri" : ctr.GetSoundId();
@@ -154,7 +160,7 @@ namespace Vs.Controllers.Game
             this.hitElapsed += 1.0f;
 
             var ctr = go.GetComponent<ParticleController>();
-            var isCritical = Random.Range(0, 4) == 0;
+            var isCritical = false;// Random.Range(0, 4) == 0;
             this.Hit(ctr.Atk, isCritical);
 
             var soundId = isCritical ?  "damage_cri" : ctr.GetSoundId();
@@ -163,9 +169,10 @@ namespace Vs.Controllers.Game
 
         private void Hit(int damage, bool isCritical)
         {
+            avatar.GetComponent<SengokuSurvivors.EnemyFlashingEffect>().TriggerMaterialChange();
             var calcedDamage = Mathf.FloorToInt(damage * (isCritical ? 2.0f : 1.0f));
 
-            DamageSpawner.Instance.Spawn(this.transform.position, calcedDamage, isCritical);
+            //DamageSpawner.Instance.Spawn(this.transform.position, calcedDamage, isCritical);
 
             this.Hp -= calcedDamage;
             this.hpText.text = $"{this.Hp}";
