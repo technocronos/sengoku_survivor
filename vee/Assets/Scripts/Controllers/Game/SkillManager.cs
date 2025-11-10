@@ -15,12 +15,13 @@ namespace Vs.Controllers.Game
         {
             this.allSkillMst = skillMst; // 元のdrop_mst全体を保存
             var skillIds = new int[] { 901};//1001, 1002, 1004, 1007, 1009 };
-            this.dropMst = skillMst.FindAll(row =>
-            {
-                var category = (int)row["category"];
-                var skillId = (int)row["skill_id"];
-                return category == 201 || System.Array.Exists(skillIds, i => i == skillId);
-            });
+            this.dropMst = allSkillMst;
+            //    skillMst.FindAll(row =>
+            //{
+            //    var category = (int)row["category"];
+            //    var skillId = (int)row["skill_id"];
+            //    return category == 201 || System.Array.Exists(skillIds, i => i == skillId);
+            //});
         }
 
         public Skill UpgradeSkill(int skillId, int type)
