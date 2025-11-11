@@ -176,7 +176,7 @@ namespace Vs.Controllers.Game
             if (this.exp >= expToLevelUp)
             {
                 this.exp -= expToLevelUp;
-                //expToLevelUp = nextExpToLevelUp;
+                expToLevelUp += 3;//expToLevelUp = nextExpToLevelUp;
                 this.level++;
                 ShowLvUp();
             }
