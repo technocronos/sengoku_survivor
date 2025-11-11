@@ -22,6 +22,9 @@ namespace Vs.Controllers.Game
         public int DropId { get; private set; }
         public int ExpAmount = 1;
 
+        [System.NonSerialized]
+        public bool UseBaseMoving = true;
+
         public SengokuSurvivors.EnemyType EnemyType { get; private set; } = SengokuSurvivors.EnemyType.Normal;
 
         private float hitElapsed;
@@ -82,16 +85,20 @@ namespace Vs.Controllers.Game
                 this.hitElapsed -= Time.deltaTime;
             }
 
-            var player = GameManager.Instance.Player;
-            var dir = Vector3.down; //player.transform.position - this.transform.position;
-            var pos = this.transform.position;
-            pos += this.Spd * Time.deltaTime * dir.normalized;
-            this.transform.position = pos;
+            if (UseBaseMoving)
+            {
+                var player = GameManager.Instance.Player;
+                var dir = Vector3.down; //player.transform.position - this.transform.position;
+                var pos = this.transform.position;
+                pos += this.Spd * Time.deltaTime * dir.normalized;
+                this.transform.position = pos;
+            }
+
             RemoveIfPassed();
 
             if (this.avatar != null)
             {
-                this.avatar.flipX = dir.x < 0;
+                //this.avatar.flipX = dir.x < 0;
             }
         }
 
