@@ -41,7 +41,7 @@ public class ProjectileController : MonoBehaviour
         ArrowProjectile arrow;
         if (projectilesCacheArrow.Count < 1)
         {
-            arrow = Instantiate(arrowPref, transform);
+            arrow = Instantiate(arrowPref, world);
         }
         else
         {
@@ -64,8 +64,7 @@ public class ProjectileController : MonoBehaviour
         ShurikenProjectile shuriken;
         if (projectilesCacheShuriken.Count < 1)
         {
-            shuriken = Instantiate(shurikenPref, 
-                new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, world);
+            shuriken = Instantiate(shurikenPref, world);
         }
         else
         {
