@@ -26,32 +26,34 @@ namespace SengokuSurvivors
         public void DropItem(Vector3 pos, int dropId)
         {
             var skillId = 0;
+            var type = 0;
             var text = "報酬を選択";
-            if (dropId == 0)
+            if (dropId == 0)//dropId = 0の場合、ランダムのアップグレードをアイテムとして用意
             {
                 var row = GameManager.Instance.SkillManager.GetSelectableSkills()[0];
                 skillId = row["skill_id"];
+                type = row["type"];
                 text = $"{row["name"]}\n{row["type_name"]}";
             }
-            else
-            {
-                // drop_mstからdropIdに対応するskill_idを取得
-                var dropRow = this.skillMst?.Find(i => (int)i["skill_id"] == dropId && (int)i["type"] == 0);
-                if (dropRow != null)
-                {
-                    skillId = dropId;
-                    text = $"{dropRow["name"]}\n{dropRow["type_name"]}";
-                }
-                else
-                {
-                    // dropIdが見つからない場合、デフォルト処理
-                    var row = GameManager.Instance.SkillManager.GetSelectableSkills()[0];
-                    skillId = row["skill_id"];
-                    text = $"{row["name"]}\n{row["type_name"]}";
-                }
-            }
+            //else
+            //{
+            //    // drop_mstからdropIdに対応するskill_idを取得
+            //    var dropRow = this.skillMst?.Find(i => (int)i["skill_id"] == dropId && (int)i["type"] == 0);
+            //    if (dropRow != null)
+            //    {
+            //        skillId = dropId;
+            //        text = $"{dropRow["name"]}\n{dropRow["type_name"]}";
+            //    }
+            //    else
+            //    {
+            //        // dropIdが見つからない場合、デフォルト処理
+            //        var row = GameManager.Instance.SkillManager.GetSelectableSkills()[0];
+            //        skillId = row["skill_id"];
+            //        text = $"{row["name"]}\n{row["type_name"]}";
+            //    }
+            //}
             var box = GameObject.Instantiate(this.prefab, pos, Quaternion.identity, this.world);
-            box.Initialize(skillId, text);
+            box.Initialize(skillId, type, text);
             
             // 生成直後にコライダーを無効化し、次のフレームで有効化（即取得を防ぐため）
             var collider = box.GetComponent<Collider2D>();

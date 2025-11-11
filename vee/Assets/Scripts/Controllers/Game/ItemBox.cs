@@ -10,15 +10,17 @@ namespace Vs.Controllers.Game
         private UnityEngine.UI.Text text;
 
         private int skillId;
+        private int skillType;
 
         protected override void OnComplete()
         {
-            GameManager.Instance.AddSkill(this.skillId);
+            GameManager.Instance.AddSkill(skillId, skillType);
         }
 
-        public void Initialize(int skillId, string text)
+        public void Initialize(int skillId, int type, string text)
         {
             this.skillId = skillId;
+            this.skillType = type;
             this.text.text = text;
         }
     }

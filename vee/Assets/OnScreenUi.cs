@@ -26,6 +26,17 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     [SerializeField]
     private Slider hpFadeSlider;
 
+    [SerializeField]
+    private Button DebugButton1;
+    [SerializeField]
+    private Button DebugButton2;
+    [SerializeField]
+    private Button DebugButton3;
+    [SerializeField]
+    private Button DebugMenuButton;
+    [SerializeField]
+    private Button DebugMenuCloseButton;
+
     private void Awake()
     {
         currentHealthText.text = "";
@@ -34,6 +45,42 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         weaponDebugLabel1.text = "";
         weaponDebugLabel2.text = "";
         weaponDebugLabel3.text = "";
+        DebugButton1.onClick.AddListener(() => { 
+            Vs.Controllers.Game.GameManager.Instance.AddSkill(901, 1);
+            Vs.Controllers.Game.GameManager.Instance.AddSkill(901, 2);
+            Vs.Controllers.Game.GameManager.Instance.AddSkill(901, 3);
+        });
+        DebugButton2.onClick.AddListener(() => {
+            var skillId = 903;
+            var type = Vs.Controllers.Game.GameManager.Instance.SkillManager.IsBaseSkillObtained(skillId) ? 1 : 0;
+            Vs.Controllers.Game.GameManager.Instance.AddSkill(skillId, type); 
+        });
+        DebugButton3.onClick.AddListener(() => {
+            var skillId = 902;
+            var type = Vs.Controllers.Game.GameManager.Instance.SkillManager.IsBaseSkillObtained(skillId) ? 1 : 0;
+            Vs.Controllers.Game.GameManager.Instance.AddSkill(skillId, type);
+        });
+
+        DebugButton1.gameObject.SetActive(false);
+        DebugButton2.gameObject.SetActive(false);
+        DebugButton3.gameObject.SetActive(false);
+        DebugMenuButton.gameObject.SetActive(true);
+        DebugMenuCloseButton.gameObject.SetActive(false);
+
+        DebugMenuCloseButton.onClick.AddListener(() =>{
+            DebugButton1.gameObject.SetActive(false);
+            DebugButton2.gameObject.SetActive(false);
+            DebugButton3.gameObject.SetActive(false);
+            DebugMenuButton.gameObject.SetActive(true);
+            DebugMenuCloseButton.gameObject.SetActive(false);
+        });
+        DebugMenuButton.onClick.AddListener(() =>{
+            DebugButton1.gameObject.SetActive(true);
+            DebugButton2.gameObject.SetActive(true);
+            DebugButton3.gameObject.SetActive(true);
+            DebugMenuButton.gameObject.SetActive(false);
+            DebugMenuCloseButton.gameObject.SetActive(true);
+        });
     }
 
     private void Update()

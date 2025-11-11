@@ -98,7 +98,16 @@ public class ProjectileController : MonoBehaviour
             UpdateWeaponParameters();
             if (ArrowDamage == 0) continue;
 
-            PlaceArrow();
+            if (ArrowDamage < 22)
+            { PlaceArrow(); }
+            else if (ArrowDamage < 24)
+            {
+                PlaceArrow(2);
+            }
+            else
+            {
+                PlaceArrow(3);
+            }
             //Vs.SoundService.Instance.PlaySe(soundIdArrow);
             yield return new WaitForSeconds(cooldownArrow);
         }
@@ -123,9 +132,21 @@ public class ProjectileController : MonoBehaviour
         }
     }
 
-    private void PlaceArrow()
+    private void PlaceArrow(int count = 1)
     {
-        PlaceArrow(transform.position, Vector3.up);
+        if (count == 1)
+        { PlaceArrow(transform.position, Vector3.up); }
+        else if (count == 2)
+        {
+            PlaceArrow(transform.position + 0.15f * Vector3.right, Vector3.up);
+            PlaceArrow(transform.position + 0.15f * Vector3.left, Vector3.up);
+        }
+        else
+        {
+            PlaceArrow(transform.position, Vector3.up);
+            PlaceArrow(transform.position + 0.3f * Vector3.right, Vector3.up);
+            PlaceArrow(transform.position + 0.3f * Vector3.left, Vector3.up);
+        }
     }
 
     private void FindEnemyAndPlaceShuriken()
@@ -133,17 +154,27 @@ public class ProjectileController : MonoBehaviour
         var enemies = FindObjectsByType<Vs.Controllers.Game.Enemy>(FindObjectsSortMode.None);
         var c = enemies.Length;
         int indx = 0;
+        int indx2 = 1;
+        int indx3 = 2;
         if (c < 1) return;
         var distanceMin = (enemies[0].transform.position - transform.position).magnitude;
+        var min2 = (enemies[1].transform.position - transform.position).magnitude;
+        var min3 = (enemies[2].transform.position - transform.position).magnitude;
         for (int i = 1; i < c; i++)
         {
             var distance = (enemies[i].transform.position - transform.position).magnitude;
             if (distanceMin > distance)
             {
+                min3 = min2;
+                indx3 = indx2;
+                min2 = distanceMin;
+                indx2 = indx;
                 distanceMin = distance;
                 indx = i;
             }
         }
         PlaceShuriken(transform.position, enemies[indx]);
+        if (ShurikenDamage > 21) PlaceShuriken(transform.position, enemies[indx2]);
+        if (ShurikenDamage > 22) PlaceShuriken(transform.position, enemies[indx3]);
     }
 }

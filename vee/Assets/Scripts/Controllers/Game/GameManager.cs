@@ -205,7 +205,7 @@ namespace Vs.Controllers.Game
             // this.coinsText.text = this.coins.ToString();
         }
 
-        public void AddSkill(int skillId)
+        public void AddSkill(int skillId, int skillType)
         {
             if (skillId == 0)
             {
@@ -213,8 +213,8 @@ namespace Vs.Controllers.Game
             }
             else
             {
-                // ItemBoxから取得したスキルをPopupLvupで選択できるように表示
-                this.ShowLvUp(skillId);
+                var skill = this.SkillManager.UpgradeSkill(skillId, skillType);
+                this.Player.UpdateSkill(skill);
             }
         }
 
