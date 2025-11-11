@@ -119,24 +119,25 @@ namespace Vs.Controllers.Game
                 GameManager.Instance.AddCount();
                 SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position, this.ExpAmount);
 
-                if(this.DropId > 0)
+                if(this.EnemyType != SengokuSurvivors.EnemyType.Normal)
                     SengokuSurvivors.DropManager.Instance.DropItem(this.transform.position, this.DropId);
 
             }
             GameObject.Destroy(this.gameObject);
         }
 
-        public void OnWeaponTrigger(int damage, string soundId)
+        public bool OnWeaponTrigger(int damage, string soundId)
         {
             if (this.IsDead)
             {
-                return;
+                return false;
             }
 
             var isCritical = false;// Random.Range(0, 4) == 0;
             this.Hit(damage, isCritical);
             //var soundId = isCritical ? "damage_cri" : ctr.GetSoundId();
             //SoundService.Instance.PlaySe(soundId);
+            return true;
         }
 
         private void OnParticleCollision(GameObject go)

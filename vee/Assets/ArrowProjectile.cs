@@ -31,7 +31,9 @@ public class ArrowProjectile : MonoBehaviour
     {
         var target = collision.gameObject.GetComponent<Vs.Controllers.Game.Enemy>();
         if (target == null) return;
-        bowController.RemoveProjectile(this);
-        target.OnWeaponTrigger(bowController.ArrowDamage, "");
+        if (target.OnWeaponTrigger(bowController.ArrowDamage, ""))
+        {
+            bowController.RemoveProjectile(this);
+        }
     }
 }

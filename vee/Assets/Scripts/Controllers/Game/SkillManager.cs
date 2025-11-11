@@ -87,6 +87,11 @@ namespace Vs.Controllers.Game
                 .OrderBy(i => System.Guid.NewGuid()).ToList().Take(3).ToList();
         }
 
+        public bool IsBaseSkillObtained(int id)
+        {
+            return this.skills.Exists(j => j.SkillId == id);
+        }
+
         public List<JsonObject> GetSelectableSkillsForSkillId(int skillId)
         {
             // ItemBoxから取得したスキルの選択肢を生成

@@ -25,7 +25,7 @@ namespace Vs.Controllers.Game
             else if (this.skillId > 0)
             {
                 // dropIdが設定されていない場合は、直接AddSkillを呼ぶ（旧来の動作を維持）
-                GameManager.Instance.AddSkill(this.skillId);
+                //GameManager.Instance.AddSkill(this.skillId);
             }
         }
 
