@@ -53,6 +53,7 @@ namespace SengokuSurvivors
             //    }
             //}
             var box = GameObject.Instantiate(this.prefab, pos, Quaternion.identity, this.world);
+            box.transform.Rotate(Vector3.right, -30f);
             box.Initialize(skillId, type, text);
             
             // 生成直後にコライダーを無効化し、次のフレームで有効化（即取得を防ぐため）
