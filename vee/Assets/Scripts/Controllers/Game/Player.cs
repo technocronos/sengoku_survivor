@@ -43,9 +43,6 @@ namespace Vs.Controllers.Game
         [SerializeField]
         private GameObject autoDir;
 
-        [SerializeField]
-        private FloatingJoystick joystick;
-
         public PlayerStats Stats { get; private set; }
         private int hp;
         private int hpMaxRaw = 30;
@@ -98,11 +95,11 @@ namespace Vs.Controllers.Game
                 this.animator.Stop();
             }
 
-            var dir = this.joystick.Horizontal;
-            if (dir <= -0.1f || dir >= 0.1f)
-            {
-                this.avatar.flipX = dir < 0;
-            }
+            //var dir = this.joystick.Horizontal;
+            //if (dir <= -0.1f || dir >= 0.1f)
+            //{
+            //    this.avatar.flipX = dir < 0;
+            //}
 
             var enemies = GameManager.Instance.Enemies;
             var distance = float.MaxValue;
