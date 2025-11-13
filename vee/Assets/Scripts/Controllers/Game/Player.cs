@@ -51,6 +51,10 @@ namespace Vs.Controllers.Game
         private int calcedSpeed;
         private float elapsed;
 
+        private float friction = 5f;
+        private float acceleration = 10f;
+        private Vector2 currSpeed;
+
         private void Start()
         {
             // this.direction.transform.LookAt(Vector3.right);
@@ -79,9 +83,18 @@ namespace Vs.Controllers.Game
             var horizontal = Input.GetAxis("Horizontal"); // this.joystick.Horizontal;
             var vertical = Input.GetAxis("Vertical");//1; // this.joystick.Vertical;
 
+            var currMaxSpeed = this.calcedSpeed / 1000.0f;
+            currSpeed += acceleration * Time.deltaTime * new Vector2(horizontal, vertical);
+            currSpeed -= friction * Time.deltaTime * currSpeed;
+
+            currSpeed.x = Mathf.Clamp(currSpeed.x, -currMaxSpeed, currMaxSpeed);
+            currSpeed.y = Mathf.Clamp(currSpeed.y, -currMaxSpeed, currMaxSpeed);
+
+            Debug.Log(currSpeed.x);
+
             var position = transform.localPosition;
-            position.x += this.calcedSpeed / 1000.0f * Time.deltaTime * horizontal;
-            position.y += this.calcedSpeed / 1000.0f * Time.deltaTime * vertical;
+            position.x += currSpeed.x * Time.deltaTime;
+            position.y += currSpeed.y * Time.deltaTime;
             // this.direction.transform.LookAt(position);
             position.x = Mathf.Clamp(position.x, -4.0f, 4.0f);
             position.y = Mathf.Clamp(position.y, -0.7f, 11.0f);
