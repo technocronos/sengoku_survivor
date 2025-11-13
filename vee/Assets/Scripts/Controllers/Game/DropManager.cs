@@ -86,6 +86,7 @@ namespace SengokuSurvivors
                     0f
                 );
                 var expPiece = GameObject.Instantiate(expPref, pos + offset, Quaternion.identity, this.world);
+                expPiece.transform.Rotate(Vector3.right, -30f);
                 expPiece.Obtain(player);
             }
         }

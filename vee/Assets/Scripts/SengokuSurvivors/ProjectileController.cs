@@ -158,8 +158,8 @@ public class ProjectileController : MonoBehaviour
         int indx3 = 2;
         if (c < 1) return;
         var distanceMin = (enemies[0].transform.position - transform.position).magnitude;
-        var min2 = (enemies[1].transform.position - transform.position).magnitude;
-        var min3 = (enemies[2].transform.position - transform.position).magnitude;
+        var min2 = (enemies.Length > 1) ? (enemies[1].transform.position - transform.position).magnitude : distanceMin;
+        var min3 = (enemies.Length > 2) ? (enemies[2].transform.position - transform.position).magnitude : distanceMin;
         for (int i = 1; i < c; i++)
         {
             var distance = (enemies[i].transform.position - transform.position).magnitude;
@@ -174,7 +174,7 @@ public class ProjectileController : MonoBehaviour
             }
         }
         PlaceShuriken(transform.position, enemies[indx]);
-        if (ShurikenDamage > 21) PlaceShuriken(transform.position, enemies[indx2]);
-        if (ShurikenDamage > 22) PlaceShuriken(transform.position, enemies[indx3]);
+        if (ShurikenDamage > 21 && enemies.Length > 1) PlaceShuriken(transform.position, enemies[indx2]);
+        if (ShurikenDamage > 22 && enemies.Length > 2) PlaceShuriken(transform.position, enemies[indx3]);
     }
 }
