@@ -33,9 +33,9 @@ namespace Vs.Controllers.Game
         {
             this.hpText.text = $"{this.Hp}";
             SetRandomSpd(Spd);
-            if (avatar.GetComponent<SengokuSurvivors.EnemyFlashingEffect>() == null)
+            if (avatar.GetComponent<SengokuSurvivors.OnHitFlashingEffect>() == null)
             {
-                avatar.gameObject.AddComponent<SengokuSurvivors.EnemyFlashingEffect>();
+                avatar.gameObject.AddComponent<SengokuSurvivors.OnHitFlashingEffect>();
             }
             if (hpText != null) { 
                 hpText.gameObject.SetActive(false); }
@@ -177,7 +177,7 @@ namespace Vs.Controllers.Game
 
         private void Hit(int damage, bool isCritical)
         {
-            avatar.GetComponent<SengokuSurvivors.EnemyFlashingEffect>().TriggerMaterialChange();
+            avatar.GetComponent<SengokuSurvivors.OnHitFlashingEffect>().TriggerMaterialChange();
             var calcedDamage = Mathf.FloorToInt(damage * (isCritical ? 2.0f : 1.0f));
 
             //DamageSpawner.Instance.Spawn(this.transform.position, calcedDamage, isCritical);

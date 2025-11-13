@@ -33,6 +33,7 @@ namespace Vs.Controllers.Game
 
         [SerializeField]
         private ParticleSystem blood;
+        private SengokuSurvivors.OnHitFlashingEffect flashing;
 
         [SerializeField]
         private ParticleController[] shooters;
@@ -60,6 +61,7 @@ namespace Vs.Controllers.Game
         {
             // this.direction.transform.LookAt(Vector3.right);
             this.autoDir.transform.LookAt(Vector3.right);
+            flashing = GetComponentInChildren<SengokuSurvivors.OnHitFlashingEffect>();
         }
 
         public void Initialize(JsonObject raw)
@@ -151,6 +153,7 @@ namespace Vs.Controllers.Game
             SoundService.Instance.PlaySe(soundId);
 
             this.blood.Play();
+            flashing.TriggerMaterialChange();
             this.hp -= value;
             if (this.hp < 0)
             {
