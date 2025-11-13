@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5705522226524655651}
   - component: {fileID: 3085274151698043364}
   - component: {fileID: 4878593151756918662}
+  - component: {fileID: 1123690893299519688}
   m_Layer: 0
   m_Name: SpriteAnimator
   m_TagString: Untagged
@@ -50,10 +51,13 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2e36cce8b84af0e42bab8e0638e87078, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,3 +106,15 @@ MonoBehaviour:
   - {fileID: -279226946, guid: 3832b0f8f9e4846e2b9a3d27198ab688, type: 3}
   - {fileID: 267900158, guid: 3832b0f8f9e4846e2b9a3d27198ab688, type: 3}
   autoPlay: 1
+--- !u!114 &1123690893299519688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5665761541258580377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd80798f3558ff48ab7b3ed67a042e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SengokuSurvivors
 {
-    public class EnemyFlashingEffect : MonoBehaviour
+    public class OnHitFlashingEffect : MonoBehaviour
     {
 
         private SpriteRenderer spriteRenderer;
