@@ -54,6 +54,7 @@ namespace Vs.Controllers.Game
         private float friction = 5f;
         private float acceleration = 10f;
         private Vector2 currSpeed;
+        private float verticalSpeedOffset = 0.2f;
 
         private void Start()
         {
@@ -88,9 +89,7 @@ namespace Vs.Controllers.Game
             currSpeed -= friction * Time.deltaTime * currSpeed;
 
             currSpeed.x = Mathf.Clamp(currSpeed.x, -currMaxSpeed, currMaxSpeed);
-            currSpeed.y = Mathf.Clamp(currSpeed.y, -currMaxSpeed, currMaxSpeed);
-
-            Debug.Log(currSpeed.x);
+            currSpeed.y = Mathf.Clamp(currSpeed.y, -currMaxSpeed - verticalSpeedOffset, currMaxSpeed - verticalSpeedOffset);
 
             var position = transform.localPosition;
             position.x += currSpeed.x * Time.deltaTime;
