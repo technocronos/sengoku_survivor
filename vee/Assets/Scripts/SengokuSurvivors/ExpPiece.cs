@@ -7,7 +7,7 @@ namespace SengokuSurvivors
     public class ExpPiece : MonoBehaviour
     {
         private bool isObtained = false;
-        private const float distance = 2.0f;
+        private const float distance = -0.2f;//2.0f;
         private int add_exp = 1;
         public int GetExpAmount()
         {
@@ -27,37 +27,68 @@ namespace SengokuSurvivors
         private IEnumerator Play(GameObject target)
         {
             {
-                var dir = (target.transform.position - this.transform.position).normalized;
+                var dir = Vector3.up;//(target.transform.position - this.transform.position).normalized;
                 var pos1 = this.transform.position;
                 var pos2 = this.transform.position - dir * distance;
                 var elapsed = 0.0f;
                 while (elapsed <= 1.0f)
                 {
-                    this.transform.position = Vector3.Lerp(pos1, pos2, elapsed);
-                    elapsed += Time.deltaTime * 4;
+                    this.transform.position = Vector3.Lerp(pos1 - 0.1f * Vector3.up, pos2, elapsed);
+                    elapsed += Time.deltaTime * 16;
+                    yield return null;
+                }
+                while (elapsed <= 2.0f)
+                {
+                    this.transform.position = Vector3.Lerp(pos2, pos1, elapsed - 1f);
+                    elapsed += Time.deltaTime * 8;
                     yield return null;
                 }
             }
+            //{
+            //    var pos1 = this.transform.position;
+            //    var elapsed = 0.0f;
+            //    while (elapsed <= 1.0f)
+            //    {
+            //        this.transform.position = Vector3.Lerp(pos1, target.transform.position, elapsed);
+            //        elapsed += Time.deltaTime * 4;
+            //        yield return null;
+            //    }
+            //}
+            
+            //this.OnComplete();
+            yield break;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            var player = collision.GetComponent<Vs.Controllers.Game.Player>();
+            if (player != null)
+            {
+                StartCoroutine(CatchRoutine(player));
+            }
+        }
+
+        private IEnumerator CatchRoutine(Vs.Controllers.Game.Player player)
+        {
             {
                 var pos1 = this.transform.position;
                 var elapsed = 0.0f;
                 while (elapsed <= 1.0f)
                 {
-                    this.transform.position = Vector3.Lerp(pos1, target.transform.position, elapsed);
+                    this.transform.position = Vector3.Lerp(pos1, player.transform.position, elapsed);
                     elapsed += Time.deltaTime * 4;
                     yield return null;
                 }
+                this.OnComplete();
             }
-            SoundService.Instance.PlaySe("get_item");
-            this.OnComplete();
-            GameObject.Destroy(this.gameObject);
-            yield break;
         }
 
         private void OnComplete()
         {
             //add exp to player
+            SoundService.Instance.PlaySe("get_item");
             Vs.Controllers.Game.GameManager.Instance.AddExp(add_exp);
+            GameObject.Destroy(this.gameObject);
         }
     }
 }
