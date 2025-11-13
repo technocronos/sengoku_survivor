@@ -96,6 +96,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     {
         currentHealthText.text = string.Format("{0}/{1}", hp, maxHp);
         hpSlider.value = (float)hp / maxHp;
+        hpSlider.gameObject.SetActive(hpSlider.value < 1f - float.Epsilon);
     }
 
     public void SetExp(int currExp, int maxExp)
