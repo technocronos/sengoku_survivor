@@ -205,6 +205,7 @@ namespace Vs.Controllers.Game
                     break;
             }
             OnScreenUi.Instance.UpdateEquipmentView();
+            OnScreenUi.Instance.SetCurrHp(hp, hpMax);
         }
 
         private void UpdateShooter(Skill skill)
@@ -254,10 +255,10 @@ namespace Vs.Controllers.Game
             switch (skill.EffectId)
             {
                 case "hp":
-                    this.Stats.HpRate = value;
+                    this.Stats.HpRate += value;
                     break;
                 case "speed":
-                    this.Stats.SpdRate = value;
+                    this.Stats.SpdRate += value;
                     break;
                 case "exp_rate":
                     this.Stats.ExpRate = value;

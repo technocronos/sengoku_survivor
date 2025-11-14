@@ -67,6 +67,9 @@ namespace Vs.Controllers.Game
             skill.Count += row["count"];
             skill.Size += row["size"];
             skill.SizeMulti *= row["size_multi"] / 1000f;
+
+            skill.EffectId = row["effect_id"];
+            skill.EffectValue = row["effect_value"];
             return skill;
         }
 
