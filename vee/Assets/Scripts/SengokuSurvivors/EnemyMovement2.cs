@@ -9,6 +9,7 @@ namespace SengokuSurvivors
         private float speed = 4f;
         private float speedDispersion = 0.1f;
         private float downSpeedCoeff = 0.1f;
+        private bool flagStopForAttack = false;
 
         void Start()
         {
@@ -20,6 +21,11 @@ namespace SengokuSurvivors
 
             speed += Random.Range(-speedDispersion, speedDispersion);
             StartCoroutine(MovingRoutine());
+        }
+
+        public void StopForAttack()
+        {
+            flagStopForAttack=true;
         }
 
         private IEnumerator MovingRoutine()
@@ -41,6 +47,11 @@ namespace SengokuSurvivors
                 yMin = Camera.main.transform.position.y;
 
                 newTargetPos = new Vector3(targetPosWorldX, Mathf.Lerp(yMin, yMax, targetPosViewportY), 0f);
+                if (flagStopForAttack)
+                {
+                    yield return new WaitForSeconds(0.5f);
+                    flagStopForAttack = false;
+                }
                 transform.position += (newTargetPos - transform.position).normalized * Time.deltaTime * 3f;
                 if (Camera.main.WorldToViewportPoint(transform.position).y > 0.8f) targetPosViewportY = 0.1f;
                 else if (Camera.main.WorldToViewportPoint(transform.position).y < 0.2f) targetPosViewportY = 0.9f;

@@ -5,7 +5,10 @@ public class EnemyProjectile : MonoBehaviour
     private Vector3 dir;
     void Start()
     {
-        dir = (new Vector3(-1f, Random.Range(-1f, 2f), 0f)).normalized;
+        if (Random.Range(0f, 1f) > 0.5f)//50%確率でプレイヤーに向けて投げる
+            dir = (FindAnyObjectByType<Vs.Controllers.Game.Player>().transform.position - transform.position).normalized;
+        else
+            dir = (new Vector3(-1f, Random.Range(-1f, 2f), 0f)).normalized;//ある程度ランダム方向に投げる
     }
 
     void Update()
