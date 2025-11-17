@@ -11,8 +11,12 @@ namespace SengokuSurvivors
         private float downSpeedCoeff = 0.1f;
         private bool flagStopForAttack = false;
 
+        private float lifetime = 30f;
+        private float birthTime;
+
         void Start()
         {
+            birthTime = Time.time;
             GetComponent<Vs.Controllers.Game.Enemy>().UseBaseMoving = false;
             if (Camera.main.WorldToViewportPoint(transform.position).x > 0.5f)
                 moveRightSign = 1f;
@@ -42,6 +46,15 @@ namespace SengokuSurvivors
             {
                 yield return null;
                 if (Time.timeScale < 0f + float.Epsilon) continue;
+                if (Time.time - birthTime > lifetime)
+                {
+                    GetComponent<Collider2D>().enabled = false;
+                    while (true)
+                    {
+                        yield return null;
+                        transform.position += Time.deltaTime * 10f * Vector3.down;//Enemy.cs画面の下でDestroyされるので今のところ下に移動だけでOK
+                    }
+                }
 
                 yMax = Camera.main.transform.position.y + Mathf.Abs(Camera.main.transform.position.z) * Mathf.Tan(Mathf.PI / 3);
                 yMin = Camera.main.transform.position.y;

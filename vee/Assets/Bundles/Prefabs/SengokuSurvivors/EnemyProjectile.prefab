@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2183472957832804701}
   - component: {fileID: 5865517894091434109}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,8 @@ GameObject:
   - component: {fileID: 7697483144995872766}
   - component: {fileID: -5933439313108550636}
   - component: {fileID: 4657125529759416867}
-  m_Layer: 6
+  - component: {fileID: 7217656893605284485}
+  m_Layer: 7
   m_Name: EnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,3 +226,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01b0ada83a6fd241a587498d1879045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &7217656893605284485
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268197142487940458}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
