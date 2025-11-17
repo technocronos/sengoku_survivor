@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2472934511041934564}
   - component: {fileID: -4900800217739988317}
   - component: {fileID: -2403996232383328152}
-  - component: {fileID: 8399410987785047330}
+  - component: {fileID: 1783466454200899232}
+  - component: {fileID: 3602283011970782268}
   m_Layer: 7
   m_Name: 10100015
   m_TagString: Enemy
@@ -84,7 +85,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -118,7 +119,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8399410987785047330
+--- !u!114 &1783466454200899232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,9 +128,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 841262288999212680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f14c7cbeeff7514ea64b8529aab3738, type: 3}
+  m_Script: {fileID: 11500000, guid: edc746913e6b26d44ba008080bb074d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3602283011970782268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841262288999212680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767a2b3fb15640740b7cc16976f45b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePref: {fileID: 4657125529759416867, guid: 41dd3d62840a8c049bf6102e8f64425c, type: 3}
 --- !u!1 &2875618325510214829
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,11 +419,15 @@ PrefabInstance:
     - target: {fileID: 180299675169705617, guid: 846d34aee3165fc40a8e8408cc930f59, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7653079315240189564, guid: 6ed2670f630b1e14389f0da2e4acfcf2, type: 3}
+      objectReference: {fileID: -639815684782110694, guid: ccb3f58d7217c0544aed927aa3aaa19e, type: 3}
     - target: {fileID: 180299675169705617, guid: 846d34aee3165fc40a8e8408cc930f59, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2e36cce8b84af0e42bab8e0638e87078, type: 2}
+    - target: {fileID: 180299675169705630, guid: 846d34aee3165fc40a8e8408cc930f59, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 180299675169705630, guid: 846d34aee3165fc40a8e8408cc930f59, type: 3}
       propertyPath: m_Controller
       value: 
