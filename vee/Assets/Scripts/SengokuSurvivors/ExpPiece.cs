@@ -56,7 +56,12 @@ namespace SengokuSurvivors
             //}
             
             //this.OnComplete();
-            yield break;
+            while (true)
+            {
+                yield return null;
+                var pos = Camera.main.WorldToViewportPoint(transform.position);
+                if (pos.x > 1f || pos.x < 0 || pos.y > 1 || pos.y < 0) Destroy(gameObject);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

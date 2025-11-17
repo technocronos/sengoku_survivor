@@ -138,6 +138,16 @@ namespace Vs.Controllers.Game
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            OnCollisionOrTrigger(collision.gameObject);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)//一旦isTriggerになっている敵もOnCollisionと同じ効果にする
+        {
+            OnCollisionOrTrigger(collision.gameObject);
+        }
+
+        private void OnCollisionOrTrigger(GameObject collision)
+        {
             if (collision.gameObject.tag != "Enemy")
             {
                 return;
