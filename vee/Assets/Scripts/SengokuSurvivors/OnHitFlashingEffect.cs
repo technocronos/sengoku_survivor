@@ -34,7 +34,7 @@ namespace SengokuSurvivors
             while (currElapsedTime < flashTime)
             {
                 currElapsedTime += Time.deltaTime;
-                currFlashAmount = Mathf.Lerp(1f, 0f, currElapsedTime/flashTime);
+                currFlashAmount = Mathf.Lerp(2f, 0f, currElapsedTime/flashTime);
                 spriteRenderer.material.SetFloat("_FlashAmount", currFlashAmount);
                 yield return null;
             }

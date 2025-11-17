@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 
 public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
@@ -83,13 +84,22 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         });
     }
 
-    private void Update()
+    private void Start()
     {
-        if (hpFadeSlider.value != hpSlider.value)
+        StartCoroutine(UnscaledRoutine());
+    }
+
+    private IEnumerator UnscaledRoutine()
+    {
+        while(true)
         {
-            hpFadeSlider.value += (hpSlider.value - hpFadeSlider.value) * 2f * Time.deltaTime;
+            yield return null;
+            if (hpFadeSlider.value != hpSlider.value)
+            {
+                hpFadeSlider.value += (hpSlider.value - hpFadeSlider.value) * 2f * Time.unscaledDeltaTime;
+            }
+            if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
         }
-        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
     }
 
     public void SetCurrHp(int hp, int maxHp)
