@@ -12,10 +12,20 @@ namespace Vs.Controllers.Game
         [SerializeField]
         private UnityEngine.UI.Text text;
 
-        public void Show(int damage)
+        private DamageSpawner spawner;
+
+        public void Show(DamageSpawner spawner, int damage)
         {
+            gameObject.SetActive(true);
+            this.spawner = spawner;
             this.text.text = damage.ToString();
-            GameObject.Destroy(this.gameObject, this.duration);
+            StartCoroutine(ShowRoutine());
+        }
+
+        private IEnumerator ShowRoutine()
+        {
+            yield return new WaitForSeconds(duration);
+            spawner.Despawn(this);
         }
     }
 }

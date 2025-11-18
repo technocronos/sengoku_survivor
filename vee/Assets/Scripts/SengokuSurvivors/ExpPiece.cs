@@ -6,7 +6,7 @@ namespace SengokuSurvivors
 {
     public class ExpPiece : MonoBehaviour
     {
-        private bool isObtained = false;
+        private DropManager dropManager;
         private const float distance = -0.2f;//2.0f;
         private int add_exp = 1;
         public int GetExpAmount()
@@ -14,13 +14,13 @@ namespace SengokuSurvivors
             return add_exp;
         }
 
-        public void Obtain(GameObject target)
+        public void Setup(GameObject target, DropManager dropManager, Vector3 position)
         {
-            if (this.isObtained)
-            {
-                return;
-            }
-            this.isObtained = true;
+            this.dropManager = dropManager;
+            gameObject.SetActive(true);
+            transform.SetPositionAndRotation(position, Quaternion.identity);
+            transform.Rotate(Vector3.right, -30f);
+
             this.StartCoroutine(this.Play(target));
         }
 
@@ -60,7 +60,7 @@ namespace SengokuSurvivors
             {
                 yield return null;
                 var pos = Camera.main.WorldToViewportPoint(transform.position);
-                if (pos.x > 1f || pos.x < 0 || pos.y > 1 || pos.y < 0) Destroy(gameObject);
+                if (pos.x > 1f || pos.x < 0 || pos.y > 1 || pos.y < 0) dropManager.DespawnExp(this);
             }
         }
 
@@ -93,7 +93,7 @@ namespace SengokuSurvivors
             //add exp to player
             SoundService.Instance.PlaySe("get_item");
             Vs.Controllers.Game.GameManager.Instance.AddExp(add_exp);
-            GameObject.Destroy(this.gameObject);
+            dropManager.DespawnExp(this);
         }
     }
 }

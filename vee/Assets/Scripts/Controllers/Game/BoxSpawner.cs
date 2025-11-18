@@ -23,6 +23,8 @@ namespace Vs.Controllers.Game
 
         private float elapsed;
 
+        private readonly Queue<Box> boxCache = new Queue<Box>();
+
         private void Start()
         {
             for (var i = 0; i < this.count; i++)
@@ -53,7 +55,26 @@ namespace Vs.Controllers.Game
 
         private void Spawn(Vector3 pos)
         {
-            GameObject.Instantiate(this.boxPrefab, pos, Quaternion.identity, this.world);
+            Box box;
+            if (boxCache.Count == 0)
+            {
+                box = Instantiate(this.boxPrefab, pos, Quaternion.identity, this.world);
+            }
+            else
+            {
+                box = boxCache.Dequeue();
+                box.gameObject.SetActive(true);
+            }
+            
+            GameManager.Instance.RegisterBox(box);
+            box.SetSpawner(this);
+        }
+
+        public void Despawn(Box box)
+        {
+            GameManager.Instance.DeregisterBox(box);
+            box.gameObject.SetActive(false);
+            boxCache.Enqueue(box);
         }
     }
 }
