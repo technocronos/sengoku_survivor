@@ -81,7 +81,7 @@ namespace Vs.Controllers.EquipmentMerger
                 go.SetRank(raw["rank"]);
                 this.listItems.Add(go);
 
-                var sprite = Resources.Load<Sprite>($"Equipments/{raw["equipment_id"]}");
+                var sprite = ItemsAndEquipmentResourcesCache.Instance.GetEquipmentSprite(raw["equipment_id"]);
                 go.SetSprite(sprite);
             }
         }
@@ -177,7 +177,7 @@ namespace Vs.Controllers.EquipmentMerger
             go.SetLevel(raw["level"]);
             go.SetRank(raw["rank"]);
 
-            var sprite = Resources.Load<Sprite>($"Equipments/{raw["equipment_id"]}");
+            var sprite = ItemsAndEquipmentResourcesCache.Instance.GetEquipmentSprite(raw["equipment_id"]);
             go.SetSprite(sprite);
         }
 
