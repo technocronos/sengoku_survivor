@@ -14,7 +14,7 @@ namespace SengokuSurvivors {
         {
             var position = transform.localPosition;
             int calcedSpeed = player.GetPlayerSpeedInt();
-            position.y += 1f * Time.deltaTime; //calcedSpeed / 1000.0f * Time.deltaTime;
+            position.y += 0.5f * Time.deltaTime; //calcedSpeed / 1000.0f * Time.deltaTime;
             this.transform.localPosition = position;
         }
     }
