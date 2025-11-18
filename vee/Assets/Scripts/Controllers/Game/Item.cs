@@ -1,3 +1,4 @@
+using SengokuSurvivors;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace Vs.Controllers.Game
         private float distance = 2.0f;
 
         private bool isObtained;
+
+        protected DropManager dropManager;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -29,6 +32,7 @@ namespace Vs.Controllers.Game
 
         private IEnumerator Play(GameObject target)
         {
+            yield return null;
             // {
             //     var dir = (target.transform.position - this.transform.position).normalized;
             //     var pos1 = this.transform.position;
@@ -53,8 +57,7 @@ namespace Vs.Controllers.Game
             // }
             SoundService.Instance.PlaySe("get_item");
             this.OnComplete();
-            GameObject.Destroy(this.gameObject);
-            yield break;
+            dropManager.DespawnItem(this);
         }
 
         protected virtual void OnComplete()

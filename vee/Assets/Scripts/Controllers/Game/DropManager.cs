@@ -17,6 +17,7 @@ namespace SengokuSurvivors
         private ExpPiece expPref;
 
         private readonly Queue<ExpPiece> expPiecesCache = new Queue<ExpPiece>();
+        private readonly Queue<ItemBox> itemBoxCache = new Queue<ItemBox>();
 
         private List<JsonObject> skillMst;
 
@@ -54,9 +55,10 @@ namespace SengokuSurvivors
             //        text = $"{row["name"]}\n{row["type_name"]}";
             //    }
             //}
-            var box = GameObject.Instantiate(this.prefab, pos, Quaternion.identity, this.world);
+            var box = (itemBoxCache.Count > 0) ? itemBoxCache.Dequeue() : Instantiate(this.prefab, this.world);
+            box.transform.SetPositionAndRotation(pos, Quaternion.identity);
             box.transform.Rotate(Vector3.right, -30f);
-            box.Initialize(skillId, type, text);
+            box.Setup(skillId, type, text, this);
             
             // 生成直後にコライダーを無効化し、次のフレームで有効化（即取得を防ぐため）
             var collider = box.GetComponent<Collider2D>();
@@ -96,6 +98,20 @@ namespace SengokuSurvivors
         {
             expPiecesCache.Enqueue(exp);
             exp.gameObject.SetActive(false); 
+        }
+
+        public void DespawnItem(Item item)
+        {
+            var itemBox = item as ItemBox;
+            if (itemBox != null)
+            {
+                item.gameObject.SetActive(false);
+                itemBoxCache.Enqueue(itemBox);
+            }
+            else
+            {
+                Destroy(item.gameObject);
+            }
         }
     }
 }

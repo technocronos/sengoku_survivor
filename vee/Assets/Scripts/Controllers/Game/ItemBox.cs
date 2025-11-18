@@ -1,3 +1,4 @@
+using SengokuSurvivors;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +18,9 @@ namespace Vs.Controllers.Game
             GameManager.Instance.AddSkill(skillId, skillType);
         }
 
-        public void Initialize(int skillId, int type, string text)
+        public void Setup(int skillId, int type, string text, DropManager dropManager)
         {
+            this.dropManager = dropManager;
             this.skillId = skillId;
             this.skillType = type;
             this.text.text = text;
