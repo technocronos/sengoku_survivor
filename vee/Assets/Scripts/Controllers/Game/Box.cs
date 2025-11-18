@@ -8,6 +8,11 @@ namespace Vs.Controllers.Game
     {
         public bool IsDead { get; private set; }
 
+        private void Awake()
+        {
+            GameManager.Instance.RegisterBox(this);
+        }
+
         private void OnParticleCollision(GameObject go)
         {
             if (this.IsDead)
@@ -34,7 +39,13 @@ namespace Vs.Controllers.Game
             }
             this.IsDead = true;
             ItemSpawner.Instance.Spawn(this.transform.position);
+            GameManager.Instance.DeregisterBox(this);
             GameObject.Destroy(this.gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Instance.DeregisterBox(this);
         }
     }
 }

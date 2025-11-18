@@ -31,6 +31,7 @@ namespace Vs.Controllers.Game
 
         private void Awake()
         {
+            Vs.Controllers.Game.GameManager.Instance.RegisterEnemy(this);
             this.hpText.text = $"{this.Hp}";
             SetRandomSpd(Spd);
             if (avatar.GetComponent<SengokuSurvivors.OnHitFlashingEffect>() == null)
@@ -123,6 +124,7 @@ namespace Vs.Controllers.Game
                     SengokuSurvivors.DropManager.Instance.DropItem(this.transform.position, this.DropId);
 
             }
+            GameManager.Instance.DeregisterEnemy(this);
             GameObject.Destroy(this.gameObject);
         }
 
@@ -188,6 +190,11 @@ namespace Vs.Controllers.Game
             {
                 this.Death();
             }
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Instance.DeregisterEnemy(this);
         }
     }
 }
