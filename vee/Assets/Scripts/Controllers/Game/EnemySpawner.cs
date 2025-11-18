@@ -11,6 +11,9 @@ namespace Vs.Controllers.Game
 
         public bool IsCompleted { get; private set; }
 
+        private readonly Dictionary<int, Enemy> enemyPrefabsCache = new Dictionary<int, Enemy>();
+        private readonly Dictionary<int, ItemGate> itemGatePrefabsCache = new Dictionary<int, ItemGate>();
+
         private void Start()
         {
             StartCoroutine(MainRoutine());
@@ -81,7 +84,10 @@ namespace Vs.Controllers.Game
         {
             var enemyMst = Backend.MstDatas.Instance.Get("enemy_mst");
             var raw = enemyMst.Find(i => i["enemy_id"] == enemyId);
-            var prefeb = Resources.Load<ItemGate>($"Enemies/{raw["model_id"]}");
+            var modelId = raw["model_id"];
+            if (!itemGatePrefabsCache.ContainsKey(modelId))
+            { itemGatePrefabsCache.Add(modelId, Resources.Load<ItemGate>($"Enemies/{modelId}")); }
+            var prefeb = itemGatePrefabsCache[modelId];
             var gate = GameObject.Instantiate(prefeb, new Vector3(x, y, 0), Quaternion.identity, this.world);
             var skill = GameManager.Instance.SkillManager.GetSelectableSkills()[0];
             gate.Initialize(skill);
@@ -110,13 +116,23 @@ namespace Vs.Controllers.Game
             var enemyType = (SengokuSurvivors.EnemyType)(int)raw["enemy_type"];
             var expAmount = (int)raw["exp_amount"];
 
-            var prefeb = Resources.Load<Enemy>($"Enemies/{raw["model_id"]}");
+            var modelId = raw["model_id"];
+            if (!enemyPrefabsCache.ContainsKey(modelId))
+            { enemyPrefabsCache.Add(modelId, Resources.Load<Enemy>($"Enemies/{modelId}")); }
+            var prefeb = enemyPrefabsCache[modelId];
             var enemy = GameObject.Instantiate(prefeb, new Vector3(x, y, 0), Quaternion.identity, this.world);
             enemy.SetHp(hp);
             enemy.SetAtk(atk);
             enemy.SetDropId(raw["drop_id"]);
             enemy.SetEnemyType(enemyType);
             enemy.SetExpAmount(expAmount);
+        }
+
+        private void OnDestroy()
+        {
+            itemGatePrefabsCache.Clear();
+            enemyPrefabsCache.Clear();
+            Resources.UnloadUnusedAssets();
         }
     }
 }

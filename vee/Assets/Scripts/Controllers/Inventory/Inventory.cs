@@ -37,7 +37,7 @@ namespace Vs.Controllers.Inventory
                 go.Initialize(index);
                 go.SetQuantity(raw["quantity"]);
 
-                var sprite = Resources.Load<Sprite>($"Items/{raw["item_id"]}");
+                var sprite = ItemsAndEquipmentResourcesCache.Instance.GetItemSprite(raw["item_id"]);
                 go.SetSprite(sprite);
             }
         }

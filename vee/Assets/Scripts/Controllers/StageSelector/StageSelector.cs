@@ -18,6 +18,8 @@ namespace Vs.Controllers.StageSelector
         [SerializeField]
         private ListItemStage listItemPrefab;
 
+        private readonly Dictionary<string, Sprite> stageResourceCache = new Dictionary<string, Sprite>();
+
         private List<JsonObject> list = new List<JsonObject>();
 
         public override IEnumerator OnViewLoaded(ViewContext viewContext)
@@ -37,13 +39,26 @@ namespace Vs.Controllers.StageSelector
                 go.Clicked += this.OnListItemClicked;
                 go.Initialize(index);
 
-                var sprite = Resources.Load<Sprite>($"Stages/{raw["stage_id"]}");
+                string stageId = raw["stage_id"];
+                if (!stageResourceCache.ContainsKey(stageId))
+                {
+                    stageResourceCache.Add(stageId, Resources.Load<Sprite>($"Stages/{stageId}"));
+                }
+                var sprite = stageResourceCache[stageId];
                 go.SetSprite(sprite);
             }
         }
 
         private void OnListItemClicked(int index)
         {
+        }
+
+        private void OnDestroy()
+        {
+            foreach(var entry in stageResourceCache)
+            {
+                Resources.UnloadAsset(entry.Value);
+            }
         }
     }
 }

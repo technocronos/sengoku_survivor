@@ -103,7 +103,7 @@ namespace Vs.Controllers.Equipment
                 go.SetRarity(raw["rarity"]);
                 go.SetRank(raw["rank"]);
 
-                var sprite = Resources.Load<Sprite>($"Equipments/{raw["equipment_id"]}");
+                var sprite = ItemsAndEquipmentResourcesCache.Instance.GetEquipmentSprite(raw["equipment_id"]);
                 go.SetSprite(sprite);
             }
         }

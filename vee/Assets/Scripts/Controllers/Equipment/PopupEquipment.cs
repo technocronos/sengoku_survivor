@@ -44,6 +44,8 @@ namespace Vs.Controllers.Equipment
         [SerializeField]
         private UnityEngine.UI.Text equipButtonText;
 
+        private readonly Dictionary<string, Sprite> statsTypesSpriteResourceCache = new Dictionary<string, Sprite>();
+
         public void Show(JsonObject raw)
         {
             this.gameObject.SetActive(true);
@@ -56,16 +58,20 @@ namespace Vs.Controllers.Equipment
             this.descriptionText.text = raw["description"];
             this.equipButtonText.text = raw["card_seq_id"] >= 0 ? "装備解除" : "装備";
 
-            var sprite = Resources.Load<Sprite>($"Equipments/{raw["equipment_id"]}");
+            var sprite = ItemsAndEquipmentResourcesCache.Instance.GetEquipmentSprite(raw["equipment_id"]);
             this.icon.sprite = sprite;
             this.iconBg.color = Utils.GetRarityColor(raw["rarity"]);
 
             var statsType = raw["atk"] > 0 ? "atk" : "hp";
-            sprite = Resources.Load<Sprite>($"Stats/{statsType}");
+            if (!statsTypesSpriteResourceCache.ContainsKey(statsType))
+            {
+                statsTypesSpriteResourceCache.Add(statsType, Resources.Load<Sprite>($"Stats/{statsType}"));
+            }
+            sprite = statsTypesSpriteResourceCache[statsType];
             this.statsIcon.sprite = sprite;
             this.coinsText.text = $"{raw["require_coins"]}/{UserService.Instance.Coins}";
 
-            sprite = Resources.Load<Sprite>($"Items/{raw["require_item_id"]}");
+            sprite = ItemsAndEquipmentResourcesCache.Instance.GetItemSprite(raw["require_item_id"]);
             this.requireItemImage.sprite = sprite;
             this.requireItemQuantityText.text = $"{raw["require_item_quantity"]}/{raw["item_quantity"]}";
         }

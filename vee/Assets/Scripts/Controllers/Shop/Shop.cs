@@ -54,17 +54,16 @@ namespace Vs.Controllers.Shop
                 go.SetCurrency(raw["coins"] > 0 ? "coins" : "gems");
                 go.SetQuantity(raw["quantity"]);
 
-                var path = "";
+                Sprite sprite = null;
                 if (raw["item_id"] > 0)
                 {
-                    path = $"Items/{raw["item_id"]}";
+                    sprite = ItemsAndEquipmentResourcesCache.Instance.GetItemSprite(raw["item_id"]);
                 }
                 else if (raw["equipment_id"] > 0)
                 {
-                    path = $"Equipments/{raw["equipment_id"]}";
+                    sprite = ItemsAndEquipmentResourcesCache.Instance.GetEquipmentSprite(raw["equipment_id"]);
                 }
 
-                var sprite = Resources.Load<Sprite>(path);
                 go.SetSprite(sprite);
             }
         }
