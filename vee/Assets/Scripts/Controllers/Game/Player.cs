@@ -225,32 +225,32 @@ namespace Vs.Controllers.Game
             {
                 // 他のshooterを非アクティブ化（同じcategoryの場合）
                 // 全てのParticleControllerを検索して、同じcategoryのものを非アクティブ化
-                var allSkillMst = GameManager.Instance.SkillManager.GetAllSkillMst();
-                var allParticleControllers = UnityEngine.Object.FindObjectsOfType<ParticleController>();
-                foreach (var pc in allParticleControllers)
-                {
-                    if (pc != shooter && pc.SkillId != 0)
-                    {
-                        if (allSkillMst != null)
-                        {
-                            var shooterSkillData = allSkillMst.Find(row => (int)row["skill_id"] == pc.SkillId && (int)row["type"] == 0);
-                            if (shooterSkillData != null && (int)shooterSkillData["category"] == skill.Category)
-                            {
-                                pc.gameObject.SetActive(false);
-                            }
-                        }
-                    }
-                }
+                //var allSkillMst = GameManager.Instance.SkillManager.GetAllSkillMst();
+                //var allParticleControllers = UnityEngine.Object.FindObjectsOfType<ParticleController>();
+                //foreach (var pc in allParticleControllers)
+                //{
+                //    if (pc != shooter && pc.SkillId != 0)
+                //    {
+                //        if (allSkillMst != null)
+                //        {
+                //            var shooterSkillData = allSkillMst.Find(row => (int)row["skill_id"] == pc.SkillId && (int)row["type"] == 0);
+                //            if (shooterSkillData != null && (int)shooterSkillData["category"] == skill.Category)
+                //            {
+                //                pc.gameObject.SetActive(false);
+                //            }
+                //        }
+                //    }
+                //}
                 
-                shooter.Activate();
-                shooter.SetAtk(skill.Atk);
-                shooter.SetProjectile(skill.Projectile);
-                shooter.SetCount(skill.Count);
-                shooter.SetSize(skill.Size);
-                shooter.SetSpeed(skill.Speed);
-                shooter.SetDuration(skill.CoolTime);
-                shooter.SetLifeTime(skill.LifeTime);
-                this.CalcStats();
+                //shooter.Activate();
+                //shooter.SetAtk(skill.Atk);
+                //shooter.SetProjectile(skill.Projectile);
+                //shooter.SetCount(skill.Count);
+                //shooter.SetSize(skill.Size);
+                //shooter.SetSpeed(skill.Speed);
+                //shooter.SetDuration(skill.CoolTime);
+                //shooter.SetLifeTime(skill.LifeTime);
+                //this.CalcStats();
             }
             else
             {

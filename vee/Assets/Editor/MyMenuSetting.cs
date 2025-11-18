@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using UnityEditor.SceneManagement;
 
 public class MyMenuSetting : EditorWindow
 {
@@ -61,9 +62,9 @@ public class MyMenuSetting : EditorWindow
 
     static void Change(string scene)
     {
-        bool isCancel = EditorApplication.SaveCurrentSceneIfUserWantsTo();
+        bool isCancel = EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
         if (!isCancel) return;
 
-        EditorApplication.OpenScene(scene);
+        EditorSceneManager.OpenScene(scene);
     }
 }

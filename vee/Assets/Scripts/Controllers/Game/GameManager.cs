@@ -41,7 +41,7 @@ namespace Vs.Controllers.Game
         [SerializeField]
         private PopupGameClear popupGameClear;
 
-        public Player Player { get; private set; }
+        public Player Player;
         public List<Enemy> Enemies { get; private set; } = new List<Enemy>();
         public List<Box> Boxes { get; private set; } = new List<Box>();
 
@@ -83,7 +83,6 @@ namespace Vs.Controllers.Game
             var playerMst = Backend.MstDatas.Instance.Get("player_mst");
             var skillMst = Backend.MstDatas.Instance.Get("drop_mst");
             this.SkillManager.Initialize(skillMst);
-            this.Player = GameObject.FindObjectOfType<Player>();
             this.Player.Damaged += this.OnDamaged;
             this.Player.Initialize(playerMst[0]);
 
@@ -130,15 +129,34 @@ namespace Vs.Controllers.Game
             ViewService.Instance.ChangeView(context);
         }
 
+        public void RegisterEnemy(Enemy enemy)
+        {
+            Enemies.Add(enemy);
+        }
+
+        public void DeregisterEnemy(Enemy enemy)
+        {
+            if (!Enemies.Contains(enemy)) return;
+            Enemies.Remove(enemy);
+        }
+
+        public void RegisterBox(Box box)
+        {
+            Boxes.Add(box);
+        }
+
+        public void DeregisterBox(Box box)
+        {
+            if (!Boxes.Contains(box)) return;
+            Boxes.Remove(box);
+        }
+
         private void Update()
         {
             if (this.isStop)
             {
                 return;
             }
-
-            this.Enemies = GameObject.FindObjectsOfType<Enemy>().ToList();
-            this.Boxes = GameObject.FindObjectsOfType<Box>().ToList();
 
             if (!this.isStopTime)
             {
@@ -153,12 +171,13 @@ namespace Vs.Controllers.Game
             //     this.OnGameClear();
             //     return;
             // }
-            if (this.levelCalced > this.level)
-            {
-                this.level++;
-                this.CalcLevel();
-                this.ShowLvUp();
-            }
+
+            //if (this.levelCalced > this.level)
+            //{
+            //    this.level++;
+            //    this.CalcLevel();
+            //    this.ShowLvUp();
+            //}
         }
 
         public void CalcLevel()
