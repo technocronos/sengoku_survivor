@@ -39,6 +39,32 @@ namespace Vs.Controllers.Equipment
         private int equipmentSeqId;
         private bool isEquip;
 
+        #region ListItemCache
+        private Queue<Components.ListItemEquipment> listItemsCache = new Queue<Components.ListItemEquipment>();
+        private Components.ListItemEquipment GetNewItem()
+        {
+            Components.ListItemEquipment item;
+            if (listItemsCache.Count == 0)
+            {
+                item = Instantiate(this.listItemPrefab, this.Content);
+                item.Clicked += this.OnListItemClicked;
+            }
+            else
+            {
+                item = listItemsCache.Dequeue();
+            }
+            item.gameObject.SetActive(true);
+            return item;
+        }
+        private void RemoveItem(Components.ListItemEquipment item)
+        {
+            listItemsCache.Enqueue(item);
+            
+            item.gameObject.SetActive(false);
+        }
+        #endregion
+
+
         public override IEnumerator OnViewLoaded(ViewContext viewContext)
         {
             this.popup.EquipButtonClicked += this.OnEquipButtonClicked;
@@ -77,7 +103,7 @@ namespace Vs.Controllers.Equipment
 
             foreach (var i in this.listItems)
             {
-                GameObject.Destroy(i.gameObject);
+                RemoveItem(i);
             }
             this.listItems.Clear();
 
@@ -93,8 +119,7 @@ namespace Vs.Controllers.Equipment
                 }
                 else
                 {
-                    go = GameObject.Instantiate(this.listItemPrefab, this.Content);
-                    go.Clicked += this.OnListItemClicked;
+                    go = GetNewItem();
                     this.listItems.Add(go);
                 }
                 go.Initialize(index);

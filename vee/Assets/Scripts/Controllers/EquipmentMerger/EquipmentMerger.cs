@@ -40,6 +40,31 @@ namespace Vs.Controllers.EquipmentMerger
         private List<JsonObject> filtered;
         private List<Components.ListItemEquipment> listItems = new List<Components.ListItemEquipment>();
 
+        #region ListItemCache
+        private Queue<Components.ListItemEquipment> listItemsCache = new Queue<Components.ListItemEquipment>();
+        private Components.ListItemEquipment GetNewItem()
+        {
+            Components.ListItemEquipment item;
+            if (listItemsCache.Count == 0)
+            {
+                item = Instantiate(this.listItemPrefab, this.Content);
+                item.Clicked += this.OnListItemClicked;
+            }
+            else
+            {
+                item = listItemsCache.Dequeue();
+            }
+            item.gameObject.SetActive(true);
+            return item;
+        }
+        private void RemoveItem(Components.ListItemEquipment item)
+        {
+            listItemsCache.Enqueue(item);
+
+            item.gameObject.SetActive(false);
+        }
+        #endregion
+
         private int[] equipmentSeqIds = new int[3];
 
         public override IEnumerator OnViewLoaded(ViewContext viewContext)
@@ -64,7 +89,7 @@ namespace Vs.Controllers.EquipmentMerger
         {
             foreach (var i in this.listItems)
             {
-                GameObject.Destroy(i.gameObject);
+                RemoveItem(i);
             }
             this.listItems.Clear();
 
@@ -72,8 +97,7 @@ namespace Vs.Controllers.EquipmentMerger
             {
                 var raw = list[index];
 
-                var go = GameObject.Instantiate(this.listItemPrefab, this.Content);
-                go.Clicked += this.OnListItemClicked;
+                var go = GetNewItem();
                 go.Initialize(index);
                 go.Set();
                 go.SetLevel(raw["level"]);

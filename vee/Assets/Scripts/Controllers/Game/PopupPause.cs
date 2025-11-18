@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MyGame;
+using UnityEngine.Scripting;
 
 namespace Vs.Controllers.Game
 {

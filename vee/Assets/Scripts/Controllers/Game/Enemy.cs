@@ -29,17 +29,23 @@ namespace Vs.Controllers.Game
 
         private float hitElapsed;
 
-        private void Awake()
+        private EnemySpawner spawner;
+
+        public void Initialize(EnemySpawner spawner)
         {
-            Vs.Controllers.Game.GameManager.Instance.RegisterEnemy(this);
+            this.spawner = spawner;
+            IsDead = false;
+
             this.hpText.text = $"{this.Hp}";
             SetRandomSpd(Spd);
             if (avatar.GetComponent<SengokuSurvivors.OnHitFlashingEffect>() == null)
             {
                 avatar.gameObject.AddComponent<SengokuSurvivors.OnHitFlashingEffect>();
             }
-            if (hpText != null) { 
-                hpText.gameObject.SetActive(false); }
+            if (hpText != null)
+            {
+                hpText.gameObject.SetActive(false);
+            }
         }
 
         public void SetHp(int hp)
@@ -122,10 +128,8 @@ namespace Vs.Controllers.Game
 
                 if(this.EnemyType != SengokuSurvivors.EnemyType.Normal)
                     SengokuSurvivors.DropManager.Instance.DropItem(this.transform.position, this.DropId);
-
             }
-            GameManager.Instance.DeregisterEnemy(this);
-            GameObject.Destroy(this.gameObject);
+            spawner.Despawn(this);
         }
 
         public bool OnWeaponTrigger(int damage, string soundId)
@@ -190,11 +194,6 @@ namespace Vs.Controllers.Game
             {
                 this.Death();
             }
-        }
-
-        private void OnDestroy()
-        {
-            GameManager.Instance.DeregisterEnemy(this);
         }
     }
 }

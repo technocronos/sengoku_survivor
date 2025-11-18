@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Vs.Controllers.Game
@@ -88,7 +89,8 @@ namespace Vs.Controllers.Game
             if (!itemGatePrefabsCache.ContainsKey(modelId))
             { itemGatePrefabsCache.Add(modelId, Resources.Load<ItemGate>($"Enemies/{modelId}")); }
             var prefeb = itemGatePrefabsCache[modelId];
-            var gate = GameObject.Instantiate(prefeb, new Vector3(x, y, 0), Quaternion.identity, this.world);
+            var gate = Instantiate(prefeb, world);//(itemGateCache.Count > 0) ? itemGateCache.Dequeue() : Instantiate(prefeb, world);
+            gate.transform.SetPositionAndRotation(new Vector3(x, y, 0), Quaternion.identity);
             var skill = GameManager.Instance.SkillManager.GetSelectableSkills()[0];
             gate.Initialize(skill);
             gate.SetDropId(raw["drop_id"]);
@@ -120,7 +122,10 @@ namespace Vs.Controllers.Game
             if (!enemyPrefabsCache.ContainsKey(modelId))
             { enemyPrefabsCache.Add(modelId, Resources.Load<Enemy>($"Enemies/{modelId}")); }
             var prefeb = enemyPrefabsCache[modelId];
-            var enemy = GameObject.Instantiate(prefeb, new Vector3(x, y, 0), Quaternion.identity, this.world);
+            var enemy = Instantiate(prefeb, world);
+            GameManager.Instance.RegisterEnemy(enemy);
+            enemy.Initialize(this);
+            enemy.transform.SetPositionAndRotation(new Vector3(x, y, 0), Quaternion.identity);
             enemy.SetHp(hp);
             enemy.SetAtk(atk);
             enemy.SetDropId(raw["drop_id"]);
@@ -133,6 +138,19 @@ namespace Vs.Controllers.Game
             itemGatePrefabsCache.Clear();
             enemyPrefabsCache.Clear();
             Resources.UnloadUnusedAssets();
+        }
+
+        public void Despawn(Enemy enemy)
+        {
+            //enemyCache.Enqueue(enemy);
+            GameManager.Instance.DeregisterEnemy(enemy);
+            Destroy(enemy.gameObject);
+        }
+
+        public void Despawn(ItemGate itemGate)
+        {
+            //itemGateCache.Enqueue(itemGate);
+            Destroy(itemGate.gameObject);
         }
     }
 }

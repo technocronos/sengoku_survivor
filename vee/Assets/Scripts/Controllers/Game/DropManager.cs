@@ -16,6 +16,8 @@ namespace SengokuSurvivors
         [SerializeField]
         private ExpPiece expPref;
 
+        private readonly Queue<ExpPiece> expPiecesCache = new Queue<ExpPiece>();
+
         private List<JsonObject> skillMst;
 
         private void Start()
@@ -85,10 +87,15 @@ namespace SengokuSurvivors
                     Random.Range(-0.3f, 0.3f),
                     0f
                 );
-                var expPiece = GameObject.Instantiate(expPref, pos + offset, Quaternion.identity, this.world);
-                expPiece.transform.Rotate(Vector3.right, -30f);
-                expPiece.Obtain(player);
+                var expPiece = (expPiecesCache.Count > 0) ? expPiecesCache.Dequeue() : Instantiate(expPref, world);
+                expPiece.Setup(player, this, pos + offset);
             }
+        }
+
+        public void DespawnExp(ExpPiece exp)
+        {
+            expPiecesCache.Enqueue(exp);
+            exp.gameObject.SetActive(false); 
         }
     }
 }
