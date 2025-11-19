@@ -86,8 +86,14 @@ namespace Vs.Controllers.Game
         public List<JsonObject> GetSelectableSkills()
         {
             return this.dropMst
-                .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) ? i["type"] > 0 : i["type"] == 0)
+                .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) ? i["type"] > 0 || i["category"] == 201 : i["type"] == 0)
                 .OrderBy(i => System.Guid.NewGuid()).ToList().Take(3).ToList();
+        }
+
+        public List<JsonObject> GetSelectableSkillsAll()
+        {
+            return this.dropMst
+                .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) ? i["type"] > 0 || i["category"] == 201 : i["type"] == 0);
         }
 
         public bool IsBaseSkillObtained(int id)

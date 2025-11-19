@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
-
+using System.Collections.Generic;
+using SengokuSurvivors;
 
 public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 {
@@ -33,52 +34,51 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private Button DebugButton2;
     [SerializeField]
     private Button DebugButton3;
+
     [SerializeField]
     private Button DebugMenuButton;
     [SerializeField]
     private Button DebugMenuCloseButton;
+    [SerializeField]
+    private GameObject DebugMenuContainer;
+    [SerializeField]
+    private Transform DebugMenuButtonsContainer;
+    [SerializeField]
+    private GameObject DebugStatsContainer;
+
+    private List<Button> DebugMenuButtons = new List<Button>();
+    private Vs.Controllers.Game.Player Player;
+    private SlashController Katana;
+    private ProjectileController Projectile;
 
     private void Awake()
     {
+        Player = FindAnyObjectByType<Vs.Controllers.Game.Player>();
+        Projectile = FindAnyObjectByType<ProjectileController>();
+        Katana = FindAnyObjectByType<SlashController>();
+        DebugStatsContainer.SetActive(false);
+
         currentHealthText.text = "";
         currentExpText   .text = "";
         currentLevelText .text = "";
         weaponDebugLabel1.text = "";
         weaponDebugLabel2.text = "";
         weaponDebugLabel3.text = "";
-        DebugButton1.onClick.AddListener(() => { 
-            Vs.Controllers.Game.GameManager.Instance.AddSkill(901, 1);
-            Vs.Controllers.Game.GameManager.Instance.AddSkill(901, 2);
-            Vs.Controllers.Game.GameManager.Instance.AddSkill(901, 3);
-        });
-        DebugButton2.onClick.AddListener(() => {
-            var skillId = 903;
-            var type = Vs.Controllers.Game.GameManager.Instance.SkillManager.IsBaseSkillObtained(skillId) ? 1 : 0;
-            Vs.Controllers.Game.GameManager.Instance.AddSkill(skillId, type); 
-        });
-        DebugButton3.onClick.AddListener(() => {
-            var skillId = 902;
-            var type = Vs.Controllers.Game.GameManager.Instance.SkillManager.IsBaseSkillObtained(skillId) ? 1 : 0;
-            Vs.Controllers.Game.GameManager.Instance.AddSkill(skillId, type);
+        DebugButton1.onClick.AddListener(() => {
+            ToggleStats();
         });
 
-        DebugButton1.gameObject.SetActive(false);
-        DebugButton2.gameObject.SetActive(false);
-        DebugButton3.gameObject.SetActive(false);
+        DebugMenuContainer.SetActive(false);
         DebugMenuButton.gameObject.SetActive(true);
         DebugMenuCloseButton.gameObject.SetActive(false);
 
         DebugMenuCloseButton.onClick.AddListener(() =>{
-            DebugButton1.gameObject.SetActive(false);
-            DebugButton2.gameObject.SetActive(false);
-            DebugButton3.gameObject.SetActive(false);
+            DebugMenuContainer.SetActive(false);
             DebugMenuButton.gameObject.SetActive(true);
             DebugMenuCloseButton.gameObject.SetActive(false);
         });
         DebugMenuButton.onClick.AddListener(() =>{
-            DebugButton1.gameObject.SetActive(true);
-            DebugButton2.gameObject.SetActive(true);
-            DebugButton3.gameObject.SetActive(true);
+            DebugMenuContainer.SetActive(true);
             DebugMenuButton.gameObject.SetActive(false);
             DebugMenuCloseButton.gameObject.SetActive(true);
         });
@@ -136,5 +136,78 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         }
 
         weaponDebugLabel1.text = text;
+    }
+
+    private void Update()
+    {
+        UpdateDebugStatsView();
+        UpdateDebugButtons();
+    }
+
+    public void UpdateDebugStatsView()
+    {
+        if (!DebugStatsContainer.activeSelf) return;
+        string text = "";
+        text += string.Format("<MOVEMENT>:\n");
+        text += string.Format("Current speed(local):x= {0:0.00} y= {1:0.00}\n", Player.DebugData.CurrentMoveSpeed.x, Player.DebugData.CurrentMoveSpeed.y);
+        text += string.Format("Max speed X: down= {0} up= {1}\n", Player.DebugData.MaxSpeedYDownUp.x, Player.DebugData.MaxSpeedYDownUp.y);
+        text += string.Format("Max speed Y: left= {0} right= {1}\n", Player.DebugData.MaxSpeedXLeftRight.x, Player.DebugData.MaxSpeedXLeftRight.y);
+        text += string.Format("Acceleration horizontal: {0}\n", Player.DebugData.AccelerationHor);
+        text += string.Format("Acceleration vert: up= {0} down= {1}\n", Player.DebugData.AccelerationVert.x, Player.DebugData.AccelerationVert.y);
+        text += string.Format("Friction: {0}\n", Player.DebugData.Friction);
+        text += string.Format("<STATS>:\n");
+        text += string.Format("HP:{0}/{1}\n", Player.DebugData.Hp.x, Player.DebugData.Hp.y);
+        text += string.Format("Max speed (raw): {0}\n", Player.DebugData.MaxSpeedParameter);
+        text += string.Format("<KATANA:>\n");
+        text += string.Format("Damage: {0}\n", Katana.Damage);
+        text += string.Format("Cooldown: {0}\n", Katana.Cooldown);
+        text += string.Format("Scale: {0}\n", Katana.Size);
+        text += string.Format("<SHURIKEN:>\n");
+        text += string.Format("Damage: {0}\n", Projectile.ShurikenDamage);
+        text += string.Format("Cooldown: {0}\n", Projectile.CooldownShuriken);
+        text += string.Format("Count: {0}\n", Projectile.ShurikenCount);
+        text += string.Format("<ARROW:>\n");
+        text += string.Format("Damage: {0}\n", Projectile.ArrowDamage);
+        text += string.Format("Cooldown: {0}\n", Projectile.CooldownArrow);
+        text += string.Format("Count: {0}\n", Projectile.ArrowCount);
+        weaponDebugLabel2.text = text;
+    }
+
+    private void UpdateDebugButtons()
+    {
+        if (!DebugMenuContainer.activeSelf) return;
+        DebugMenuButtons.Clear();
+        for (int i = 0; i < DebugMenuButtonsContainer.childCount; i++)
+            DebugMenuButtons.Add(DebugMenuButtonsContainer.GetChild(i).GetComponent<Button>());
+
+        var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetSelectableSkillsAll();
+        int buttonIndex = 0;
+        foreach (var entry in allEquipment)
+        {
+            var ii = buttonIndex;
+            DebugMenuButtons[buttonIndex].gameObject.SetActive(true);
+            DebugMenuButtons[buttonIndex].onClick.RemoveAllListeners();
+            DebugMenuButtons[buttonIndex].onClick.AddListener(()=> OnDebugButton(ii));
+            DebugMenuButtons[buttonIndex].GetComponentInChildren<TMP_Text>().text = $"{entry["name"]}\n{entry["type_name"]}";
+            buttonIndex++;
+        }
+        for (int i = buttonIndex; i < DebugMenuButtons.Count; i++)
+        {
+            DebugMenuButtons[i].gameObject.SetActive(false);
+        }
+    }
+
+    private void OnDebugButton(int index)
+    {
+        var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetSelectableSkillsAll();
+        var row = allEquipment[index];
+        var skillId = row["skill_id"];
+        var type = row["type"];
+        Vs.Controllers.Game.GameManager.Instance.AddSkill(skillId, type);
+    }
+
+    private void ToggleStats()
+    {
+        DebugStatsContainer.SetActive(!DebugStatsContainer.activeSelf);
     }
 }

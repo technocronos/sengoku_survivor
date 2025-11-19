@@ -22,6 +22,8 @@ namespace Vs.Controllers.Game
             public int MagnetArea = 1000;
         }
 
+        public DebugData DebugData = new DebugData();
+
         public event System.Action<int, int> Damaged = (damage, hp) => { };
         public event System.Action<int, int> Recovered = (damage, hp) => { };
 
@@ -88,7 +90,7 @@ namespace Vs.Controllers.Game
             var vertical = Input.GetAxis("Vertical");//1; // this.joystick.Vertical;
 
             var currMaxSpeed = this.calcedSpeed / 1000.0f;
-            currSpeed += acceleration * Time.deltaTime * new Vector2(horizontal, vertical + verticalAccelerationOffset);
+            currSpeed += Time.deltaTime * new Vector2(horizontal * acceleration, vertical * (acceleration + verticalAccelerationOffset));
             currSpeed -= friction * Time.deltaTime * currSpeed;
 
             currSpeed.x = Mathf.Clamp(currSpeed.x, -currMaxSpeed, currMaxSpeed);
@@ -135,6 +137,15 @@ namespace Vs.Controllers.Game
             {
                 this.autoDir.transform.LookAt(target.transform.position);
             }
+
+            DebugData.AccelerationHor = acceleration;
+            DebugData.AccelerationVert =  new Vector2(-acceleration + verticalAccelerationOffset, acceleration + verticalAccelerationOffset);
+            DebugData.Friction = friction;
+            DebugData.MaxSpeedParameter = currMaxSpeed;
+            DebugData.MaxSpeedXLeftRight = new Vector2(-currMaxSpeed, currMaxSpeed);
+            DebugData.MaxSpeedYDownUp = new Vector2(-currMaxSpeed + verticalSpeedOffset, currMaxSpeed + verticalSpeedOffset);
+            DebugData.CurrentMoveSpeed = new Vector2(currSpeed.x, currSpeed.y);
+            DebugData.Hp = new Vector2(hp, hpMax);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
