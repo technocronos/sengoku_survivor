@@ -11,6 +11,10 @@ namespace SengokuSurvivors
         [System.NonSerialized]
         public bool isAnimationPlaying = false;
 
+        public int Damage { get { return damage; } }
+        public float Cooldown { get { return cooldown; } }
+        public float Size { get { return weaponSizeMulti; } }
+
         private int damage = 20;
         private float cooldown = 2f;
         private int weaponId = 901;

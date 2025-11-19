@@ -16,6 +16,20 @@ public class ProjectileController : MonoBehaviour
     [System.NonSerialized]
     public int ArrowDamage = 0;
 
+    public float CooldownShuriken { get { return cooldownShuriken; } }
+    public float CooldownArrow { get { return cooldownArrow; } }
+    public int ArrowCount { get {
+            if (ArrowDamage == 0) return 0;
+            if (ArrowDamage < 22) return 1;
+            if (ArrowDamage < 24) return 2;
+            return 3;
+        } }
+    public int ShurikenCount { get {
+            if (ShurikenDamage == 0) return 0;
+            if (ShurikenDamage < 22) return 1;
+            if (ShurikenDamage < 24) return 2;
+            return 3;
+        } }
     private float cooldownShuriken = 10f;
     private float cooldownArrow = 10f;
     private int arrowId = 903;
@@ -98,16 +112,7 @@ public class ProjectileController : MonoBehaviour
             UpdateWeaponParameters();
             if (ArrowDamage == 0) continue;
 
-            if (ArrowDamage < 22)
-            { PlaceArrow(); }
-            else if (ArrowDamage < 24)
-            {
-                PlaceArrow(2);
-            }
-            else
-            {
-                PlaceArrow(3);
-            }
+            PlaceArrow(ArrowCount);
             //Vs.SoundService.Instance.PlaySe(soundIdArrow);
             yield return new WaitForSeconds(cooldownArrow);
         }
@@ -174,7 +179,7 @@ public class ProjectileController : MonoBehaviour
             }
         }
         PlaceShuriken(transform.position, enemies[indx]);
-        if (ShurikenDamage > 21 && enemies.Length > 1) PlaceShuriken(transform.position, enemies[indx2]);
-        if (ShurikenDamage > 22 && enemies.Length > 2) PlaceShuriken(transform.position, enemies[indx3]);
+        if (ShurikenCount >= 2 && enemies.Length > 1) PlaceShuriken(transform.position, enemies[indx2]);
+        if (ShurikenCount >= 3 && enemies.Length > 2) PlaceShuriken(transform.position, enemies[indx3]);
     }
 }
