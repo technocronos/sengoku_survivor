@@ -282,8 +282,8 @@ namespace Vs.Controllers.Game
 
         private void UpgradeStats(Skill skill)
         {
-            var value = skill.EffectValue;
-            switch (skill.EffectId)
+            var value = skill.SkillTypes[0].EffectValue;
+            switch (skill.SkillTypes[0].EffectId)
             {
                 case "hp":
                     this.Stats.HpRate += value;

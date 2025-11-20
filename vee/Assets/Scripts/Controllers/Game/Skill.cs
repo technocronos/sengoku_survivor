@@ -17,8 +17,9 @@ namespace Vs.Controllers.Game
         public int Count;
         public int Size;
         public float SizeMulti = 1;
-        public string EffectId;
-        public int EffectValue;
+        //public string EffectId;
+        //public int EffectValue;
+        public float Knockback = 0f;
         public readonly Dictionary<int, SkillType> SkillTypes = new Dictionary<int, SkillType>();
     }
 
@@ -26,5 +27,7 @@ namespace Vs.Controllers.Game
     {
         public string Name;
         public int Level;
+        public string EffectId;
+        public int EffectValue;
     }
 }

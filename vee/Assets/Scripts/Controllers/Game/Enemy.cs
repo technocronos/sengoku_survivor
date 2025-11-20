@@ -1,3 +1,5 @@
+using SengokuSurvivors;
+using System.Collections;
 using UnityEngine;
 
 namespace Vs.Controllers.Game
@@ -26,6 +28,9 @@ namespace Vs.Controllers.Game
         private float hitElapsed;
 
         private EnemySpawner spawner;
+
+        private bool isInKnockback = false;
+        private float knockbackDuration = 0.3f;
 
         public void Initialize(EnemySpawner spawner)
         {
@@ -113,10 +118,12 @@ namespace Vs.Controllers.Game
                 if(this.EnemyType != SengokuSurvivors.EnemyType.Normal)
                     SengokuSurvivors.DropManager.Instance.DropItem(this.transform.position, this.DropId);
             }
+            isInKnockback = false;
+            StopAllCoroutines();
             spawner.Despawn(this);
         }
 
-        public bool OnWeaponTrigger(int damage, string soundId)
+        public bool OnWeaponTrigger(int damage, string soundId, float knockback = 0f)
         {
             if (this.IsDead)
             {
@@ -125,6 +132,7 @@ namespace Vs.Controllers.Game
 
             var isCritical = false;// Random.Range(0, 4) == 0;
             this.Hit(damage, isCritical);
+            Knockback(knockback);
             //var soundId = isCritical ? "damage_cri" : ctr.GetSoundId();
             //SoundService.Instance.PlaySe(soundId);
             return true;
@@ -178,6 +186,30 @@ namespace Vs.Controllers.Game
             {
                 this.Death();
             }
+        }
+
+        private void Knockback(float knockBackStrength)
+        {
+            if (knockBackStrength <= float.Epsilon || isInKnockback) return;
+            isInKnockback = true;
+            StartCoroutine(KnockbackRoutine(knockBackStrength));
+        }
+
+        private IEnumerator KnockbackRoutine(float knockbackStrength)
+        {
+            var movement = GetComponent<IEnemyMovement>();
+            movement.SetKnockbackState(true);
+            float elapsed = 0f;
+            while (elapsed < knockbackDuration)
+            {
+                yield return null;
+                elapsed += Time.deltaTime;
+                var pos = transform.localPosition;
+                pos.y += Time.deltaTime * knockbackStrength;
+                transform.localPosition = pos;
+            }
+            isInKnockback = false;
+            movement.SetKnockbackState(false);
         }
     }
 }

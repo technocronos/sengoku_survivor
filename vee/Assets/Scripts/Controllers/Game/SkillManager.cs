@@ -48,13 +48,18 @@ namespace Vs.Controllers.Game
                 skill = new Skill();
                 skill.SkillId = skillId;
                 skill.Category = row["category"];
-                skill.SkillTypes.Add(0, new SkillType() { Name = row["name"], Level = 0 });
+                skill.SkillTypes.Add(0, new SkillType() { Name = row["name"], Level = 0, 
+                    EffectId = row["effect_id"],
+                    EffectValue = row["effect_value"] });
                 this.skills.Add(skill);
             }
             else if (!skill.SkillTypes.ContainsKey(type))//取得している武器で、強化を取得していない
             {
                 skill.SkillTypes.Add(type, new SkillType() 
-                    { Name = $"      {row["type_name"]}", Level = 0 });
+                    { Name = $"      {row["type_name"]}", Level = 0,
+                    EffectId = row["effect_id"],
+                    EffectValue = row["effect_value"]
+                });
             }
             if (type > 0 || skill.Category == 201) skill.SkillTypes[type].Level++;//強化を取っているのでレベルが+1上がる
 
@@ -67,9 +72,11 @@ namespace Vs.Controllers.Game
             skill.Count += row["count"];
             skill.Size += row["size"];
             skill.SizeMulti *= row["size_multi"] / 1000f;
+            
+            if (row["effect_id"] == "knockback") { 
+                skill.Knockback = 1f; 
+            }
 
-            skill.EffectId = row["effect_id"];
-            skill.EffectValue = row["effect_value"];
             return skill;
         }
 
@@ -86,14 +93,20 @@ namespace Vs.Controllers.Game
         public List<JsonObject> GetSelectableSkills()
         {
             return this.dropMst
-                .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) ? i["type"] > 0 || i["category"] == 201 : i["type"] == 0)
+                .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) 
+                ? i["type"] > 0 
+                    && (i["effect_id"] != "knockback" || skills.Find(j => j.SkillId == i["skill_id"]).Knockback <= float.Epsilon) 
+                    || i["category"] == 201
+                : i["type"] == 0)
                 .OrderBy(i => System.Guid.NewGuid()).ToList().Take(3).ToList();
         }
 
         public List<JsonObject> GetSelectableSkillsAll()
         {
             return this.dropMst
-                .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) ? i["type"] > 0 || i["category"] == 201 : i["type"] == 0);
+                .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) ? i["type"] > 0
+                    && (i["effect_id"] != "knockback" || skills.Find(j => j.SkillId == i["skill_id"]).Knockback <= float.Epsilon)
+                || i["category"] == 201 : i["type"] == 0);
         }
 
         public bool IsBaseSkillObtained(int id)
