@@ -285,6 +285,10 @@ namespace Vs.Controllers.Game
                 skills = this.SkillManager.GetSelectableSkills();
             }
             this.popupLvUp.Show(skills);
+            #region Debug
+            //var aaa = skills[0];
+            //OnLvUpPopupSelected(aaa["skill_id"], aaa["type"]);
+            #endregion
 
             SoundService.Instance.PlaySe("levelup");
         }
