@@ -10,4 +10,5 @@ public class DebugData
     public Vector2 AccelerationVert;
     public float Friction;
     public Vector2 Hp;
+    public float SqrFriction;
 }

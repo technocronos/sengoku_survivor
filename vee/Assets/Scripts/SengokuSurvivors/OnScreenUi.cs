@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using SengokuSurvivors;
+using System.Text;
 
 public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 {
@@ -50,6 +51,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private Vs.Controllers.Game.Player Player;
     private SlashController Katana;
     private ProjectileController Projectile;
+    private readonly StringBuilder sb = new StringBuilder();
 
     private void Awake()
     {
@@ -141,36 +143,36 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private void Update()
     {
         UpdateDebugStatsView();
-        UpdateDebugButtons();
     }
 
     public void UpdateDebugStatsView()
     {
         if (!DebugStatsContainer.activeSelf) return;
-        string text = "";
-        text += string.Format("<MOVEMENT>:\n");
-        text += string.Format("Current speed(local):x= {0:0.00} y= {1:0.00}\n", Player.DebugData.CurrentMoveSpeed.x, Player.DebugData.CurrentMoveSpeed.y);
-        text += string.Format("Max speed X: down= {0} up= {1}\n", Player.DebugData.MaxSpeedYDownUp.x, Player.DebugData.MaxSpeedYDownUp.y);
-        text += string.Format("Max speed Y: left= {0} right= {1}\n", Player.DebugData.MaxSpeedXLeftRight.x, Player.DebugData.MaxSpeedXLeftRight.y);
-        text += string.Format("Acceleration horizontal: {0}\n", Player.DebugData.AccelerationHor);
-        text += string.Format("Acceleration vert: up= {0} down= {1}\n", Player.DebugData.AccelerationVert.x, Player.DebugData.AccelerationVert.y);
-        text += string.Format("Friction: {0}\n", Player.DebugData.Friction);
-        text += string.Format("<STATS>:\n");
-        text += string.Format("HP:{0}/{1}\n", Player.DebugData.Hp.x, Player.DebugData.Hp.y);
-        text += string.Format("Max speed (raw): {0}\n", Player.DebugData.MaxSpeedParameter);
-        text += string.Format("<KATANA:>\n");
-        text += string.Format("Damage: {0}\n", Katana.Damage);
-        text += string.Format("Cooldown: {0}\n", Katana.Cooldown);
-        text += string.Format("Scale: {0}\n", Katana.Size);
-        text += string.Format("<SHURIKEN:>\n");
-        text += string.Format("Damage: {0}\n", Projectile.ShurikenDamage);
-        text += string.Format("Cooldown: {0}\n", Projectile.CooldownShuriken);
-        text += string.Format("Count: {0}\n", Projectile.ShurikenCount);
-        text += string.Format("<ARROW:>\n");
-        text += string.Format("Damage: {0}\n", Projectile.ArrowDamage);
-        text += string.Format("Cooldown: {0}\n", Projectile.CooldownArrow);
-        text += string.Format("Count: {0}\n", Projectile.ArrowCount);
-        weaponDebugLabel2.text = text;
+        sb.Clear();
+        sb.AppendLine(string.Format("<MOVEMENT>:"));
+        sb.Append(string.Format("Current speed(local):x= {0:0.00} y= {1:0.00}\n", Player.DebugData.CurrentMoveSpeed.x, Player.DebugData.CurrentMoveSpeed.y));
+        sb.Append(string.Format("Max speed X: down= {0} up= {1}\n", Player.DebugData.MaxSpeedYDownUp.x, Player.DebugData.MaxSpeedYDownUp.y));
+        sb.Append(string.Format("Max speed Y: left= {0} right= {1}\n", Player.DebugData.MaxSpeedXLeftRight.x, Player.DebugData.MaxSpeedXLeftRight.y));
+        sb.Append(string.Format("Acceleration horizontal: {0}\n", Player.DebugData.AccelerationHor));
+        sb.Append(string.Format("Acceleration vert: up= {0} down= {1}\n", Player.DebugData.AccelerationVert.x, Player.DebugData.AccelerationVert.y));
+        sb.Append(string.Format("Friction: {0}\n", Player.DebugData.Friction));
+        sb.Append(string.Format("Sqr Friction: {0}\n", Player.DebugData.SqrFriction));
+        sb.Append(string.Format("<STATS>:\n"));
+        sb.Append(string.Format("HP:{0}/{1}\n", Player.DebugData.Hp.x, Player.DebugData.Hp.y));
+        sb.Append(string.Format("Max speed (raw): {0}\n", Player.DebugData.MaxSpeedParameter));
+        sb.Append(string.Format("<KATANA:>\n"));
+        sb.Append(string.Format("Damage: {0}\n", Katana.Damage));
+        sb.Append(string.Format("Cooldown: {0}\n", Katana.Cooldown));
+        sb.Append(string.Format("Scale: {0}\n", Katana.Size));
+        sb.Append(string.Format("<SHURIKEN:>\n"));
+        sb.Append(string.Format("Damage: {0}\n", Projectile.ShurikenDamage));
+        sb.Append(string.Format("Cooldown: {0}\n", Projectile.CooldownShuriken));
+        sb.Append(string.Format("Count: {0}\n", Projectile.ShurikenCount));
+        sb.Append(string.Format("<ARROW:>\n"));
+        sb.Append(string.Format("Damage: {0}\n", Projectile.ArrowDamage));
+        sb.Append(string.Format("Cooldown: {0}\n", Projectile.CooldownArrow));
+        sb.Append(string.Format("Count: {0}\n", Projectile.ArrowCount));
+        weaponDebugLabel2.text = sb.ToString();
     }
 
     private void UpdateDebugButtons()
@@ -204,10 +206,15 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         var skillId = row["skill_id"];
         var type = row["type"];
         Vs.Controllers.Game.GameManager.Instance.AddSkill(skillId, type);
+        UpdateDebugButtons();
     }
 
     private void ToggleStats()
     {
         DebugStatsContainer.SetActive(!DebugStatsContainer.activeSelf);
+        if (DebugStatsContainer.activeSelf)
+        {
+            UpdateDebugButtons();
+        }
     }
 }
