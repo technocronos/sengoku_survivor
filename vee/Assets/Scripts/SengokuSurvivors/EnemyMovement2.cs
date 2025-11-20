@@ -14,6 +14,8 @@ namespace SengokuSurvivors
         private float lifetime = 30f;
         private float birthTime;
 
+        private bool isKnockedBack = false;
+
         void Start()
         {
             birthTime = Time.time;
@@ -65,10 +67,25 @@ namespace SengokuSurvivors
                     yield return new WaitForSeconds(0.5f);
                     flagStopForAttack = false;
                 }
-                transform.position += (newTargetPos - transform.position).normalized * Time.deltaTime * 3f;
+
+                if (!isKnockedBack)
+                {
+                    transform.position += (newTargetPos - transform.position).normalized * Time.deltaTime * 3f;
+                }
+
                 if (Camera.main.WorldToViewportPoint(transform.position).y > 0.8f) targetPosViewportY = 0.1f;
                 else if (Camera.main.WorldToViewportPoint(transform.position).y < 0.2f) targetPosViewportY = 0.9f;
             }
+        }
+
+        public void SetKnockbackState(bool isKnockedBack)
+        {
+            this.isKnockedBack = isKnockedBack;
+        }
+
+        public void Initialize()
+        {
+            
         }
     }
 }

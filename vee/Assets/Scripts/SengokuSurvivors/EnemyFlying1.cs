@@ -9,6 +9,18 @@ namespace SengokuSurvivors
         private float speedDispersion = 0.1f;
         private float downSpeedCoeff = 0.1f;
 
+        private bool isKnockedBack = false;
+
+        public void Initialize()
+        {
+            
+        }
+
+        public void SetKnockbackState(bool isKnockedBack)
+        {
+            this.isKnockedBack = isKnockedBack;
+        }
+
         void Start()
         {
             GetComponent<Vs.Controllers.Game.Enemy>().UseBaseMoving = false;
@@ -22,6 +34,8 @@ namespace SengokuSurvivors
 
         void Update()
         {
+            if (isKnockedBack) return;
+
             if (moveRightSign > 0 && Camera.main.WorldToViewportPoint(transform.position).x > 0.7f) { moveRightSign = -1f; }
             else if (moveRightSign < 0 && Camera.main.WorldToViewportPoint(transform.position).x < 0.3f) { moveRightSign = 1f; }
 

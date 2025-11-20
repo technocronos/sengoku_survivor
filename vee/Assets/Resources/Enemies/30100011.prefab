@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 2472934511041934564}
   - component: {fileID: 7579294481951127132}
   - component: {fileID: 474840955098381116}
+  - component: {fileID: 1094838188092634421}
   m_Layer: 7
   m_Name: 30100011
   m_TagString: Enemy
@@ -146,7 +147,6 @@ MonoBehaviour:
   hpText: {fileID: 1714625016585428290}
   IsTarget: 1
   Hp: 20
-  Spd: 0
   ExpAmount: 1
 --- !u!70 &7579294481951127132
 CapsuleCollider2D:
@@ -212,6 +212,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1094838188092634421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841262288999212680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1871824852ec8a844aee4d7aaff9ffac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spd: 0
 --- !u!1 &1112317706817048743
 GameObject:
   m_ObjectHideFlags: 0
