@@ -54,8 +54,11 @@ namespace Vs.Controllers.Game
         private int calcedSpeed;
         private float elapsed;
 
-        private float friction = 5f;
-        private float acceleration = 12f;
+        private float friction = 5f;//{ get { return acceleration; } }//5f
+        private float sqrFriction = 0.1f;
+        private float currMaxSpeed;
+        private float acceleration { get { return currMaxSpeed / accelerationTime; } }//12f;
+        private float accelerationTime = 0.16f;
         private Vector2 currSpeed;
         private float verticalSpeedOffset = -0.3f;
         private float verticalAccelerationOffset = -0.05f;
@@ -89,9 +92,13 @@ namespace Vs.Controllers.Game
             var horizontal = Input.GetAxis("Horizontal"); // this.joystick.Horizontal;
             var vertical = Input.GetAxis("Vertical");//1; // this.joystick.Vertical;
 
-            var currMaxSpeed = this.calcedSpeed / 1000.0f;
-            currSpeed += Time.deltaTime * new Vector2(horizontal * acceleration, vertical * (acceleration + verticalAccelerationOffset));
+            currMaxSpeed = this.calcedSpeed / 1000.0f;
             currSpeed -= friction * Time.deltaTime * currSpeed;
+            if (currSpeed.magnitude > 1f) { currSpeed -= sqrFriction * currSpeed.magnitude * Time.deltaTime * currSpeed; }
+            currSpeed.x += Time.deltaTime * horizontal * (acceleration);
+            currSpeed.y += Time.deltaTime * vertical * (acceleration + verticalAccelerationOffset);
+            
+            
 
             currSpeed.x = Mathf.Clamp(currSpeed.x, -currMaxSpeed, currMaxSpeed);
             currSpeed.y = Mathf.Clamp(currSpeed.y, -currMaxSpeed + verticalSpeedOffset, currMaxSpeed + verticalSpeedOffset);
@@ -146,6 +153,7 @@ namespace Vs.Controllers.Game
             DebugData.MaxSpeedYDownUp = new Vector2(-currMaxSpeed + verticalSpeedOffset, currMaxSpeed + verticalSpeedOffset);
             DebugData.CurrentMoveSpeed = new Vector2(currSpeed.x, currSpeed.y);
             DebugData.Hp = new Vector2(hp, hpMax);
+            DebugData.SqrFriction = sqrFriction;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
