@@ -83,6 +83,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
             DebugMenuContainer.SetActive(true);
             DebugMenuButton.gameObject.SetActive(false);
             DebugMenuCloseButton.gameObject.SetActive(true);
+            UpdateDebugButtons();
         });
     }
 
@@ -175,7 +176,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         weaponDebugLabel2.text = sb.ToString();
     }
 
-    private void UpdateDebugButtons()
+    public void UpdateDebugButtons()
     {
         if (!DebugMenuContainer.activeSelf) return;
         DebugMenuButtons.Clear();
@@ -206,15 +207,10 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         var skillId = row["skill_id"];
         var type = row["type"];
         Vs.Controllers.Game.GameManager.Instance.AddSkill(skillId, type);
-        UpdateDebugButtons();
     }
 
     private void ToggleStats()
     {
         DebugStatsContainer.SetActive(!DebugStatsContainer.activeSelf);
-        if (DebugStatsContainer.activeSelf)
-        {
-            UpdateDebugButtons();
-        }
     }
 }

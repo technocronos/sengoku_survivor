@@ -236,6 +236,7 @@ namespace Vs.Controllers.Game
             }
             OnScreenUi.Instance.UpdateEquipmentView();
             OnScreenUi.Instance.SetCurrHp(hp, hpMax);
+            OnScreenUi.Instance.UpdateDebugButtons();
         }
 
         private void UpdateShooter(Skill skill)
