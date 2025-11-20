@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SengokuSurvivors
 {
-    public class SlashController : MonoBehaviour, IPlayerAttack
+    public class SlashController : MonoBehaviour, IPlayerAttackController, IPlayerAttackDamageDealer
     {
         public Animator AttackEffectAnimator;
         [System.NonSerialized]
@@ -21,6 +21,7 @@ namespace SengokuSurvivors
         private string weaponUseAnim = "Slash";
         private float weaponSizeMulti = 1f;
         private string soundId = "damage_slash_1";//"damage_slash_2";
+        private float knockback = 0f;
 
         private void Start()
         {
@@ -39,8 +40,7 @@ namespace SengokuSurvivors
                 for (int i = 0; i < nn; i++)
                 {
                     var enemy = results[i].GetComponent<Vs.Controllers.Game.Enemy>();
-                    if (enemy == null) continue;
-                    enemy.OnWeaponTrigger(damage, "");
+                    DamageEnemy(enemy);
                 }
 
                 AttackEffectAnimator.Play(weaponUseAnim);
@@ -62,13 +62,20 @@ namespace SengokuSurvivors
             cooldown = weaponData.CoolTime / 1000f * weaponData.CoolTimeMulti;
             weaponSizeMulti = weaponData.SizeMulti;
             transform.localScale = new Vector3(weaponSizeMulti, weaponSizeMulti, 1);
+            knockback = weaponData.Knockback;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (!isAnimationPlaying) return;
             var enemy = collision.gameObject.GetComponent<Vs.Controllers.Game.Enemy>();
-            if (enemy != null) enemy.OnWeaponTrigger(damage, "");
+            DamageEnemy(enemy);
+        }
+
+        private void DamageEnemy(Vs.Controllers.Game.Enemy enemy)
+        {
+            if (enemy == null) return;
+            enemy.OnWeaponTrigger(damage, "", knockback);
         }
     }
 }

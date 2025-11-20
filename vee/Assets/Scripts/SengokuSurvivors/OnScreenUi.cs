@@ -131,7 +131,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         {
             foreach (var skillType in entry.SkillTypes)
             {
-                if (skillType.Value.Level > 0)
+                if (skillType.Value.Level > 0 && skillType.Value.EffectId != "knockback")
                     text += string.Format("{0} Lvl {1}\n", skillType.Value.Name, skillType.Value.Level);
                 else
                     text += string.Format("{0}\n", skillType.Value.Name);
