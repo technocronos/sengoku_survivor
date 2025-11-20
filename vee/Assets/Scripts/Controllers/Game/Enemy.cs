@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using MyGame;
 
 namespace Vs.Controllers.Game
 {
@@ -18,7 +15,6 @@ namespace Vs.Controllers.Game
 
         public int Hp = 20;
         public int Atk { get; private set; }
-        public float Spd = 0f;
         public int DropId { get; private set; }
         public int ExpAmount = 1;
 
@@ -36,8 +32,12 @@ namespace Vs.Controllers.Game
             this.spawner = spawner;
             IsDead = false;
 
+            SengokuSurvivors.IEnemyMovement movementComponent = GetComponent<SengokuSurvivors.IEnemyMovement>();
+            if (movementComponent == null) { movementComponent = gameObject.AddComponent<SengokuSurvivors.EnemyMovementSimple>(); }
+            movementComponent.Initialize();
+
             this.hpText.text = $"{this.Hp}";
-            SetRandomSpd(Spd);
+            
             if (avatar.GetComponent<SengokuSurvivors.OnHitFlashingEffect>() == null)
             {
                 avatar.gameObject.AddComponent<SengokuSurvivors.OnHitFlashingEffect>();
@@ -57,13 +57,6 @@ namespace Vs.Controllers.Game
         public void SetAtk(int atk)
         {
             this.Atk = atk;
-        }
-
-        public void SetRandomSpd(float spd, float dispersion = 0.5f)
-        {
-            spd = Random.Range(spd - dispersion, spd + dispersion);
-            if (spd < 0) spd = 0;
-            this.Spd = spd;
         }
 
         public void SetDropId(int dropId)
@@ -90,15 +83,6 @@ namespace Vs.Controllers.Game
             if (this.hitElapsed > 0)
             {
                 this.hitElapsed -= Time.deltaTime;
-            }
-
-            if (UseBaseMoving)
-            {
-                var player = GameManager.Instance.Player;
-                var dir = Vector3.down; //player.transform.position - this.transform.position;
-                var pos = this.transform.position;
-                pos += this.Spd * Time.deltaTime * dir.normalized;
-                this.transform.position = pos;
             }
 
             RemoveIfPassed();
