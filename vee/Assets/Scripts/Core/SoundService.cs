@@ -48,6 +48,16 @@ namespace Vs
             this.bgmCh.Stop();
         }
 
+        public void UnpauseBgm()
+        {
+            bgmCh.UnPause();
+        }
+
+        public void PauseBgm()
+        {
+            bgmCh.Pause();
+        }
+
         public void PlaySe(string filename)
         {
             if (!seClipsCache.ContainsKey(filename))
