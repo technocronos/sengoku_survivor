@@ -34,8 +34,8 @@ namespace Vs.Controllers.Loading
 
             Api.Users.Login();
 
-            var context = new Controllers.Game.Game.Context();
-            //var context = new Controllers.Home.Home.Context();
+            //var context = new Controllers.Game.Game.Context();
+            var context = new Controllers.Home.Home.Context();
             ViewService.Instance.ChangeView(context);
         }
     }

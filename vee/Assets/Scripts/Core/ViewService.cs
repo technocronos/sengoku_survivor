@@ -19,6 +19,7 @@ namespace Vs
 
         public void ChangeView(Controller.ViewContext context)
         {
+            Time.timeScale = 1.0f;
             this.StartCoroutine(this.InnerChangeView(context));
         }
 

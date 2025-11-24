@@ -33,5 +33,11 @@ namespace Vs.Controllers.Game
             var context = new Controllers.Game.Game.Context();
             ViewService.Instance.ChangeView(context);
         }
+
+        public void OnButtonToTitleClicked()
+        {
+            var context = new Controllers.Home.Home.Context();
+            ViewService.Instance.ChangeView(context);
+        }
     }
 }

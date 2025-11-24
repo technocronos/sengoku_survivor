@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using SengokuSurvivors;
 using System.Text;
+using UnityEngine.PlayerLoop;
 
 public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 {
@@ -52,6 +53,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private SlashController Katana;
     private ProjectileController Projectile;
     private readonly StringBuilder sb = new StringBuilder();
+    public bool ShowDebugMenu = false;
 
     private void Awake()
     {
@@ -71,7 +73,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         });
 
         DebugMenuContainer.SetActive(false);
-        DebugMenuButton.gameObject.SetActive(true);
+        DebugMenuButton.gameObject.SetActive(ShowDebugMenu);
         DebugMenuCloseButton.gameObject.SetActive(false);
 
         DebugMenuCloseButton.onClick.AddListener(() =>{
@@ -101,7 +103,6 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
             {
                 hpFadeSlider.value += (hpSlider.value - hpFadeSlider.value) * 2f * Time.unscaledDeltaTime;
             }
-            if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
         }
     }
 
@@ -144,6 +145,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private void Update()
     {
         UpdateDebugStatsView();
+        if (Input.GetKeyDown(KeyCode.Escape)) Vs.Controllers.Game.GameManager.Instance.OnPauseClicked();
     }
 
     public void UpdateDebugStatsView()

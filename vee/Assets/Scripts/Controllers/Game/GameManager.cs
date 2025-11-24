@@ -111,7 +111,7 @@ namespace Vs.Controllers.Game
             });
         }
 
-        private void OnGameOver()
+        public void GameOver()
         {
             PlayerPrefs.SetFloat("record", this.time);
             PlayerPrefs.Save();
@@ -315,7 +315,7 @@ namespace Vs.Controllers.Game
             }
             if (hp <= 0)
             {
-                this.OnGameOver();
+                this.GameOver();
             }
         }
 

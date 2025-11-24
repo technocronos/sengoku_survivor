@@ -1,5 +1,6 @@
 {
   "dependencies": {
+	"com.mikeschweitzer.websocket": "https://github.com/mikerochip/unity-websocket.git",
     "com.unity.2d.animation": "10.2.1",
     "com.unity.2d.pixel-perfect": "5.1.0",
     "com.unity.2d.psdimporter": "9.1.0",

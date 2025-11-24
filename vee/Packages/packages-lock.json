@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.mikeschweitzer.websocket": {
+      "version": "https://github.com/mikerochip/unity-websocket.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "1577a50ab7348d1a6fc4b320a3393e0e135b0f5f"
+    },
     "com.unity.2d.animation": {
       "version": "10.2.1",
       "depth": 0,
@@ -299,6 +306,14 @@
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
+      }
+    },
+    "xyz.ooo-unchain-ooo.third-sdk": {
+      "version": "file:xyz.unchain.third_sdk",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.mikeschweitzer.websocket": "3.2.0"
       }
     },
     "com.unity.modules.accessibility": {

@@ -74,6 +74,7 @@ namespace Vs.Controllers.Game
                 }
                 i += count;
             }
+            GameManager.Instance.GameOver();
         }
 
         private void ClearEnemies()
