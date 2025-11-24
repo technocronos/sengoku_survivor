@@ -86,7 +86,7 @@ namespace Vs.Controllers.Game
             if (this.elapsed >= 1.0f)
             {
                 this.elapsed -= 1.0f;
-                this.Recover(Mathf.FloorToInt(this.hpMax * this.Stats.AutoRecover / 1000.0f));
+                this.RecoverHp(Mathf.FloorToInt(this.hpMax * this.Stats.AutoRecover / 1000.0f));
             }
 
             var horizontal = Input.GetAxis("Horizontal"); // this.joystick.Horizontal;
@@ -193,7 +193,7 @@ namespace Vs.Controllers.Game
             this.Damaged.Invoke(value, this.hp);
         }
 
-        public void Recover(int value)
+        public void RecoverHp(int value)
         {
             this.hp += value;
             if (this.hp > this.hpMax)

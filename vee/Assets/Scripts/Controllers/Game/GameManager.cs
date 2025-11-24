@@ -72,14 +72,12 @@ namespace Vs.Controllers.Game
                 return;
             }
             thirdController = FindAnyObjectByType<ThirdController>();
-            thirdController.GetComponent<ThirdConnector>().MessageReceived.AddListener(OnThirdMessageReceived);
             thirdController.Connect();
         }
 
         private void OnDestroy()
         {
             if (thirdController == null) return;
-            thirdController.GetComponent<ThirdConnector>().MessageReceived.RemoveListener(OnThirdMessageReceived);
             thirdController.Disconnect();
         }
 
@@ -194,6 +192,11 @@ namespace Vs.Controllers.Game
             //}
         }
 
+        public string GetTimeText()
+        {
+            return this.timeText.text; 
+        }
+
         public void CalcLevel()
         {
             return;
@@ -229,7 +232,7 @@ namespace Vs.Controllers.Game
 
         public void Recover(int value)
         {
-            this.Player.Recover(value);
+            this.Player.RecoverHp(value);
         }
 
         public void AddCoins(int value)
@@ -344,12 +347,6 @@ namespace Vs.Controllers.Game
             {
                 i.Death(force: true);
             }
-        }
-
-        public void OnThirdMessageReceived(ThirdResponse data)
-        {
-            //Debug.Log($"{data.txId}, {data.streamId}, {data.actionId}, {data.quantity}, {data.commandKey}, {data.displayName}");
-            Debug.Log("COMMAND: " + data.commandKey);
         }
     }
 }

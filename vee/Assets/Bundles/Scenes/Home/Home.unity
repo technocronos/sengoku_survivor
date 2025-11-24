@@ -1535,7 +1535,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Stream Id:'
+  m_text: "\u914D\u4FE1\u30B3\u30FC\u30C9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 40df911239c5b7d4f8c98d59f2cf3743, type: 2}
   m_sharedMaterial: {fileID: -3928623607583980969, guid: 40df911239c5b7d4f8c98d59f2cf3743, type: 2}
@@ -1692,10 +1692,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: "\u914D\u4FE1\u30B3\u30FC\u30C9\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0c4b4ba7de4811243a81a78a0dab76b0, type: 2}
+  m_sharedMaterial: {fileID: -7587770963048621198, guid: 0c4b4ba7de4811243a81a78a0dab76b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
