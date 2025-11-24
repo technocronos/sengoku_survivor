@@ -2542,9 +2542,131 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2016270263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2016270265}
+  - component: {fileID: 2016270264}
+  - component: {fileID: 2016270266}
+  m_Layer: 0
+  m_Name: ThirdConnector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2016270264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016270263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4f395f9dac94c078b325ab4fdd8264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://dev.live-ctl.com
+  wsurl: wss://dev.live-ctl.com
+  appId: 019aa5a7-eaf9-74f2-be28-66f51ecbc243
+  apiKey: 4c1c654d340ac6c6c67b97cf22d7ebb145ee7174516310d317776f2fad0ab3c1
+  Connected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2016270266}
+        m_TargetAssemblyTypeName: ThirdController, Assembly-CSharp
+        m_MethodName: OnConnected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Disconnected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2016270266}
+        m_TargetAssemblyTypeName: ThirdController, Assembly-CSharp
+        m_MethodName: OnDisconnected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  MessageReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2016270266}
+        m_TargetAssemblyTypeName: ThirdController, Assembly-CSharp
+        m_MethodName: OnMessageReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ErrorMessageReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2016270266}
+        m_TargetAssemblyTypeName: ThirdController, Assembly-CSharp
+        m_MethodName: OnErrorMessageReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &2016270265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016270263}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2016270266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016270263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ed3ae1344a7d54099bdc61ca71cde9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1779248684}
   - {fileID: 620330456}
+  - {fileID: 2016270265}

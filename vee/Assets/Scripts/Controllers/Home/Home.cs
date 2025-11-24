@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Vs.Controllers.Home
 {
@@ -16,6 +17,10 @@ namespace Vs.Controllers.Home
         private GameObject MenuSettings;
         [SerializeField]
         private Button ButtonCloseMenuSettings;
+        [SerializeField]
+        private TMP_InputField InputFieldStreamId;
+
+        private ThirdController thirdController;
 
         public sealed class Context : ViewContext
         {
@@ -37,6 +42,8 @@ namespace Vs.Controllers.Home
             ButtonQuit.onClick.AddListener(OnButtonQuit);
             ButtonCloseMenuSettings.onClick.AddListener(OnButtonCloseSettings);
             MenuSettings.gameObject.SetActive(false);
+            InputFieldStreamId.onValueChanged.AddListener(OnInputFieldChanged);
+            thirdController = FindAnyObjectByType<ThirdController>();
         }
 
         private void OnButtonPlay()
@@ -62,6 +69,11 @@ namespace Vs.Controllers.Home
         {
             SoundService.Instance.PlaySe("get_item");
             Application.Quit();
+        }
+
+        private void OnInputFieldChanged(string value)
+        {
+            thirdController.StreamId = value;
         }
 
     }

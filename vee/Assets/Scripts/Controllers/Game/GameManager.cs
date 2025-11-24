@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using MyGame;
+using UNCHAIN.ThirdSdk;
 
 namespace Vs.Controllers.Game
 {
@@ -60,13 +61,26 @@ namespace Vs.Controllers.Game
 
         public SkillManager SkillManager = new SkillManager();
 
+        private ThirdController thirdController;
+
         override protected void OnAwake()
         {
             //GameのシーンからでもエディターでプレイできるようにBootstrapからロード
             if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                return;
             }
+            thirdController = FindAnyObjectByType<ThirdController>();
+            thirdController.GetComponent<ThirdConnector>().MessageReceived.AddListener(OnThirdMessageReceived);
+            thirdController.Connect();
+        }
+
+        private void OnDestroy()
+        {
+            if (thirdController == null) return;
+            thirdController.GetComponent<ThirdConnector>().MessageReceived.RemoveListener(OnThirdMessageReceived);
+            thirdController.Disconnect();
         }
 
         public void Initialize()
@@ -330,6 +344,12 @@ namespace Vs.Controllers.Game
             {
                 i.Death(force: true);
             }
+        }
+
+        public void OnThirdMessageReceived(ThirdResponse data)
+        {
+            //Debug.Log($"{data.txId}, {data.streamId}, {data.actionId}, {data.quantity}, {data.commandKey}, {data.displayName}");
+            Debug.Log("COMMAND: " + data.commandKey);
         }
     }
 }
