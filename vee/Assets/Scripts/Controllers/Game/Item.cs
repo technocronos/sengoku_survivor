@@ -10,14 +10,18 @@ namespace Vs.Controllers.Game
         [SerializeField]
         private float distance = 2.0f;
 
-        private bool isObtained;
+        [System.NonSerialized]
+        public bool isObtained;
 
         protected DropManager dropManager;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.GetComponent<Player>() == null) return;
-            this.Obtain(collision.gameObject);
+            SoundService.Instance.PlaySe("get_item");
+            this.OnComplete();
+            dropManager.DespawnItem(this);
+            //this.Obtain(collision.gameObject);
         }
 
         public void Obtain(GameObject target)
@@ -55,9 +59,7 @@ namespace Vs.Controllers.Game
             //         yield return null;
             //     }
             // }
-            SoundService.Instance.PlaySe("get_item");
-            this.OnComplete();
-            dropManager.DespawnItem(this);
+
         }
 
         protected virtual void OnComplete()
@@ -68,7 +70,7 @@ namespace Vs.Controllers.Game
         private void Update()
         {
             var pos = Camera.main.WorldToViewportPoint(transform.position);
-            if (pos.x > 1f || pos.x < 0 || pos.y > 1 || pos.y < 0) dropManager.DespawnItem(this);
+            if (pos.x > 1.5f || pos.x < -0.5f || pos.y > 1.5f || pos.y < -0.5f) dropManager.DespawnItem(this);
         }
     }
 }

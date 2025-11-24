@@ -62,12 +62,12 @@ namespace SengokuSurvivors
             box.Setup(skillId, type, text, this);
             
             // 生成直後にコライダーを無効化し、次のフレームで有効化（即取得を防ぐため）
-            var collider = box.GetComponent<Collider2D>();
-            if (collider != null)
-            {
-                collider.enabled = false;
-                box.StartCoroutine(EnableColliderNextFrame(collider));
-            }
+            //var collider = box.GetComponent<Collider2D>();
+            //if (collider != null)
+            //{
+            //    collider.enabled = false;
+            //    box.StartCoroutine(EnableColliderNextFrame(collider));
+            //}
         }
 
         private IEnumerator EnableColliderNextFrame(Collider2D collider)

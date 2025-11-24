@@ -60,7 +60,7 @@ namespace SengokuSurvivors
             {
                 yield return null;
                 var pos = Camera.main.WorldToViewportPoint(transform.position);
-                if (pos.x > 1f || pos.x < 0 || pos.y > 1 || pos.y < 0) dropManager.DespawnExp(this);
+                if (pos.x > 1.5f || pos.x < -0.5f || pos.y > 1.5f || pos.y < -0.5f) dropManager.DespawnExp(this);
             }
         }
 
