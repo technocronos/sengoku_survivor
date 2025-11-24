@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using Vs;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 
 public class ThirdCommentsUi : MonoBehaviour
 {
