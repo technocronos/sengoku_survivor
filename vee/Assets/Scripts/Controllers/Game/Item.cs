@@ -64,5 +64,11 @@ namespace Vs.Controllers.Game
         {
             // nop
         }
+
+        private void Update()
+        {
+            var pos = Camera.main.WorldToViewportPoint(transform.position);
+            if (pos.x > 1f || pos.x < 0 || pos.y > 1 || pos.y < 0) dropManager.DespawnItem(this);
+        }
     }
 }
