@@ -56,6 +56,7 @@ namespace SengokuSurvivors
             //    }
             //}
             var box = (itemBoxCache.Count > 0) ? itemBoxCache.Dequeue() : Instantiate(this.prefab, this.world);
+            box.gameObject.SetActive(true);
             box.transform.SetPositionAndRotation(pos, Quaternion.identity);
             box.transform.Rotate(Vector3.right, -30f);
             box.Setup(skillId, type, text, this);
