@@ -73,10 +73,9 @@ namespace Vs.Controllers.Game
                     }
                 }
                 i += count;
-                if (i > 5) { GameManager.Instance.GameClear(); yield break; }
             }
-            //GameManager.Instance.GameOver();
-            GameManager.Instance.GameClear();
+            GameManager.Instance.GameOver();
+            //GameManager.Instance.GameClear();
         }
 
         private void ClearEnemies()
