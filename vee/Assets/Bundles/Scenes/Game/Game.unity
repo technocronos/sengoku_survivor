@@ -30373,7 +30373,7 @@ MonoBehaviour:
   DebugMenuContainer: {fileID: 1071371485}
   DebugMenuButtonsContainer: {fileID: 1959199538}
   DebugStatsContainer: {fileID: 69343674}
-  ShowDebugMenu: 0
+  ShowDebugMenu: 1
 --- !u!114 &1094324581
 MonoBehaviour:
   m_ObjectHideFlags: 0
