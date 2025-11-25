@@ -1,17 +1,13 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Net;
-using System.Text;
 using UnityEditor.SceneManagement;
+using System.Collections.Generic;
 
 public class MyMenuSetting : EditorWindow
 {
-
-    [MenuItem("MyMenu/PlayerPrefsキャッシュ全削除")]
+    [MenuItem("MyMenu/削除/PlayerPrefsキャッシュ全削除")]
     static void PlayerPrefsDelete()
     {
         PlayerPrefs.DeleteAll();
@@ -66,5 +62,35 @@ public class MyMenuSetting : EditorWindow
         if (!isCancel) return;
 
         EditorSceneManager.OpenScene(scene);
+    }
+
+    [MenuItem("MyMenu/Switch to Release")]
+    static void SwitchToRelease()
+    {
+        string[] defines;
+        List<string> definesNew = new List<string>();
+        PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, out defines);
+        for (int i = 0; i <  defines.Length; i++)
+        {
+            if (defines[i] == "DEBUG") continue;
+            definesNew.Add(defines[i]);
+        }
+        definesNew.Add("RELEASE");
+        PlayerSettings.SetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, definesNew.ToArray());
+    }
+
+    [MenuItem("MyMenu/Switch to Debug")]
+    static void SwitchToDebug()
+    {
+        string[] defines;
+        List<string> definesNew = new List<string>();
+        PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, out defines);
+        for (int i = 0; i < defines.Length; i++)
+        {
+            if (defines[i] == "RELEASE") continue;
+            definesNew.Add(defines[i]);
+        }
+        definesNew.Add("DEBUG");
+        PlayerSettings.SetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, definesNew.ToArray());
     }
 }

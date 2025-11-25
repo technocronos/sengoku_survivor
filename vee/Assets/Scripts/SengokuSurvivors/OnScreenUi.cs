@@ -53,7 +53,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private SlashController Katana;
     private ProjectileController Projectile;
     private readonly StringBuilder sb = new StringBuilder();
-    public bool ShowDebugMenu = false;
+    private bool ShowDebugMenu = false;
 
     private void Awake()
     {
@@ -73,6 +73,12 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         });
 
         DebugMenuContainer.SetActive(false);
+#if DEBUG
+        ShowDebugMenu = true;
+#else
+        ShowDebugMenu = false;
+#endif
+
         DebugMenuButton.gameObject.SetActive(ShowDebugMenu);
         DebugMenuCloseButton.gameObject.SetActive(false);
 

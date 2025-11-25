@@ -1,9 +1,9 @@
 using UnityEngine;
 using UNCHAIN.ThirdSdk;
 using System.Collections;
-using UnityEditor;
 using Vs.Controllers.Game;
 
+[RequireComponent(typeof(UNCHAIN.ThirdSdk.ThirdConnector))]
 public class ThirdController : MonoBehaviour
 {
 
@@ -13,9 +13,25 @@ public class ThirdController : MonoBehaviour
     [System.NonSerialized]
     public ThirdCommentsUi CommentsUi;
 
+#if DEBUG
+    private string url = @"https://dev.live-ctl.com";
+    private string wsurl = @"wss://dev.live-ctl.com";
+    private string appId = "019aa5a7-eaf9-74f2-be28-66f51ecbc243";
+    private string apiKey = "4c1c654d340ac6c6c67b97cf22d7ebb145ee7174516310d317776f2fad0ab3c1";
+#else
+    private string url = @"https://live-ctl.com";
+    private string wsurl = @"wss://live-ctl.com";
+    private string appId = "019aa5a7-eaf9-74f2-be28-66f51ecbc243";
+    private string apiKey = "4c1c654d340ac6c6c67b97cf22d7ebb145ee7174516310d317776f2fad0ab3c1";
+#endif
+
     private void Awake()
     {
         ThirdConnector = GetComponent<ThirdConnector>();
+        ThirdConnector.url = url;
+        ThirdConnector.wsurl = wsurl;
+        ThirdConnector.appId = appId;
+        ThirdConnector.apiKey = apiKey;
     }
 
     public void Connect()
