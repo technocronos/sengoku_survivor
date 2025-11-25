@@ -31,5 +31,11 @@ namespace Vs.Controllers.Game
                 this.callbackOnce = null;
             }
         }
+
+        public void OnButtonToTitle()
+        {
+            var context = new Controllers.Home.Home.Context();
+            ViewService.Instance.ChangeView(context);
+        }
     }
 }

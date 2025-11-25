@@ -114,7 +114,7 @@ namespace Vs.Controllers.Game
             this.isStop = false;
         }
 
-        private void OnGameClear()
+        public void GameClear()
         {
             this.isStop = true;
             this.popupGameClear.Show(() =>
