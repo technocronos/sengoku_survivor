@@ -1,0 +1,2003 @@
+fileFormatVersion: 2
+guid: 03479e3dfac588c458d44dfaf3ea54e6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4419259624023871112
+    second: "mori64\uFFFD~64_0"
+  - first:
+      213: -6658625029497979640
+    second: "mori64\uFFFD~64_1"
+  - first:
+      213: -215854188558168651
+    second: "mori64\uFFFD~64_2"
+  - first:
+      213: -5467643256798279610
+    second: "mori64\uFFFD~64_3"
+  - first:
+      213: 5448169594873010888
+    second: "mori64\uFFFD~64_4"
+  - first:
+      213: -1204100179953068479
+    second: "mori64\uFFFD~64_5"
+  - first:
+      213: -4780706323652991099
+    second: "mori64\uFFFD~64_6"
+  - first:
+      213: 8576864734129735944
+    second: "mori64\uFFFD~64_7"
+  - first:
+      213: 411296792546740787
+    second: "mori64\uFFFD~64_8"
+  - first:
+      213: 1222730408584221065
+    second: "mori64\uFFFD~64_9"
+  - first:
+      213: -8375064819751355103
+    second: "mori64\uFFFD~64_10"
+  - first:
+      213: 3292366485640536246
+    second: "mori64\uFFFD~64_11"
+  - first:
+      213: 6213023923462677064
+    second: "mori64\uFFFD~64_12"
+  - first:
+      213: 1979160288361290948
+    second: "mori64\uFFFD~64_13"
+  - first:
+      213: 7249301678334287288
+    second: "mori64\uFFFD~64_14"
+  - first:
+      213: 1073654681677649113
+    second: "mori64\uFFFD~64_15"
+  - first:
+      213: -7788630640354379049
+    second: "mori64\uFFFD~64_16"
+  - first:
+      213: 1829511206272637716
+    second: "mori64\uFFFD~64_17"
+  - first:
+      213: 4911466015831831231
+    second: "mori64\uFFFD~64_18"
+  - first:
+      213: -7490329864671212568
+    second: "mori64\uFFFD~64_19"
+  - first:
+      213: -9037841514834586492
+    second: "mori64\uFFFD~64_20"
+  - first:
+      213: 1263284513489236741
+    second: "mori64\uFFFD~64_21"
+  - first:
+      213: -3701143184757411135
+    second: "mori64\uFFFD~64_22"
+  - first:
+      213: 8082805356035801530
+    second: "mori64\uFFFD~64_23"
+  - first:
+      213: 2143028009707579279
+    second: "mori64\uFFFD~64_24"
+  - first:
+      213: -5281381306302956471
+    second: "mori64\uFFFD~64_25"
+  - first:
+      213: -822967715171050324
+    second: "mori64\uFFFD~64_26"
+  - first:
+      213: 5309894436508063844
+    second: "mori64\uFFFD~64_27"
+  - first:
+      213: -2986930480756860730
+    second: "mori64\uFFFD~64_28"
+  - first:
+      213: 2107650867891537122
+    second: "mori64\uFFFD~64_29"
+  - first:
+      213: 3683687670386943772
+    second: "mori64\uFFFD~64_30"
+  - first:
+      213: -7898850890142630705
+    second: "mori64\uFFFD~64_31"
+  - first:
+      213: 8896845469027535164
+    second: "mori64\uFFFD~64_32"
+  - first:
+      213: 5590708756046366727
+    second: "mori64\uFFFD~64_33"
+  - first:
+      213: 7400564869821841164
+    second: "mori64\uFFFD~64_34"
+  - first:
+      213: 5828213959819022605
+    second: "mori64\uFFFD~64_35"
+  - first:
+      213: 3823693646704954885
+    second: "mori64\uFFFD~64_36"
+  - first:
+      213: -4006872641456617239
+    second: "mori64\uFFFD~64_37"
+  - first:
+      213: 4634589068330835880
+    second: "mori64\uFFFD~64_38"
+  - first:
+      213: 7725943305971955118
+    second: "mori64\uFFFD~64_39"
+  - first:
+      213: 6389495043633952824
+    second: "mori64\uFFFD~64_40"
+  - first:
+      213: -1799693374628719950
+    second: "mori64\uFFFD~64_41"
+  - first:
+      213: -5034113701766580049
+    second: "mori64\uFFFD~64_42"
+  - first:
+      213: 6162796033147215553
+    second: "mori64\uFFFD~64_43"
+  - first:
+      213: 4151626273320088288
+    second: "mori64\uFFFD~64_44"
+  - first:
+      213: 5085570465906939378
+    second: "mori64\uFFFD~64_45"
+  - first:
+      213: 3713771223341901982
+    second: "mori64\uFFFD~64_46"
+  - first:
+      213: -4259988509200328446
+    second: "mori64\uFFFD~64_47"
+  - first:
+      213: 7919681733731147478
+    second: "mori64\uFFFD~64_48"
+  - first:
+      213: 6850450648777646556
+    second: "mori64\uFFFD~64_49"
+  - first:
+      213: -887092737977313679
+    second: "mori64\uFFFD~64_50"
+  - first:
+      213: -1003715562849848435
+    second: "mori64\uFFFD~64_51"
+  - first:
+      213: 3075112813588388699
+    second: "mori64\uFFFD~64_52"
+  - first:
+      213: 3275630744465332897
+    second: "mori64\uFFFD~64_53"
+  - first:
+      213: -6928770254494477558
+    second: "mori64\uFFFD~64_54"
+  - first:
+      213: -5192069841008912595
+    second: "mori64\uFFFD~64_55"
+  - first:
+      213: 5736679085269267146
+    second: "mori64\uFFFD~64_56"
+  - first:
+      213: -8267700871234769914
+    second: "mori64\uFFFD~64_57"
+  - first:
+      213: -3372177253771738287
+    second: "mori64\uFFFD~64_58"
+  - first:
+      213: -7265354755203362993
+    second: "mori64\uFFFD~64_59"
+  - first:
+      213: 7313086390714452262
+    second: "mori64\uFFFD~64_60"
+  - first:
+      213: 570865781469039702
+    second: "mori64\uFFFD~64_61"
+  - first:
+      213: 2994270529462949651
+    second: "mori64\uFFFD~64_62"
+  - first:
+      213: 5117501268690696035
+    second: "mori64\uFFFD~64_63"
+  - first:
+      213: 6626878907549624021
+    second: "mori64\uFFFD~64_64"
+  - first:
+      213: 7674523858089258387
+    second: "mori64\uFFFD~64_65"
+  - first:
+      213: 2900281346610547089
+    second: "mori64\uFFFD~64_66"
+  - first:
+      213: -6594866647453550977
+    second: "mori64\uFFFD~64_67"
+  - first:
+      213: 3160316053655557706
+    second: "mori64\uFFFD~64_68"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mori64_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1280
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f49f7f6e37c65324aaf4a2c37325a5b3
+      internalID: -708480795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_1
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 1308
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cfa2a969ee5f8448912203db01a537c
+      internalID: -1447838309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_2
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 1284
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19749bcf0aa3f3e4eb20d2368f538c94
+      internalID: -107213245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_3
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 1272
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 128a149497215694ba3796bb181e980c
+      internalID: 230942498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_4
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 1260
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14bac0fbabd91e740aa569ccbc4aa8a4
+      internalID: 1463173732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1220
+        width: 48
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7806be837bd226248a5516965da7de1e
+      internalID: 1002333329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_6
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 1244
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f28d74c0ba615584ea19bba49b3a7706
+      internalID: 314709751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_7
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 1232
+        width: 20
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 012e3b5b3fe23a44da78ca0d8133dc60
+      internalID: 435706106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_8
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1156
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b46f4da6c5844504ca78b895265628c0
+      internalID: -1048715523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_9
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1152
+        width: 192
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 769a5d7fca85eb3459eff6e8428b7a2e
+      internalID: -1614875390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_10
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1096
+        width: 48
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6273a6af1e8cd9547919dec7c5877674
+      internalID: -526852712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_11
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 1088
+        width: 16
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d201fb7a4705084d8edf7a9838f6a65
+      internalID: 1991577799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_12
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1032
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a4e7389a7f0da04ca5d57ed51854c8d
+      internalID: -398072178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_13
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1064
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a70de7fa90826524a85c9ad9f9b1606b
+      internalID: 1203895150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_14
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 1044
+        width: 48
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319867dfb5a90924c8c96350e31b998d
+      internalID: 1438790094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_15
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 980
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1baf2c263c2aadf4d8fc7ada6706c931
+      internalID: -808926759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 896
+        width: 128
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcd5a0d7bdd260042b0662cfc97e4636
+      internalID: 711441570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_17
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 768
+        width: 176
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c648e82dc8e4e4cb8392e4797fa53d
+      internalID: 1730480271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_18
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 960
+        width: 16
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0922b41b351a12b4b9f5b8459ce92bfa
+      internalID: -1109058875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_19
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 864
+        width: 80
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61424144fabaf1b478c43d02661d2830
+      internalID: -372731948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_20
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 908
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3373b32aae3a39c4ca7fbdec752adc7d
+      internalID: 2134994854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_21
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 932
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9100061e2cc1f9148b6236fe26e9da94
+      internalID: -443009563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_22
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 884
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65e8a306700fbba47bc6ed8997a14784
+      internalID: -34807949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_23
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 840
+        width: 40
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0b62cc8034fe9042afce3676380d383
+      internalID: 744610480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_24
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 848
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de0a74597a5e3bb418e0e92d0b44fde3
+      internalID: 1011748059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_25
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 848
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed74e6df2cd29164da26b97199b6ce26
+      internalID: 1794719068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_26
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 816
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4e7dad635875e745b3b50804066cb91
+      internalID: -743241734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_27
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 820
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80f11e57231e5bb40a25926d9755fcca
+      internalID: -1803894285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_28
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 776
+        width: 28
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51dae68216001484fab5acf1098618c3
+      internalID: 705202179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_29
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 808
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f5a9169732c654b99aa82ab81da78a
+      internalID: -1400228919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_30
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 788
+        width: 36
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b05f33b9cb1bd3469b5c5285f0daa28
+      internalID: 332376293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_31
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 776
+        width: 36
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5d6ed2f0f2bd8a4387c866a25e5a9be
+      internalID: 1892093617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_32
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 796
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d19ea60b6cd5410498a111214020909f
+      internalID: 105285366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_33
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 784
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ea2b8216c1a4d84faba7f11d2e7ac1c
+      internalID: 952550739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_34
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 776
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe024a1eef34b1b49aa89b6308dddb0a
+      internalID: -1132001328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_35
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 756
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4186858a356f97d48b5f3107ac623fb2
+      internalID: 1751136381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_36
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 740
+        width: 40
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f40677f71922bf43bb1fa6e21ff5eaf
+      internalID: 167667831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_37
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 724
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff165393484775c4ab8e74ff15d5353f
+      internalID: 92681260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_38
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 724
+        width: 32
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85697e8852a5f8545bdd38823582c663
+      internalID: 1477594703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_39
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 744
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dbd76175b09d09458d11c4ad5ede601
+      internalID: 875112192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_40
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 740
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e305622e6b065a440beed9e0828d0a20
+      internalID: -86773688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_41
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 708
+        width: 48
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69323177073ed094593f91ad44c4e774
+      internalID: 1831320931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_42
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 708
+        width: 48
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5184d3cd9f826041a3d15e3b0849949
+      internalID: -1147194713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_43
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 708
+        width: 32
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 313eabc8181d1cc4685cc1d63bded664
+      internalID: 1623147051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_44
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 708
+        width: 40
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a784fffb772e454ba4705fd86314cf1
+      internalID: -1994026304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_45
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 716
+        width: 20
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50d8a5bfac061bf4491992129cb200d9
+      internalID: -84587626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_46
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 716
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5752ecef02c27c6408548743d60e904e
+      internalID: -424431980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_47
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 720
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c70c7c487f4cbb349a842c74a7f3c29f
+      internalID: 778895652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_48
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 720
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7af8f9957cc4b024f83240fbe0d7110a
+      internalID: 58848553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_49
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 708
+        width: 40
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb8c8c5b8499c00458a798a5b6578710
+      internalID: 1810096285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_50
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 664
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3921586bd55532a48a44b44502d09519
+      internalID: -418167902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_51
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 676
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de343bfe0bae0fe40bc1bde2c098afdb
+      internalID: 395537245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_52
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 676
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146f0ba9b617f7e449adba6c4afde7c5
+      internalID: -391519722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_53
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 660
+        width: 40
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28945560542794442881c021bd8840b5
+      internalID: 667815494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_54
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 644
+        width: 32
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c765b5dde446851418bf9fdc469d437c
+      internalID: 1339539259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_55
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 644
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a41fd67df5caf5e4aa051dc3950df603
+      internalID: 518183278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_56
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 644
+        width: 48
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a8a46d1f5cd7204aab31d61b6f191a9
+      internalID: 41773047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_57
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 644
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 270eb8f31b1c17d44b976821fdf70649
+      internalID: 1210791120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_58
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 648
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a150f5f5b58eb8a40b947570621992db
+      internalID: -262851801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_59
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 648
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 543461775e0c3d744bf60dd6f7808de8
+      internalID: 634031583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_60
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 648
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f90e6e4996e629d4c87cb0c1a39d1376
+      internalID: 249599260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_61
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 448
+        height: 636
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60e436e92552fcf4eb459fd16d5fde1d
+      internalID: -1144066180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_62
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 64
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0108c0d855c6ac43a326b715c954f03
+      internalID: 1614152308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_63
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 328
+        width: 32
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc4fccae6bbc04240b785787bc120425
+      internalID: 308546508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_64
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 256
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6915af28c0185b347af24d9b97a1c59d
+      internalID: 1092204688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_65
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb443bc6a9a8f6c469f6b2e1da02655f
+      internalID: 374171775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_66
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 140
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fb223e9be1e57e4a885167a1f2b54ba
+      internalID: 600638217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_67
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 72
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2253eec06ffe748448a6037a9ab20900
+      internalID: 1563601617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_68
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 8
+        width: 40
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59f958a05c454864aae564276dbe0d41
+      internalID: 2068087104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_69
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1280
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c589676c3d5865449bf6c030a01e4c8
+      internalID: -967489748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_70
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1216
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3b70dfa4de0d3d4d88bfdf6caaedefe
+      internalID: -395124771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_71
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1216
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9342d2f1c3fe20241818f546674aabd7
+      internalID: 722131138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mori64_72
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7cbc55d845c1c54d8fe218fb815704d
+      internalID: -1204832328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5ecac568ac38f7948a7e75ea2dc4fd06
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      mori64_0: -708480795
+      mori64_1: -1447838309
+      mori64_10: -526852712
+      mori64_11: 1991577799
+      mori64_12: -398072178
+      mori64_13: 1203895150
+      mori64_14: 1438790094
+      mori64_15: -808926759
+      mori64_16: 711441570
+      mori64_17: 1730480271
+      mori64_18: -1109058875
+      mori64_19: -372731948
+      mori64_2: -107213245
+      mori64_20: 2134994854
+      mori64_21: -443009563
+      mori64_22: -34807949
+      mori64_23: 744610480
+      mori64_24: 1011748059
+      mori64_25: 1794719068
+      mori64_26: -743241734
+      mori64_27: -1803894285
+      mori64_28: 705202179
+      mori64_29: -1400228919
+      mori64_3: 230942498
+      mori64_30: 332376293
+      mori64_31: 1892093617
+      mori64_32: 105285366
+      mori64_33: 952550739
+      mori64_34: -1132001328
+      mori64_35: 1751136381
+      mori64_36: 167667831
+      mori64_37: 92681260
+      mori64_38: 1477594703
+      mori64_39: 875112192
+      mori64_4: 1463173732
+      mori64_40: -86773688
+      mori64_41: 1831320931
+      mori64_42: -1147194713
+      mori64_43: 1623147051
+      mori64_44: -1994026304
+      mori64_45: -84587626
+      mori64_46: -424431980
+      mori64_47: 778895652
+      mori64_48: 58848553
+      mori64_49: 1810096285
+      mori64_5: 1002333329
+      mori64_50: -418167902
+      mori64_51: 395537245
+      mori64_52: -391519722
+      mori64_53: 667815494
+      mori64_54: 1339539259
+      mori64_55: 518183278
+      mori64_56: 41773047
+      mori64_57: 1210791120
+      mori64_58: -262851801
+      mori64_59: 634031583
+      mori64_6: 314709751
+      mori64_60: 249599260
+      mori64_61: -1144066180
+      mori64_62: 1614152308
+      mori64_63: 308546508
+      mori64_64: 1092204688
+      mori64_65: 374171775
+      mori64_66: 600638217
+      mori64_67: 1563601617
+      mori64_68: 2068087104
+      mori64_69: -967489748
+      mori64_7: 435706106
+      mori64_70: -395124771
+      mori64_71: 722131138
+      mori64_72: -1204832328
+      mori64_8: -1048715523
+      mori64_9: -1614875390
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

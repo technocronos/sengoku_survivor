@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 475621d27f4778040b34189ae0bc4cda
+guid: 5741b5abb0f7bdc4baa426fdfab27fe4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3223370224868552704
-    second: "03_\u8A2D\u5B9A\u30FB\u904A\u3072\u3099\u65B9_0"
+      213: 5062541957975974628
+    second: mizu64_0
+  - first:
+      213: -2506575503512554095
+    second: mizu64_1
+  - first:
+      213: 9480481239669791
+    second: mizu64_2
+  - first:
+      213: 900919119486647593
+    second: mizu64_3
+  - first:
+      213: 1122427023663456206
+    second: mizu64_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "03_\u8A2D\u5B9A\u30FB\u904A\u3072\u3099\u65B9_0"
+      name: mizu64_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        x: 3
+        y: 259
+        width: 58
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +127,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0007cd03426bbbc20800000000000000
-      internalID: 3223370224868552704
+      spriteID: 4e22ba99613c14640800000000000000
+      internalID: 5062541957975974628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mizu64_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 259
+        width: 58
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19530762cdad63dd0800000000000000
+      internalID: -2506575503512554095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mizu64_2
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 259
+        width: 58
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1c179c827ea12000800000000000000
+      internalID: 9480481239669791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mizu64_3
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 259
+        width: 58
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92dfb587a25b08c00800000000000000
+      internalID: 900919119486647593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mizu64_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecf52cf5e69a39f00800000000000000
+      internalID: 1122427023663456206
       vertices: []
       indices: 
       edges: []
@@ -135,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "03_\u8A2D\u5B9A\u30FB\u904A\u3072\u3099\u65B9_0": 3223370224868552704
+      mizu64_0: 5062541957975974628
+      mizu64_1: -2506575503512554095
+      mizu64_2: 9480481239669791
+      mizu64_3: 900919119486647593
+      mizu64_4: 1122427023663456206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
