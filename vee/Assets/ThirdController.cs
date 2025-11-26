@@ -13,7 +13,7 @@ public class ThirdController : MonoBehaviour
     [System.NonSerialized]
     public ThirdCommentsUi CommentsUi;
 
-#if DEBUG
+#if DEV_BUILD
     private string url = @"https://dev.live-ctl.com";
     private string wsurl = @"wss://dev.live-ctl.com";
     private string appId = "019aa5a7-eaf9-74f2-be28-66f51ecbc243";

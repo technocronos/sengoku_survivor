@@ -72,10 +72,10 @@ public class MyMenuSetting : EditorWindow
         PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, out defines);
         for (int i = 0; i <  defines.Length; i++)
         {
-            if (defines[i] == "DEBUG") continue;
+            if (defines[i] == "DEV_BUILD") continue;
             definesNew.Add(defines[i]);
         }
-        definesNew.Add("RELEASE");
+        definesNew.Add("RELEASE_BUILD");
         PlayerSettings.SetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, definesNew.ToArray());
     }
 
@@ -87,10 +87,10 @@ public class MyMenuSetting : EditorWindow
         PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, out defines);
         for (int i = 0; i < defines.Length; i++)
         {
-            if (defines[i] == "RELEASE") continue;
+            if (defines[i] == "RELEASE_BUILD") continue;
             definesNew.Add(defines[i]);
         }
-        definesNew.Add("DEBUG");
+        definesNew.Add("DEV_BUILD");
         PlayerSettings.SetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, definesNew.ToArray());
     }
 }
