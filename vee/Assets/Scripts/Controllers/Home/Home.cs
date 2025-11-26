@@ -20,6 +20,9 @@ namespace Vs.Controllers.Home
         [SerializeField]
         private TMP_InputField InputFieldStreamId;
 
+        [SerializeField]
+        private GameObject StreamIdInputContainer;
+
         private ThirdController thirdController;
 
         public sealed class Context : ViewContext
@@ -44,6 +47,10 @@ namespace Vs.Controllers.Home
             MenuSettings.gameObject.SetActive(false);
             InputFieldStreamId.onValueChanged.AddListener(OnInputFieldChanged);
             thirdController = FindAnyObjectByType<ThirdController>();
+
+#if !DEV_BUILD
+            StreamIdInputContainer.SetActive(false);
+#endif
         }
 
         private void OnButtonPlay()
