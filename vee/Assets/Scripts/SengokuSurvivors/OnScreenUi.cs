@@ -73,7 +73,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         });
 
         DebugMenuContainer.SetActive(false);
-#if false
+#if DEBUG
         ShowDebugMenu = true;
 #else
         ShowDebugMenu = false;
