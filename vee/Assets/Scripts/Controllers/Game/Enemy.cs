@@ -20,9 +20,6 @@ namespace Vs.Controllers.Game
         public int DropId { get; private set; }
         public int ExpAmount = 1;
 
-        [System.NonSerialized]
-        public bool UseBaseMoving = true;
-
         public SengokuSurvivors.EnemyType EnemyType { get; private set; } = SengokuSurvivors.EnemyType.Normal;
 
         private float hitElapsed;

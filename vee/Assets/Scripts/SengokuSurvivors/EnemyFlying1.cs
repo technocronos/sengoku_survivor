@@ -23,7 +23,6 @@ namespace SengokuSurvivors
 
         void Start()
         {
-            GetComponent<Vs.Controllers.Game.Enemy>().UseBaseMoving = false;
             if (Camera.main.WorldToViewportPoint(transform.position).x > 0.5f)
                 moveRightSign = 1f;
             else
