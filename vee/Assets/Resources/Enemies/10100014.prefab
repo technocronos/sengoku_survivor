@@ -52,7 +52,6 @@ MonoBehaviour:
   hpText: {fileID: 1213914638011461116}
   IsTarget: 1
   Hp: 20
-  Spd: 0.5
   ExpAmount: 1
 --- !u!70 &-4900800217739988317
 CapsuleCollider2D:
@@ -84,7 +83,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

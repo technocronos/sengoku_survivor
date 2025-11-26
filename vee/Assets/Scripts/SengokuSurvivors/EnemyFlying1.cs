@@ -7,7 +7,7 @@ namespace SengokuSurvivors
         private float moveRightSign = 1f;
         private float speed = 4f;
         private float speedDispersion = 0.1f;
-        private float downSpeedCoeff = 0.1f;
+        private float downSpeedCoeff = 0.15f;
 
         private bool isKnockedBack = false;
 
@@ -36,8 +36,8 @@ namespace SengokuSurvivors
         {
             if (isKnockedBack) return;
 
-            if (moveRightSign > 0 && Camera.main.WorldToViewportPoint(transform.position).x > 0.7f) { moveRightSign = -1f; }
-            else if (moveRightSign < 0 && Camera.main.WorldToViewportPoint(transform.position).x < 0.3f) { moveRightSign = 1f; }
+            if (moveRightSign > 0 && transform.position.x > 4.4f) { moveRightSign = -1f; }
+            else if (moveRightSign < 0 && transform.position.x < -4.4f) { moveRightSign = 1f; }
 
             transform.position += Time.deltaTime * speed * 
                 (moveRightSign * Vector3.right + downSpeedCoeff * Vector3.down).normalized;
