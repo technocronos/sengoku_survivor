@@ -23,6 +23,12 @@ namespace SengokuSurvivors
                 //todo: 玉のキャッシュ
                 var a = Instantiate(projectilePref, transform.position, Quaternion.identity, this.transform.parent);
                 a.transform.Rotate(Vector3.right, -30f);
+                Vector3 dir;
+                if (Random.Range(0f, 1f) > 0.5f)//50%確率でプレイヤーに向けて投げる
+                    dir = (FindAnyObjectByType<Vs.Controllers.Game.Player>().transform.position - transform.position).normalized;
+                else
+                    dir = (new Vector3(-1f, Random.Range(-1f, 2f), 0f)).normalized;//ある程度ランダム方向に投げる
+                a.Setup(dir);
             }
         }
     }

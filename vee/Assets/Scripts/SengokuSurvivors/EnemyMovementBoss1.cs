@@ -6,22 +6,16 @@ namespace SengokuSurvivors
     {
         private Vector3 currPos;
         private float xDir = 1f;
-        private float yDir = 1f;
-        private float speed = 4f;
-        private float speedX = 0.5f;
-        private float speedY = 2f;
-        private float speedDispersion = 0.1f;
-        private float downSpeedCoeff = 0.1f;
+        private float speed = 0.8f;
         private bool flagStopForAttack = false;
 
-        private float lifetime = 30f;
-        private float birthTime;
-
         private bool isKnockedBack = false;
+        private float stopLength = 2f;
+        private float stoppedTime = 0f;
+        public bool isStopped { get { return Time.time - stoppedTime < stopLength; } }
 
         void Start()
         {
-            birthTime = Time.time;
             if (Camera.main.WorldToViewportPoint(transform.position).x > 0.5f)
                 xDir = 1f;
             else
@@ -38,12 +32,15 @@ namespace SengokuSurvivors
 
         private IEnumerator MovingRoutine()
         {
+            
             float targetPosViewportY = 0.8f;
             var yMax = Camera.main.transform.position.y + Mathf.Abs(Camera.main.transform.position.z) * Mathf.Tan(Mathf.PI / 3);
             var yMin = Camera.main.transform.position.y;
             var newTargetPos = new Vector3(0.1f, Mathf.Lerp(yMin, yMax, targetPosViewportY), 0f);
             
             transform.position = newTargetPos;
+            var lastPositionX = transform.position.x;
+            stoppedTime = Time.time - stopLength;
             while (true)
             {
                 yield return null;
@@ -63,27 +60,30 @@ namespace SengokuSurvivors
 
                 //if (xDir > 0 && Camera.main.WorldToViewportPoint(transform.position).x > 0.7f) { xDir = -1f; }
                 //else if (xDir < 0 && Camera.main.WorldToViewportPoint(transform.position).x < 0.3f) { xDir = 1f; }
-                if (xDir > 0 && transform.position.x > 4.2f) { xDir = -1f; }
-                else if (xDir < 0 && transform.position.x < -4.2f) { xDir = 1f; }
+                if (xDir > 0 && transform.position.x > 4.1f) {
+                    stoppedTime = Time.time;
+                    xDir = -1f; }
+                else if (xDir < 0 && transform.position.x < -4.1f) {
+                    stoppedTime = Time.time;
+                    xDir = 1f; }
+                else if (Mathf.Sign(lastPositionX) * Mathf.Sign(transform.position.x) < 0f)
+                {
+                    stoppedTime = Time.time;
+                }
+                lastPositionX = transform.position.x;
+
                 var viewportYpos = Camera.main.WorldToViewportPoint(transform.position).y;
                 //if (viewportYpos > 0.9f) targetPosViewportY = 0f;
                 //else if (viewportYpos < 0.85f) targetPosViewportY = 1f;
-                yDir = Mathf.Sign(Mathf.Lerp(yMin, yMax, targetPosViewportY) - transform.position.y);
+                //yDir = Mathf.Sign(Mathf.Lerp(yMin, yMax, targetPosViewportY) - transform.position.y);
 
 //                viewportYpos += (targetPosViewportY - viewportYpos) * Time.deltaTime * speedViewportY;
-                
-                if (flagStopForAttack)
-                {
-                    yield return new WaitForSeconds(0.5f);
-                    flagStopForAttack = false;
-                }
 
                 if (!isKnockedBack)
                 {
                     var pos = transform.position;
-                    //pos.y += (yDir * speedY + 0.5f)* Time.deltaTime;
                     pos.y = Mathf.Lerp(yMin, yMax, targetPosViewportY);
-                    pos.x += xDir * Time.deltaTime * speedX;
+                    if (!isStopped) { pos.x += xDir * Time.deltaTime * speed; }
                     transform.position = pos;
                 }
 

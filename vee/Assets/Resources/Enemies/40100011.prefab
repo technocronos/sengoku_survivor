@@ -84,7 +84,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c4fd6cfd1578a48b1456a67fe45d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePref: {fileID: 0}
+  projectilePref: {fileID: 1165981305789376833, guid: d0d22792c83e13f4a88d0a37f9fb3a64, type: 3}
 --- !u!1 &2875618325510214829
 GameObject:
   m_ObjectHideFlags: 0
