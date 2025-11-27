@@ -1,9 +1,10 @@
 ﻿using System;
-using UnityEditor;
-using UnityEngine;
-using System.IO;
-using UnityEditor.SceneManagement;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
 
 public class MyMenuSetting : EditorWindow
 {
@@ -65,32 +66,52 @@ public class MyMenuSetting : EditorWindow
     }
 
     [MenuItem("MyMenu/Switch to Release")]
-    static void SwitchToRelease()
+    static void Release()
     {
-        string[] defines;
-        List<string> definesNew = new List<string>();
-        PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, out defines);
-        for (int i = 0; i <  defines.Length; i++)
-        {
-            if (defines[i] == "DEV_BUILD") continue;
-            definesNew.Add(defines[i]);
-        }
-        definesNew.Add("RELEASE_BUILD");
-        PlayerSettings.SetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, definesNew.ToArray());
+        var symbols = GetSymbols();
+
+        Predicate<string> predicate = FindStr;
+        symbols.RemoveAll(predicate);
+
+        symbols.Add("RELEASE");
+        symbols.Remove("DEVELOP");
+
+        SetSymbols(symbols);
     }
 
     [MenuItem("MyMenu/Switch to Debug")]
-    static void SwitchToDebug()
+    static void Develop()
     {
-        string[] defines;
-        List<string> definesNew = new List<string>();
-        PlayerSettings.GetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, out defines);
-        for (int i = 0; i < defines.Length; i++)
-        {
-            if (defines[i] == "RELEASE_BUILD") continue;
-            definesNew.Add(defines[i]);
-        }
-        definesNew.Add("DEV_BUILD");
-        PlayerSettings.SetScriptingDefineSymbols(UnityEditor.Build.NamedBuildTarget.Standalone, definesNew.ToArray());
+        var symbols = GetSymbols();
+
+        Predicate<string> predicate = FindStr;
+        symbols.RemoveAll(predicate);
+
+        symbols.Add("DEVELOP");
+        symbols.Remove("RELEASE");
+
+        SetSymbols(symbols);
+    }
+
+    private static bool FindStr(string str)
+    {
+        if (str == "DEVELOP" || str == "RELEASE")
+            return true;
+        else
+            return false;
+    }
+
+    // 設定されているシンボル定義を取得する
+    static List<string> GetSymbols()
+    {
+        return PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup).Split(';').ToList();
+    }
+
+    // シンボル定義をセットする
+    static void SetSymbols(List<string> symbols)
+    {
+        var symbolStr = string.Empty;
+        symbols.ForEach(s => symbolStr += s + ";");
+        PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, symbolStr);
     }
 }
