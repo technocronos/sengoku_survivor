@@ -45,6 +45,11 @@ namespace SengokuSurvivors
         private int arrowId = 903;
         private int shurikenId = 902;
 
+        public float KnockbackTimeShuriken = 0f;
+        public float KnockbackTimeArrow = 0f;
+        public float KnockbackLengthShuriken = 0f;
+        public float KnockbackLengthArrow = 0f;
+
         private readonly Stack<ArrowProjectile> projectilesCacheArrow = new Stack<ArrowProjectile>();
         private readonly Stack<ShurikenProjectile> projectilesCacheShuriken = new Stack<ShurikenProjectile>();
 
@@ -135,6 +140,8 @@ namespace SengokuSurvivors
             if (weaponData != null)
             {
                 ShurikenDamage = weaponData.Atk;
+                KnockbackLengthShuriken = weaponData.KnockbackLength;
+                KnockbackTimeShuriken = weaponData.KnockbackTime;
                 cooldownShuriken = weaponData.CoolTime / 1000f * weaponData.CoolTimeMulti;
             }
 
@@ -143,6 +150,8 @@ namespace SengokuSurvivors
             if (weaponData != null)
             {
                 ArrowDamage = weaponData.Atk;
+                KnockbackLengthArrow = weaponData.KnockbackLength;
+                KnockbackTimeArrow = weaponData.KnockbackTime;
                 cooldownArrow = weaponData.CoolTime / 1000f * weaponData.CoolTimeMulti;
             }
         }

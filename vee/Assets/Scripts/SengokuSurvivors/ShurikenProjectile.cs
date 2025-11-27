@@ -45,8 +45,8 @@ namespace SengokuSurvivors
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.GetComponent<Vs.Controllers.Game.Enemy>() != target) return;
-            bowController.RemoveProjectile(this);
-            target.OnWeaponTrigger(bowController.ShurikenDamage, "");
+            bowController.RemoveProjectile(this);//ホーミングなので、敵がすでに死んだとしてもRemoveする
+            target.OnWeaponTrigger(bowController.ShurikenDamage, "", bowController.KnockbackLengthShuriken, bowController.KnockbackTimeShuriken);
         }
     }
 }

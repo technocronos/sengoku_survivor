@@ -33,7 +33,8 @@ namespace SengokuSurvivors
         {
             var target = collision.gameObject.GetComponent<Vs.Controllers.Game.Enemy>();
             if (target == null) return;
-            if (target.OnWeaponTrigger(bowController.ArrowDamage, ""))
+            //敵がすでに死んだ場合Removeしない
+            if (target.OnWeaponTrigger(bowController.ArrowDamage, "", bowController.KnockbackLengthArrow, bowController.KnockbackTimeArrow))
             {
                 bowController.RemoveProjectile(this);
             }

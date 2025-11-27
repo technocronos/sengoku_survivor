@@ -27,7 +27,6 @@ namespace Vs.Controllers.Game
         private EnemySpawner spawner;
 
         private bool isInKnockback = false;
-        private float knockbackDuration = 0.3f;
 
         public void Initialize(EnemySpawner spawner)
         {
@@ -124,7 +123,7 @@ namespace Vs.Controllers.Game
             spawner.Despawn(this);
         }
 
-        public bool OnWeaponTrigger(int damage, string soundId, float knockback = 0f)
+        public bool OnWeaponTrigger(int damage, string soundId, float knockbackLength = 0f, float knockbackTime = 0f)
         {
             if (this.IsDead)
             {
@@ -133,7 +132,7 @@ namespace Vs.Controllers.Game
 
             var isCritical = false;// Random.Range(0, 4) == 0;
             this.Hit(damage, isCritical);
-            Knockback(knockback);
+            Knockback(knockbackLength, knockbackTime);
             //var soundId = isCritical ? "damage_cri" : ctr.GetSoundId();
             //SoundService.Instance.PlaySe(soundId);
             return true;
@@ -189,14 +188,14 @@ namespace Vs.Controllers.Game
             }
         }
 
-        private void Knockback(float knockBackStrength)
+        private void Knockback(float knockBackStrength, float knockbackDuration)
         {
-            if (knockBackStrength <= float.Epsilon || isInKnockback) return;
+            if (isInKnockback) return;
             isInKnockback = true;
-            StartCoroutine(KnockbackRoutine(knockBackStrength));
+            StartCoroutine(KnockbackRoutine(knockBackStrength, knockbackDuration));
         }
 
-        private IEnumerator KnockbackRoutine(float knockbackStrength)
+        private IEnumerator KnockbackRoutine(float knockbackStrength, float knockbackDuration)
         {
             var movement = GetComponent<IEnemyMovement>();
             movement.SetKnockbackState(true);

@@ -21,7 +21,8 @@ namespace SengokuSurvivors
         private string weaponUseAnim = "Slash";
         private float weaponSizeMulti = 1f;
         private string soundId = "damage_slash_1";//"damage_slash_2";
-        private float knockback = 0f;
+        private float knockbackTime = 0f;
+        private float knockbackLength = 0f;
 
         private void Start()
         {
@@ -62,7 +63,8 @@ namespace SengokuSurvivors
             cooldown = weaponData.CoolTime / 1000f * weaponData.CoolTimeMulti;
             weaponSizeMulti = weaponData.SizeMulti;
             transform.localScale = new Vector3(weaponSizeMulti, weaponSizeMulti, 1);
-            knockback = weaponData.Knockback;
+            knockbackTime = weaponData.KnockbackTime;
+            knockbackLength = weaponData.KnockbackLength;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -75,7 +77,7 @@ namespace SengokuSurvivors
         private void DamageEnemy(Vs.Controllers.Game.Enemy enemy)
         {
             if (enemy == null) return;
-            enemy.OnWeaponTrigger(damage, "", knockback);
+            enemy.OnWeaponTrigger(damage, "", knockbackLength, knockbackTime);
         }
     }
 }

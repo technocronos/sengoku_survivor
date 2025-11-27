@@ -73,8 +73,10 @@ namespace Vs.Controllers.Game
             skill.Size += row["size"];
             skill.SizeMulti *= row["size_multi"] / 1000f;
             
-            if (row["effect_id"] == "knockback") { 
-                skill.Knockback = 1f; 
+            if (type == 0)
+            {
+                skill.KnockbackTime = row["knockback_time"]/1000f;
+                skill.KnockbackLength = row["knockback_length"]/1000f;
             }
 
             return skill;
@@ -94,18 +96,14 @@ namespace Vs.Controllers.Game
         {
             return this.dropMst
                 .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) 
-                ? i["type"] > 0 
-                    && (i["effect_id"] != "knockback" || skills.Find(j => j.SkillId == i["skill_id"]).Knockback <= float.Epsilon) 
-                    || i["category"] == 201
-                : i["type"] == 0)
+                ? i["type"] > 0 || i["category"] == 201 : i["type"] == 0)
                 .OrderBy(i => System.Guid.NewGuid()).ToList().Take(3).ToList();
         }
 
         public List<JsonObject> GetSelectableSkillsAll()
         {
             return this.dropMst
-                .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) ? i["type"] > 0
-                    && (i["effect_id"] != "knockback" || skills.Find(j => j.SkillId == i["skill_id"]).Knockback <= float.Epsilon)
+                .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) ? i["type"] > 0 
                 || i["category"] == 201 : i["type"] == 0);
         }
 
