@@ -112,8 +112,12 @@ namespace Vs.Controllers.Game
                 GameManager.Instance.AddCount();
                 SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position, this.ExpAmount);
 
-                if(this.EnemyType != SengokuSurvivors.EnemyType.Normal)
+                if(this.EnemyType == SengokuSurvivors.EnemyType.Elite)
                     SengokuSurvivors.DropManager.Instance.DropItem(this.transform.position, this.DropId);
+                if (this.EnemyType == SengokuSurvivors.EnemyType.Boss)
+                {
+                    GameManager.Instance.GameClear(1f);
+                }
             }
             isInKnockback = false;
             StopAllCoroutines();

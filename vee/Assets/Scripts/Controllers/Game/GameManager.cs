@@ -114,7 +114,12 @@ namespace Vs.Controllers.Game
             this.isStop = false;
         }
 
-        public void GameClear()
+        public void GameClear(float delay = 0f)
+        {
+            Invoke(nameof(GameClear), delay);
+        }
+
+        private void GameClear()
         {
             this.isStop = true;
             this.popupGameClear.Show(() =>
