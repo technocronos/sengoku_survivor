@@ -52,6 +52,7 @@ namespace Vs.Controllers.Game
                     EffectId = row["effect_id"],
                     EffectValue = row["effect_value"] });
                 this.skills.Add(skill);
+                skills = skills.OrderBy(i => i.SkillId).ToList();
             }
             else if (!skill.SkillTypes.ContainsKey(type))//取得している武器で、強化を取得していない
             {
@@ -61,7 +62,7 @@ namespace Vs.Controllers.Game
                     EffectValue = row["effect_value"]
                 });
             }
-            if (type > 0 || skill.Category == 201) skill.SkillTypes[type].Level++;//強化を取っているのでレベルが+1上がる
+            skill.SkillTypes[0].Level++;
 
             skill.Atk += row["atk"];
             skill.Speed += row["speed"];

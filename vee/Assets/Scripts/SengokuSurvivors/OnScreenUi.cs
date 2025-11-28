@@ -136,13 +136,14 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetCurrentSkills();
         foreach (var entry in allEquipment)
         {
-            foreach (var skillType in entry.SkillTypes)
-            {
-                if (skillType.Value.Level > 0 && skillType.Value.EffectId != "knockback")
-                    text += string.Format("{0} Lvl {1}\n", skillType.Value.Name, skillType.Value.Level);
-                else
-                    text += string.Format("{0}\n", skillType.Value.Name);
-            }
+            text += string.Format("{0} Lvl {1}\n", entry.SkillTypes[0].Name, entry.SkillTypes[0].Level);
+            //foreach (var skillType in entry.SkillTypes)
+            //{
+            //    if (skillType.Value.Level > 0)
+            //        text += string.Format("{0} Lvl {1}\n", skillType.Value.Name, skillType.Value.Level);
+            //    else
+            //        text += string.Format("{0}\n", skillType.Value.Name);
+            //}
         }
 
         weaponDebugLabel1.text = text;

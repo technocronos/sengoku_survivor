@@ -7761,6 +7761,7 @@ MonoBehaviour:
   - {fileID: 1205063843}
   direction: {fileID: 496888864}
   autoDir: {fileID: 296826399}
+  BuffSpeedMulti: 1
 --- !u!70 &312491267
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -16251,7 +16252,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 21.259033, y: -20}
-  m_SizeDelta: {x: 234.2294, y: 337.7026}
+  m_SizeDelta: {x: 340.155, y: 210.8395}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &667558005
 MonoBehaviour:
@@ -24503,6 +24504,8 @@ MonoBehaviour:
   popupGameOver: {fileID: 6481895713372559066}
   popupGameClear: {fileID: 7770963240561657767}
   Player: {fileID: 312491266}
+  buffKnockBackLengthMulti: 1
+  buffKnockBackTimeMulti: 1
 --- !u!114 &926630624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51073,8 +51076,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130, y: -212.22064}
-  m_SizeDelta: {x: 234, y: 390.4413}
+  m_AnchoredPosition: {x: 187.21002, y: -125.99341}
+  m_SizeDelta: {x: 348.41, y: 217.9868}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624237405
 MonoBehaviour:
