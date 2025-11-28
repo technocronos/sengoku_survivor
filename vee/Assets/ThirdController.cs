@@ -2,6 +2,7 @@ using UnityEngine;
 using UNCHAIN.ThirdSdk;
 using System.Collections;
 using Vs.Controllers.Game;
+using SengokuSurvivors;
 
 [RequireComponent(typeof(UNCHAIN.ThirdSdk.ThirdConnector))]
 public class ThirdController : MonoBehaviour
@@ -12,6 +13,9 @@ public class ThirdController : MonoBehaviour
     public ThirdConnector ThirdConnector { get; private set; }
     [System.NonSerialized]
     public ThirdCommentsUi CommentsUi;
+    [System.NonSerialized]
+    public ThirdBuffsController BuffsController;
+
 
 #if DEBUG
     private string url = @"https://dev.live-ctl.com";
@@ -72,12 +76,16 @@ public class ThirdController : MonoBehaviour
                 actionName = "小回復";
                 break;
             case "dummy2":
-                GameManager.Instance.Player.RecoverHp(20);
-                actionName = "中回復";
+                //GameManager.Instance.Player.RecoverHp(20);
+                //actionName = "中回復";
+                actionName = "スピードアップ(10s)";
+                BuffsController.AddSpeedupBuff();
                 break;
             case "dummy3":
-                GameManager.Instance.Player.RecoverHp(30);
-                actionName = "大回復";
+                //GameManager.Instance.Player.RecoverHp(30);
+                //actionName = "大回復";
+                actionName = "ノックバック強化(10s)";
+                BuffsController.AddKnockbackBuff();
                 break;
             default:
                 break;
@@ -88,5 +96,13 @@ public class ThirdController : MonoBehaviour
     public void OnErrorMessageReceived(string message)
     {
         Debug.Log(message);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            OnMessageReceived(new ThirdResponse() { commandKey = "dummy2", displayName = "test user" });
+        }
     }
 }
