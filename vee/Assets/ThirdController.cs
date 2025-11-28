@@ -68,29 +68,58 @@ public class ThirdController : MonoBehaviour
     public void OnMessageReceived(ThirdResponse data)
     {
         Debug.Log($"{data.txId}, {data.streamId}, {data.actionId}, {data.quantity}, {data.commandKey}, {data.displayName}");
-        string actionName = "";
+        string text = "";
+        bool isAction = false;
         switch (data.commandKey)
         {
             case "dummy1":
                 GameManager.Instance.Player.RecoverHp(10);
-                actionName = "HP回復"; //"小回復";
+                text = "HP回復"; //"小回復";
+                isAction = true;
                 break;
             case "dummy2":
                 //GameManager.Instance.Player.RecoverHp(20);
                 //actionName = "中回復";
-                actionName = "スピードアップ(10s)";
+                text = "スピードアップ(10s)";
                 BuffsController.AddSpeedupBuff();
+                isAction = true;
                 break;
             case "dummy3":
                 //GameManager.Instance.Player.RecoverHp(30);
                 //actionName = "大回復";
-                actionName = "ノックバック強化(10s)";
+                text = "ノックバック強化(10s)";
                 BuffsController.AddKnockbackBuff();
+                isAction = true;
                 break;
             default:
                 break;
+            case "CHAT_TEXT_QUESTION_DOG":
+                text = string.Format("{0}", "好きな犬種を教えて！");
+                break;
+            case "CHAT_TEXT_888":
+                text = string.Format("{0}", "88888888");
+                break;
+            case "CHAT_TEXT_FIRST_VISIT":
+                text = string.Format("{0}", "初見です");
+                break;
+            case "CHAT_TEXT_LIKE":
+                text = string.Format("{0}", "いいね！");
+                break;
+            case "DUMMY_ITEM1":
+                text = string.Format("{0}: {1}", data.displayName, "好きな犬種を教えて！");
+                break;
+            case "DUMMY_ITEM2":
+                text = string.Format("{0}: {1}", data.displayName, "88888888");
+                break;
+            case "DUMMY_ITEM3":
+                text = string.Format("{0}: {1}", data.displayName, "初見です");
+                break;
+            case "DUMMY_ITEM4":
+                text = string.Format("{0}: {1}", data.displayName, "いいね！");
+                break;
         }
-        CommentsUi.AddComment(string.Format("[{0}] {1} ({2})", GameManager.Instance.GetTimeText(), actionName, data.displayName));
+        if (isAction) CommentsUi.AddComment(string.Format("[{0}] {1} ({2})", GameManager.Instance.GetTimeText(), text, data.displayName));
+        else CommentsUi.AddComment(text);
     }
 
     public void OnErrorMessageReceived(string message)
