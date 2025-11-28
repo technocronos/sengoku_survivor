@@ -47,6 +47,8 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private Transform DebugMenuButtonsContainer;
     [SerializeField]
     private GameObject DebugStatsContainer;
+    [SerializeField]
+    private EquipmentHud equipmentHud;
 
     private List<Button> DebugMenuButtons = new List<Button>();
     private Vs.Controllers.Game.Player Player;
@@ -132,6 +134,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 
     public void UpdateEquipmentView()
     {
+        equipmentHud.UpdateEquipmentView();
         string text = "";
         var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetCurrentSkills();
         foreach (var entry in allEquipment)
