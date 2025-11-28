@@ -46,6 +46,9 @@ namespace Vs.Controllers.Game
         public List<Enemy> Enemies { get; private set; } = new List<Enemy>();
         public List<Box> Boxes { get; private set; } = new List<Box>();
 
+        public float buffKnockBackLengthMulti = 1f;
+        public float buffKnockBackTimeMulti = 1f;
+
         private bool isStop = true;
         private float time;
         private bool isStopTime = false;

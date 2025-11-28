@@ -63,6 +63,8 @@ namespace Vs.Controllers.Game
         private float verticalSpeedOffset = -0.3f;
         private float verticalAccelerationOffset = -0.05f;
 
+        public float BuffSpeedMulti = 1f;        
+
         private void Start()
         {
             // this.direction.transform.LookAt(Vector3.right);
@@ -92,7 +94,7 @@ namespace Vs.Controllers.Game
             var horizontal = Input.GetAxis("Horizontal"); // this.joystick.Horizontal;
             var vertical = Input.GetAxis("Vertical");//1; // this.joystick.Vertical;
 
-            currMaxSpeed = this.calcedSpeed / 1000.0f;
+            currMaxSpeed = this.calcedSpeed / 1000.0f * BuffSpeedMulti;
             currSpeed -= friction * Time.deltaTime * currSpeed;
             if (currSpeed.magnitude > 1f) { currSpeed -= sqrFriction * currSpeed.magnitude * Time.deltaTime * currSpeed; }
             currSpeed.x += Time.deltaTime * horizontal * (acceleration);

@@ -73,7 +73,7 @@ public class ThirdController : MonoBehaviour
         {
             case "dummy1":
                 GameManager.Instance.Player.RecoverHp(10);
-                actionName = "小回復";
+                actionName = "HP回復"; //"小回復";
                 break;
             case "dummy2":
                 //GameManager.Instance.Player.RecoverHp(20);
@@ -98,11 +98,12 @@ public class ThirdController : MonoBehaviour
         Debug.Log(message);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            OnMessageReceived(new ThirdResponse() { commandKey = "dummy2", displayName = "test user" });
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.K))
+    //    {
+    //        OnMessageReceived(new ThirdResponse() { commandKey = "dummy2", displayName = "test user" });
+    //        OnMessageReceived(new ThirdResponse() { commandKey = "dummy3", displayName = "test user" });
+    //    }
+    //}
 }

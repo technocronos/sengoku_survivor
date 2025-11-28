@@ -20,6 +20,8 @@ namespace SengokuSurvivors
 
         private float knockbackUpDuration = 10f;
         private float speedUpDuration = 10f;
+        private float knockbackMultiPerBuff = 0.1f;
+        private float speedMultiPerBuff = 0.1f;
 
         private readonly Queue<float> speedupBuffs = new Queue<float>();
         private readonly Queue<float> knockbackBuffs = new Queue<float>();
@@ -34,12 +36,14 @@ namespace SengokuSurvivors
         {
             speedupBuffs.Enqueue(Time.time);
             buffSpeedUp.UpdateIcon(speedUpSprite, speedupBuffs.Count);
+            ApplyBuffs();
         }
 
         public void AddKnockbackBuff()
         {
             knockbackBuffs.Enqueue(Time.time);
             buffKnockback.UpdateIcon(knockbackUpSprite, knockbackBuffs.Count);
+            ApplyBuffs();
         }
 
         private void Update()
@@ -50,12 +54,21 @@ namespace SengokuSurvivors
             {
                 speedupBuffs.Dequeue();
                 buffSpeedUp.UpdateIcon(speedUpSprite, count1 - 1);
+                ApplyBuffs();
             }
             if (count2 > 0 && Time.time - knockbackBuffs.Peek() > knockbackUpDuration)
             {
                 knockbackBuffs.Dequeue();
                 buffKnockback.UpdateIcon(knockbackUpSprite, count2 - 1);
+                ApplyBuffs();
             }
+        }
+
+        private void ApplyBuffs()
+        {
+            GameManager.Instance.Player.BuffSpeedMulti = 1f + speedMultiPerBuff*speedupBuffs.Count;
+            GameManager.Instance.buffKnockBackLengthMulti = 1f + knockbackMultiPerBuff * knockbackBuffs.Count;
+            GameManager.Instance.buffKnockBackTimeMulti = 1f + knockbackMultiPerBuff * knockbackBuffs.Count;
         }
     }
 }

@@ -132,7 +132,8 @@ namespace Vs.Controllers.Game
 
             var isCritical = false;// Random.Range(0, 4) == 0;
             this.Hit(damage, isCritical);
-            Knockback(knockbackLength, knockbackTime);
+            Knockback(knockbackLength * GameManager.Instance.buffKnockBackLengthMulti, 
+                knockbackTime * GameManager.Instance.buffKnockBackTimeMulti);
             //var soundId = isCritical ? "damage_cri" : ctr.GetSoundId();
             //SoundService.Instance.PlaySe(soundId);
             return true;
