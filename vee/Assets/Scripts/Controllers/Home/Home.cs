@@ -48,11 +48,11 @@ namespace Vs.Controllers.Home
             InputFieldStreamId.onValueChanged.AddListener(OnInputFieldChanged);
             thirdController = FindAnyObjectByType<ThirdController>();
 
-#if !DEBUG
+#if DEVELOP
+            Debug.Log("DEVELOP build");
+#else
             //StreamIdInputContainer.SetActive(false);
             Debug.Log("RELEASE build");
-#else
-            Debug.Log("DEVELOP build");
 #endif
         }
 
