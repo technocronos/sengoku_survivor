@@ -72,21 +72,27 @@ public class ThirdController : MonoBehaviour
         bool isAction = false;
         switch (data.commandKey)
         {
-            case "dummy1":
+            case "HEAL_SMALL":
                 GameManager.Instance.Player.RecoverHp(10);
-                text = "HP回復"; //"小回復";
+                text = "小回復";
                 isAction = true;
                 break;
-            case "dummy2":
-                //GameManager.Instance.Player.RecoverHp(20);
-                //actionName = "中回復";
+            case "HEAL_MEDIUM":
+                GameManager.Instance.Player.RecoverHp(20);
+                text = "中回復";
+                isAction = true;
+                break;
+            case "HEAL_LARGE":
+                GameManager.Instance.Player.RecoverHp(30);
+                text = "大回復";
+                isAction = true;
+                break;
+            case "SPEED_BOOST_ITEM":
                 text = "スピードアップ(10s)";
                 BuffsController.AddSpeedupBuff();
                 isAction = true;
                 break;
-            case "dummy3":
-                //GameManager.Instance.Player.RecoverHp(30);
-                //actionName = "大回復";
+            case "KNOCKBACK_BOOST_ITEM":
                 text = "ノックバック強化(10s)";
                 BuffsController.AddKnockbackBuff();
                 isAction = true;
@@ -105,16 +111,16 @@ public class ThirdController : MonoBehaviour
             case "CHAT_TEXT_LIKE":
                 text = string.Format("{0}", "いいね！");
                 break;
-            case "DUMMY_ITEM1":
+            case "NAMECHAT_TEXT_QUESTION_DOG":
                 text = string.Format("{0}: {1}", data.displayName, "好きな犬種を教えて！");
                 break;
-            case "DUMMY_ITEM2":
+            case "NAMECHAT_TEXT_888":
                 text = string.Format("{0}: {1}", data.displayName, "88888888");
                 break;
-            case "DUMMY_ITEM3":
+            case "NAMECHAT_TEXT_FIRST_VISIT":
                 text = string.Format("{0}: {1}", data.displayName, "初見です");
                 break;
-            case "DUMMY_ITEM4":
+            case "NAMECHAT_TEXT_LIKE":
                 text = string.Format("{0}: {1}", data.displayName, "いいね！");
                 break;
         }
@@ -126,13 +132,4 @@ public class ThirdController : MonoBehaviour
     {
         Debug.Log(message);
     }
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.K))
-    //    {
-    //        OnMessageReceived(new ThirdResponse() { commandKey = "dummy2", displayName = "test user" });
-    //        OnMessageReceived(new ThirdResponse() { commandKey = "dummy3", displayName = "test user" });
-    //    }
-    //}
 }
