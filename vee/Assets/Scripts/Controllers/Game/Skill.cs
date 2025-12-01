@@ -22,6 +22,7 @@ namespace Vs.Controllers.Game
         public float KnockbackTime = 0f;
         public float KnockbackLength = 0f;
         public readonly Dictionary<int, SkillType> SkillTypes = new Dictionary<int, SkillType>();
+        public Sprite SkillIcon;
     }
 
     public sealed class SkillType

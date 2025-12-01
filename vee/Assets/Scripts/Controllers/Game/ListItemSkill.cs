@@ -64,6 +64,7 @@ namespace Vs.Controllers.Game
 
         public void SetSprite(Sprite sprite)
         {
+            icon.gameObject.SetActive(sprite != null);
             this.icon.sprite = sprite;
         }
 

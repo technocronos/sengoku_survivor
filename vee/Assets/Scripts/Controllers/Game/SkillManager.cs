@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using MyGame;
+using UnityEngine;
 
 namespace Vs.Controllers.Game
 {
@@ -10,6 +11,7 @@ namespace Vs.Controllers.Game
         private List<JsonObject> dropMst;
         private List<JsonObject> allSkillMst; // 元のdrop_mst全体を保持
         private List<Skill> skills = new List<Skill>();
+        private readonly Dictionary<int, Sprite> skillSpriteAssets = new Dictionary<int, Sprite>();
 
         public void Initialize(List<JsonObject> skillMst)
         {
@@ -47,6 +49,7 @@ namespace Vs.Controllers.Game
                 }
                 skill = new Skill();
                 skill.SkillId = skillId;
+                skill.SkillIcon = GetSkillSprite(skillId);
                 skill.Category = row["category"];
                 skill.SkillTypes.Add(0, new SkillType() { Name = row["name"], Level = 0, 
                     EffectId = row["effect_id"],
@@ -141,6 +144,15 @@ namespace Vs.Controllers.Game
             
             // 2つだけ返す（3つ目は非表示）
             return result;
+        }
+
+        public Sprite GetSkillSprite(int id)
+        {
+            if (!skillSpriteAssets.ContainsKey(id))
+            {
+                skillSpriteAssets.Add(id, Resources.Load<Sprite>($"Skills/{id}"));
+            }
+            return skillSpriteAssets[id];
         }
     }
 }
