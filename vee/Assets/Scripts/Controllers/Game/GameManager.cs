@@ -62,7 +62,7 @@ namespace Vs.Controllers.Game
         private List<JsonObject> levelMst;
         private const int initialWeaponId = 901;
 
-        public SkillManager SkillManager = new SkillManager();
+        public EquipmentManager SkillManager = new EquipmentManager();
 
         private ThirdController thirdController;
 

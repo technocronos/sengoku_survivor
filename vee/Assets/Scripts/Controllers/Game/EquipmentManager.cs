@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Vs.Controllers.Game
 {
-    public sealed class SkillManager
+    public sealed class EquipmentManager
     {
         private List<JsonObject> dropMst;
         private List<JsonObject> allSkillMst; // 元のdrop_mst全体を保持
