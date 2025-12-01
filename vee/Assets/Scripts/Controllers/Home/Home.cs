@@ -49,7 +49,7 @@ namespace Vs.Controllers.Home
             thirdController = FindAnyObjectByType<ThirdController>();
 
 #if !DEBUG
-            StreamIdInputContainer.SetActive(false);
+            //StreamIdInputContainer.SetActive(false);
             Debug.Log("RELEASE build");
 #else
             Debug.Log("DEVELOP build");

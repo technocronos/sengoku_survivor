@@ -58,7 +58,7 @@ namespace Vs.Controllers.Game
         private float sqrFriction = 0.1f;
         private float currMaxSpeed;
         private float acceleration { get { return currMaxSpeed / accelerationTime; } }//12f;
-        private float accelerationTime = 0.16f;
+        private float accelerationTime = 0.10f;
         private Vector2 currSpeed;
         private float verticalSpeedOffset = -0.3f;
         private float verticalAccelerationOffset = -0.05f;
