@@ -1,11 +1,14 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+﻿using SengokuSurvivors;
 using System.Collections;
 using System.Collections.Generic;
-using SengokuSurvivors;
 using System.Text;
+using TMPro;
+using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
+using MyGame;
+using UNCHAIN.ThirdSdk;
+using UnityEditor.Rendering;
 
 public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 {
@@ -56,6 +59,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private ProjectileController Projectile;
     private readonly StringBuilder sb = new StringBuilder();
     private bool ShowDebugMenu = false;
+    private ThirdController thirdController;
 
     private void Awake()
     {
@@ -95,6 +99,8 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
             DebugMenuCloseButton.gameObject.SetActive(true);
             UpdateDebugButtons();
         });
+
+        thirdController = FindAnyObjectByType<ThirdController>();
     }
 
     private void Start()
@@ -156,6 +162,65 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     {
         UpdateDebugStatsView();
         if (Input.GetKeyDown(KeyCode.Escape)) Vs.Controllers.Game.GameManager.Instance.OnPauseClicked();
+
+#if DEVELOP
+        ThirdResponse response = new ThirdResponse();
+        response.txId = "019adf3c-dad1-7732-a70c-eb07f35f8a18";
+        response.streamId = "019ade66-0868-72eb-804d-9117fa2d091c";
+        response.actionId = "019ade76-7619-71f9-b75c-3e4d02dfe456";
+        response.displayName = "デバッグ";
+        response.commandKey = "";
+        response.quantity = "1";
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            response.commandKey = "HEAL_SMALL";
+        }else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            response.commandKey = "HEAL_MEDIUM";
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            response.commandKey = "HEAL_LARGE";
+        }else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            response.commandKey = "SPEED_BOOST_ITEM";
+        }else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            response.commandKey = "KNOCKBACK_BOOST_ITEM";
+        }else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            response.commandKey = "CHAT_TEXT_QUESTION_DOG";
+        }else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            response.commandKey = "CHAT_TEXT_888";
+        }else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            response.commandKey = "CHAT_TEXT_FIRST_VISIT";
+        }else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            response.commandKey = "CHAT_TEXT_LIKE";
+        }else if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            response.commandKey = "NAMECHAT_TEXT_QUESTION_DOG";
+        }else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            response.commandKey = "NAMECHAT_TEXT_888";
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            response.commandKey = "NAMECHAT_TEXT_FIRST_VISIT";
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            response.commandKey = "NAMECHAT_TEXT_LIKE";
+        }
+
+
+        if (response.commandKey != "")
+            thirdController.OnMessageReceived(response);
+
+#endif
     }
 
     public void UpdateDebugStatsView()
