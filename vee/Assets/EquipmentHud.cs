@@ -9,7 +9,7 @@ public class EquipmentHud : MonoBehaviour
 
     public void UpdateEquipmentView()
     {
-        var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetCurrentSkills();
+        var allEquipment = Vs.Controllers.Game.GameManager.Instance.EquipmentManager.GetCurrentSkills();
         int wp = 0, it = 0;
         foreach(var slot in weaponSlots)
         {
@@ -21,14 +21,14 @@ public class EquipmentHud : MonoBehaviour
         }
         foreach (var entry in allEquipment)
         {
-            var iconName = entry.SkillId;
+            var iconName = entry.ItemId;
             //todo: get icon from cache or resources by iconName
 
             if (entry.Category == 201)//item
             {
                 if (it >= itemSlots.Length) continue;
                 itemSlots[it].gameObject.SetActive(true);
-                itemSlots[it].EquipmentIcon.sprite = entry.SkillIcon;
+                itemSlots[it].EquipmentIcon.sprite = entry.ItemIcon;
                 itemSlots[it].EquipmentLvlText.text = string.Format("Lv {0}\n", entry.SkillTypes[0].Level);
                 //todo: do icons on level up too (and itembox too)
                 it++;
@@ -37,7 +37,7 @@ public class EquipmentHud : MonoBehaviour
             {
                 if (wp >= weaponSlots.Length) continue;
                 weaponSlots[wp].gameObject.SetActive(true);
-                weaponSlots[wp].EquipmentIcon.sprite = entry.SkillIcon;
+                weaponSlots[wp].EquipmentIcon.sprite = entry.ItemIcon;
                 weaponSlots[wp].EquipmentLvlText.text = string.Format("Lv {0}\n", entry.SkillTypes[0].Level);
                 wp++;
             }

@@ -9,84 +9,80 @@ namespace Vs.Controllers.Game
     public sealed class EquipmentManager
     {
         private List<JsonObject> dropMst;
-        private List<JsonObject> allSkillMst; // 元のdrop_mst全体を保持
-        private List<Skill> skills = new List<Skill>();
+        private List<JsonObject> weaponsMst;
+        private List<JsonObject> accessoriesMst;
+        private List<Equipment> skills = new List<Equipment>();
         private readonly Dictionary<int, Sprite> skillSpriteAssets = new Dictionary<int, Sprite>();
 
-        public void Initialize(List<JsonObject> skillMst)
+        public void Initialize(List<JsonObject> dropMst, List<JsonObject> weaponsMst, List<JsonObject> accessoriesMst)
         {
-            this.allSkillMst = skillMst; // 元のdrop_mst全体を保存
-            var skillIds = new int[] { 901};//1001, 1002, 1004, 1007, 1009 };
-            this.dropMst = allSkillMst;
-            //    skillMst.FindAll(row =>
-            //{
-            //    var category = (int)row["category"];
-            //    var skillId = (int)row["skill_id"];
-            //    return category == 201 || System.Array.Exists(skillIds, i => i == skillId);
-            //});
+            this.dropMst = dropMst;
+            this.weaponsMst = weaponsMst;
+            this.accessoriesMst = accessoriesMst;
         }
 
-        public Skill UpgradeSkill(int skillId, int type)
+        public Equipment UpgradeSkill(int skillId, int newLevel)
         {
-            // まずskillMstから検索、見つからなければallSkillMstから検索
-            var row = this.dropMst.Find(i => i["skill_id"] == skillId && i["type"] == type);
-            if (row == null)
+            var dropRow = this.dropMst.Find(i => i["item_id"] == skillId);
+            if (dropRow == null)
             {
-                row = this.allSkillMst.Find(i => i["skill_id"] == skillId);
-            }
-            if (row == null)
-            {
-                UnityEngine.Debug.LogError($"Skill {skillId} not found in drop_mst");
                 return null;
             }
-            var skill = this.skills.Find(i => i.SkillId == skillId);
-            if (skill == null)//取得していない武器やバフの場合
+            int category = dropRow["category"];//1 - weapon, 2 - accessory
+            JsonObject itemRow = null;
+            if (category == 1)
             {
-                if (type != 0)
-                {
-                    return null;//武装を持ってないと強化もできない。
-                    //todo: 武器を持ってない場合、強化ｇドロップされない対応
-                }
-                skill = new Skill();
-                skill.SkillId = skillId;
-                skill.SkillIcon = GetSkillSprite(skillId);
-                skill.Category = row["category"];
-                skill.SkillTypes.Add(0, new SkillType() { Name = row["name"], Level = 0, 
-                    EffectId = row["effect_id"],
-                    EffectValue = row["effect_value"] });
+                itemRow = weaponsMst.Find(i => i["item_id"] && i["level"] == newLevel);
+            }
+            else if (category == 2)
+            {
+                itemRow = accessoriesMst.Find(i => i["item_id"] && i["level"] == newLevel);
+            }
+            if (itemRow == null) return null;
+
+
+
+            var skill = this.skills.Find(i => i.ItemId == skillId);
+            if (skill == null)//取得していない武器や装備の場合
+            {
+                (skill.Category == 
+                skill = new Equipment();
+                skill.ItemId = skillId;
+                skill.ItemIcon = GetSkillSprite(skillId);
+                skill.Category = dropRow["category"];                
+                skill.Level = 1;
                 this.skills.Add(skill);
-                skills = skills.OrderBy(i => i.SkillId).ToList();
             }
             else if (!skill.SkillTypes.ContainsKey(type))//取得している武器で、強化を取得していない
             {
                 skill.SkillTypes.Add(type, new SkillType() 
-                    { Name = $"      {row["type_name"]}", Level = 0,
-                    EffectId = row["effect_id"],
-                    EffectValue = row["effect_value"]
+                    { Name = $"      {dropRow["type_name"]}", Level = 0,
+                    EffectId = dropRow["effect_id"],
+                    EffectValue = dropRow["effect_value"]
                 });
             }
             skill.SkillTypes[0].Level++;
 
-            skill.Atk += row["atk"];
-            skill.Speed += row["speed"];
-            skill.CoolTime += row["cooltime"]; // バグ修正: raw["atk"] → raw["cooltime"]
-            skill.CoolTimeMulti *= row["cooltime_multi"] / 1000f;
-            skill.LifeTime += row["lifetime"];
-            skill.Projectile += row["projectile"];
-            skill.Count += row["count"];
-            skill.Size += row["size"];
-            skill.SizeMulti *= row["size_multi"] / 1000f;
+            skill.Atk += dropRow["atk"];
+            skill.Speed += dropRow["speed"];
+            skill.CoolTime += dropRow["cooltime"]; // バグ修正: raw["atk"] → raw["cooltime"]
+            skill.CoolTimeMulti *= dropRow["cooltime_multi"] / 1000f;
+            skill.LifeTime += dropRow["lifetime"];
+            skill.Projectile += dropRow["projectile"];
+            skill.Count += dropRow["count"];
+            skill.Size += dropRow["size"];
+            skill.SizeMulti *= dropRow["size_multi"] / 1000f;
             
             if (type == 0)
             {
-                skill.KnockbackTime = row["knockback_time"]/1000f;
-                skill.KnockbackLength = row["knockback_length"]/1000f;
+                skill.KnockbackTime = dropRow["knockback_time"]/1000f;
+                skill.KnockbackLength = dropRow["knockback_length"]/1000f;
             }
 
             return skill;
         }
 
-        public List<Skill> GetCurrentSkills()
+        public List<Equipment> GetCurrentSkills()
         {
             return this.skills;
         }
@@ -99,7 +95,7 @@ namespace Vs.Controllers.Game
         public List<JsonObject> GetSelectableSkills()
         {
             return this.dropMst
-                .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) 
+                .FindAll(i => this.skills.Exists(j => j.ItemId == i["skill_id"]) 
                 ? i["type"] > 0 || i["category"] == 201 : i["type"] == 0)
                 .OrderBy(i => System.Guid.NewGuid()).ToList().Take(3).ToList();
         }
@@ -107,13 +103,13 @@ namespace Vs.Controllers.Game
         public List<JsonObject> GetSelectableSkillsAll()
         {
             return this.dropMst
-                .FindAll(i => this.skills.Exists(j => j.SkillId == i["skill_id"]) ? i["type"] > 0 
+                .FindAll(i => this.skills.Exists(j => j.ItemId == i["skill_id"]) ? i["type"] > 0 
                 || i["category"] == 201 : i["type"] == 0);
         }
 
         public bool IsBaseSkillObtained(int id)
         {
-            return this.skills.Exists(j => j.SkillId == id);
+            return this.skills.Exists(j => j.ItemId == id);
         }
 
         public List<JsonObject> GetSelectableSkillsForSkillId(int skillId)
@@ -128,7 +124,7 @@ namespace Vs.Controllers.Game
             var currentSkill = this.skills.FirstOrDefault();
             if (currentSkill != null)
             {
-                var currentBaseSkill = this.allSkillMst.Find(i => (int)i["skill_id"] == currentSkill.SkillId && (int)i["type"] == 0);
+                var currentBaseSkill = this.allSkillMst.Find(i => (int)i["skill_id"] == currentSkill.ItemId && (int)i["type"] == 0);
                 if (currentBaseSkill != null)
                 {
                     result.Add(currentBaseSkill);

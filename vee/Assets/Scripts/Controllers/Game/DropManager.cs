@@ -32,7 +32,7 @@ namespace SengokuSurvivors
             var text = "報酬を選択";
             if (dropId == 0)//dropId = 0の場合ランダム
             {
-                var row = GameManager.Instance.SkillManager.GetSelectableSkills()[0];
+                var row = GameManager.Instance.EquipmentManager.GetSelectableSkills()[0];
                 dropId = row["drop_id"];
                 type = row["type"];
                 text = $"{row["name"]}\n{row["type_name"]}";

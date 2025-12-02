@@ -57,8 +57,8 @@ namespace SengokuSurvivors
 
         private void UpdateWeaponParameters()
         {
-            var weaponData = Vs.Controllers.Game.GameManager.Instance.SkillManager
-                .GetCurrentSkills().Find(i => i.SkillId == weaponId);
+            var weaponData = Vs.Controllers.Game.GameManager.Instance.EquipmentManager
+                .GetCurrentSkills().Find(i => i.ItemId == weaponId);
             damage = weaponData.Atk;
             cooldown = weaponData.CoolTime / 1000f * weaponData.CoolTimeMulti;
             weaponSizeMulti = weaponData.SizeMulti;

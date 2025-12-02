@@ -224,7 +224,7 @@ namespace Vs.Controllers.Game
             }
         }
 
-        public void UpdateSkill(Skill skill)
+        public void UpdateSkill(Equipment skill)
         {
             if (skill == null) return;
             switch (skill.Category)
@@ -241,9 +241,9 @@ namespace Vs.Controllers.Game
             OnScreenUi.Instance.UpdateDebugButtons();
         }
 
-        private void UpdateShooter(Skill skill)
+        private void UpdateShooter(Equipment skill)
         {
-            var shooter = System.Array.Find(this.shooters, i => i.SkillId == skill.SkillId);
+            var shooter = System.Array.Find(this.shooters, i => i.SkillId == skill.ItemId);
             if (shooter != null)
             {
                 // 他のshooterを非アクティブ化（同じcategoryの場合）
@@ -282,7 +282,7 @@ namespace Vs.Controllers.Game
             
         }
 
-        private void UpgradeStats(Skill skill)
+        private void UpgradeStats(Equipment skill)
         {
             var value = skill.SkillTypes[0].EffectValue;
             switch (skill.SkillTypes[0].EffectId)

@@ -136,7 +136,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     {
         equipmentHud.UpdateEquipmentView();
         string text = "";
-        var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetCurrentSkills();
+        var allEquipment = Vs.Controllers.Game.GameManager.Instance.EquipmentManager.GetCurrentSkills();
         foreach (var entry in allEquipment)
         {
             text += string.Format("{0} Lvl {1}\n", entry.SkillTypes[0].Name, entry.SkillTypes[0].Level);
@@ -195,7 +195,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         for (int i = 0; i < DebugMenuButtonsContainer.childCount; i++)
             DebugMenuButtons.Add(DebugMenuButtonsContainer.GetChild(i).GetComponent<Button>());
 
-        var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetSelectableSkillsAll();
+        var allEquipment = Vs.Controllers.Game.GameManager.Instance.EquipmentManager.GetSelectableSkillsAll();
         int buttonIndex = 0;
         foreach (var entry in allEquipment)
         {
@@ -214,7 +214,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 
     private void OnDebugButton(int index)
     {
-        var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetSelectableSkillsAll();
+        var allEquipment = Vs.Controllers.Game.GameManager.Instance.EquipmentManager.GetSelectableSkillsAll();
         var row = allEquipment[index];
         var skillId = row["skill_id"];
         var type = row["type"];

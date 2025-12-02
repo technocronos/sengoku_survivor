@@ -4,10 +4,18 @@ using UnityEngine;
 
 namespace Vs.Controllers.Game
 {
-    public sealed class Skill
+    public class Equipment
     {
-        public int SkillId;
+        public int ItemId;
         public int Category;
+        public string Name;
+        public string Description;
+        public Sprite ItemIcon;
+        public int Level;
+    }
+
+    public sealed class Weapon : Equipment
+    {
         public int Atk;
         public int Speed;
         public int CoolTime;
@@ -17,12 +25,16 @@ namespace Vs.Controllers.Game
         public int Count;
         public int Size;
         public float SizeMulti = 1;
-        //public string EffectId;
-        //public int EffectValue;
+
         public float KnockbackTime = 0f;
         public float KnockbackLength = 0f;
         public readonly Dictionary<int, SkillType> SkillTypes = new Dictionary<int, SkillType>();
-        public Sprite SkillIcon;
+    }
+
+    public sealed class Accessory : Equipment
+    {
+        //public string EffectId;
+        //public int EffectValue;
     }
 
     public sealed class SkillType
