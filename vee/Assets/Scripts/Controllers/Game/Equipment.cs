@@ -7,40 +7,33 @@ namespace Vs.Controllers.Game
     public class Equipment
     {
         public int ItemId;
-        public int Category;
+        public ItemCategory Category;
         public string Name;
         public string Description;
         public Sprite ItemIcon;
         public int Level;
     }
 
+    public enum ItemCategory
+    {
+        None = 0,
+        Weapon = 1,
+        Accessory = 2
+    }
+
     public sealed class Weapon : Equipment
     {
         public int Atk;
         public int Speed;
-        public int CoolTime;
-        public float CoolTimeMulti = 1;
-        public int LifeTime;
-        public int Projectile;
+        public float CoolTime;
         public int Count;
-        public int Size;
-        public float SizeMulti = 1;
 
         public float KnockbackTime = 0f;
         public float KnockbackLength = 0f;
-        public readonly Dictionary<int, SkillType> SkillTypes = new Dictionary<int, SkillType>();
     }
 
     public sealed class Accessory : Equipment
     {
-        //public string EffectId;
-        //public int EffectValue;
-    }
-
-    public sealed class SkillType
-    {
-        public string Name;
-        public int Level;
         public string EffectId;
         public int EffectValue;
     }

@@ -11,18 +11,16 @@ namespace Vs.Controllers.Game
         private UnityEngine.UI.Text text;
 
         private int skillId;
-        private int skillType;
 
         protected override void OnComplete()
         {
-            GameManager.Instance.AddSkill(skillId, skillType);
+            GameManager.Instance.AddSkill(skillId);
         }
 
-        public void Setup(int skillId, int type, string text, DropManager dropManager)
+        public void Setup(int skillId, string text, DropManager dropManager)
         {
             this.dropManager = dropManager;
             this.skillId = skillId;
-            this.skillType = type;
             this.text.text = text;
         }
     }

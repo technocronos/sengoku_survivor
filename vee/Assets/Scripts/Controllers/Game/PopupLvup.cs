@@ -8,7 +8,7 @@ namespace Vs.Controllers.Game
 {
     public sealed class PopupLvup : MonoBehaviour
     {
-        public event System.Action<int, int> Selected = (_,_) => { };
+        public event System.Action<int> Selected = _ => { };
 
         [SerializeField]
         private ListItemSkill[] listItems;
@@ -56,7 +56,7 @@ namespace Vs.Controllers.Game
             this.Hide();
 
             var raw = this.rows[index];
-            this.Selected.Invoke(raw["skill_id"], raw["type"]);
+            this.Selected.Invoke(raw["skill_id"]);
         }
     }
 }

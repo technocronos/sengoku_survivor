@@ -28,13 +28,11 @@ namespace SengokuSurvivors
 
         public void DropItem(Vector3 pos, int dropId)
         {
-            var type = 0;
             var text = "報酬を選択";
             if (dropId == 0)//dropId = 0の場合ランダム
             {
                 var row = GameManager.Instance.EquipmentManager.GetSelectableSkills()[0];
                 dropId = row["drop_id"];
-                type = row["type"];
                 text = $"{row["name"]}\n{row["type_name"]}";
             }
 
@@ -42,7 +40,7 @@ namespace SengokuSurvivors
             box.gameObject.SetActive(true);
             box.transform.SetPositionAndRotation(pos, Quaternion.identity);
             box.transform.Rotate(Vector3.right, -30f);
-            box.Setup(dropId, type, text, this);
+            box.Setup(dropId, text, this);
         }
 
         public void DropExp(Vector3 pos, int amount)

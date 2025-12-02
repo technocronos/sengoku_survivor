@@ -229,11 +229,11 @@ namespace Vs.Controllers.Game
             if (skill == null) return;
             switch (skill.Category)
             {
-                case 101:
+                case ItemCategory.Weapon:
                     this.UpdateShooter(skill);
                     break;
-                case 201:
-                    this.UpgradeStats(skill);
+                case ItemCategory.Accessory:
+                    this.UpgradeStats(skill as Accessory);
                     break;
             }
             OnScreenUi.Instance.UpdateEquipmentView();
@@ -282,10 +282,11 @@ namespace Vs.Controllers.Game
             
         }
 
-        private void UpgradeStats(Equipment skill)
+        private void UpgradeStats(Accessory skill)
         {
-            var value = skill.SkillTypes[0].EffectValue;
-            switch (skill.SkillTypes[0].EffectId)
+            if (skill == null) return;
+            var value = skill.EffectValue;
+            switch (skill.EffectId)
             {
                 case "hp":
                     this.Stats.HpRate += value;

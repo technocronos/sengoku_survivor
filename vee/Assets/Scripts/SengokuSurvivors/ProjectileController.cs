@@ -136,23 +136,23 @@ namespace SengokuSurvivors
         private void UpdateWeaponParameters()
         {
             var weaponData = Vs.Controllers.Game.GameManager.Instance.EquipmentManager
-                    .GetCurrentSkills().Find(i => i.ItemId == shurikenId);
+                    .GetCurrentSkillWithId(shurikenId) as Vs.Controllers.Game.Weapon;
             if (weaponData != null)
             {
                 ShurikenDamage = weaponData.Atk;
                 KnockbackLengthShuriken = weaponData.KnockbackLength;
                 KnockbackTimeShuriken = weaponData.KnockbackTime;
-                cooldownShuriken = weaponData.CoolTime / 1000f * weaponData.CoolTimeMulti;
+                cooldownShuriken = weaponData.CoolTime;
             }
 
             weaponData = Vs.Controllers.Game.GameManager.Instance.EquipmentManager
-                    .GetCurrentSkills().Find(i => i.ItemId == arrowId);
+                    .GetCurrentSkillWithId(arrowId) as Vs.Controllers.Game.Weapon;
             if (weaponData != null)
             {
                 ArrowDamage = weaponData.Atk;
                 KnockbackLengthArrow = weaponData.KnockbackLength;
                 KnockbackTimeArrow = weaponData.KnockbackTime;
-                cooldownArrow = weaponData.CoolTime / 1000f * weaponData.CoolTimeMulti;
+                cooldownArrow = weaponData.CoolTime;
             }
         }
 

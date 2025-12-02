@@ -13,13 +13,11 @@ namespace SengokuSurvivors
 
         public int Damage { get { return damage; } }
         public float Cooldown { get { return cooldown; } }
-        public float Size { get { return weaponSizeMulti; } }
 
         private int damage = 20;
         private float cooldown = 2f;
         private int weaponId = 901;
         private string weaponUseAnim = "Slash";
-        private float weaponSizeMulti = 1f;
         private string soundId = "damage_slash_1";//"damage_slash_2";
         private float knockbackTime = 0f;
         private float knockbackLength = 0f;
@@ -58,11 +56,11 @@ namespace SengokuSurvivors
         private void UpdateWeaponParameters()
         {
             var weaponData = Vs.Controllers.Game.GameManager.Instance.EquipmentManager
-                .GetCurrentSkills().Find(i => i.ItemId == weaponId);
+                .GetCurrentSkillWithId(weaponId) as Vs.Controllers.Game.Weapon;
+            if (weaponData == null) return;
+
             damage = weaponData.Atk;
-            cooldown = weaponData.CoolTime / 1000f * weaponData.CoolTimeMulti;
-            weaponSizeMulti = weaponData.SizeMulti;
-            transform.localScale = new Vector3(weaponSizeMulti, weaponSizeMulti, 1);
+            cooldown = weaponData.CoolTime;
             knockbackTime = weaponData.KnockbackTime;
             knockbackLength = weaponData.KnockbackLength;
         }
