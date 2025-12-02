@@ -20,26 +20,11 @@ namespace SengokuSurvivors
 
         public float CooldownShuriken { get { return cooldownShuriken; } }
         public float CooldownArrow { get { return cooldownArrow; } }
-        public int ArrowCount
-        {
-            get
-            {
-                if (ArrowDamage == 0) return 0;
-                if (ArrowDamage < 22) return 1;
-                if (ArrowDamage < 24) return 2;
-                return 3;
-            }
-        }
-        public int ShurikenCount
-        {
-            get
-            {
-                if (ShurikenDamage == 0) return 0;
-                if (ShurikenDamage < 22) return 1;
-                if (ShurikenDamage < 24) return 2;
-                return 3;
-            }
-        }
+        [System.NonSerialized]
+        public int ArrowCount = 1;
+        [System.NonSerialized]
+        public int ShurikenCount = 1;
+        
         private float cooldownShuriken = 10f;
         private float cooldownArrow = 10f;
         private int arrowId = 903;
@@ -143,6 +128,7 @@ namespace SengokuSurvivors
                 KnockbackLengthShuriken = weaponData.KnockbackLength;
                 KnockbackTimeShuriken = weaponData.KnockbackTime;
                 cooldownShuriken = weaponData.CoolTime;
+                ShurikenCount = weaponData.Count;
             }
 
             weaponData = Vs.Controllers.Game.GameManager.Instance.EquipmentManager
@@ -153,6 +139,7 @@ namespace SengokuSurvivors
                 KnockbackLengthArrow = weaponData.KnockbackLength;
                 KnockbackTimeArrow = weaponData.KnockbackTime;
                 cooldownArrow = weaponData.CoolTime;
+                ArrowCount = weaponData.Count;
             }
         }
 
