@@ -62,7 +62,7 @@ namespace Vs.Controllers.Game
         private List<JsonObject> levelMst;
         private const int initialWeaponId = 901;
 
-        public SkillManager SkillManager = new SkillManager();
+        public EquipmentManager EquipmentManager = new EquipmentManager();
 
         private ThirdController thirdController;
 
@@ -96,13 +96,15 @@ namespace Vs.Controllers.Game
             this.countText.text = this.count.ToString();
 
             var playerMst = Backend.MstDatas.Instance.Get("player_mst");
-            var skillMst = Backend.MstDatas.Instance.Get("drop_mst");
-            this.SkillManager.Initialize(skillMst);
+            var dropMst = Backend.MstDatas.Instance.Get("drop_mst");
+            var weaponsMst = Backend.MstDatas.Instance.Get("weapons_mst");
+            var accessoriesMst = Backend.MstDatas.Instance.Get("accessories_mst");
+            this.EquipmentManager.Initialize(dropMst, weaponsMst, accessoriesMst);
             this.Player.Damaged += this.OnDamaged;
             this.Player.Initialize(playerMst[0]);
 
             {
-                var skill = this.SkillManager.UpgradeSkill(initialWeaponId, 0);
+                var skill = this.EquipmentManager.UpgradeSkill(initialWeaponId);
                 this.Player.UpdateSkill(skill);
             }
 
@@ -249,7 +251,7 @@ namespace Vs.Controllers.Game
             // this.coinsText.text = this.coins.ToString();
         }
 
-        public void AddSkill(int skillId, int skillType)
+        public void AddSkill(int skillId)
         {
             if (skillId == 0)
             {
@@ -257,7 +259,7 @@ namespace Vs.Controllers.Game
             }
             else
             {
-                var skill = this.SkillManager.UpgradeSkill(skillId, skillType);
+                var skill = this.EquipmentManager.UpgradeSkill(skillId);
                 this.Player.UpdateSkill(skill);
             }
         }
@@ -290,7 +292,7 @@ namespace Vs.Controllers.Game
             }
         }
 
-        private void ShowLvUp(int specificSkillId = 0)
+        private void ShowLvUp()
         {
             if (this.isStop)
             {
@@ -298,37 +300,23 @@ namespace Vs.Controllers.Game
             }
             this.isStop = true;
 
-            List<JsonObject> skills;
-            if (specificSkillId != 0)
-            {
-                // 特定のスキルIDの選択肢を取得
-                skills = this.SkillManager.GetSelectableSkillsForSkillId(specificSkillId);
-            }
-            else
-            {
-                // 通常のレベルアップ選択肢
-                skills = this.SkillManager.GetSelectableSkills();
-            }
+            var skills = this.EquipmentManager.GetSelectableSkills();            
             this.popupLvUp.Show(skills);
-            #region Debug
-            //var aaa = skills[0];
-            //OnLvUpPopupSelected(aaa["skill_id"], aaa["type"]);
-            #endregion
 
             SoundService.Instance.PlaySe("levelup");
         }
 
-        private void OnLvUpPopupSelected(int skillId, int type)
+        private void OnLvUpPopupSelected(int skillId)
         {
             this.isStop = false;
 
-            var skill = this.SkillManager.UpgradeSkill(skillId, type);
+            var skill = this.EquipmentManager.UpgradeSkill(skillId);
             this.Player.UpdateSkill(skill);
         }
 
         public void OnPauseClicked()
         {
-            var current = this.SkillManager.GetCurrentSkills();
+            var current = this.EquipmentManager.GetCurrentSkills();
             this.popupPause.Show(current);
         }
 

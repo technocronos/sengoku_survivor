@@ -92,7 +92,7 @@ namespace Vs.Controllers.Game
             var prefeb = itemGatePrefabsCache[modelId];
             var gate = Instantiate(prefeb, world);//(itemGateCache.Count > 0) ? itemGateCache.Dequeue() : Instantiate(prefeb, world);
             gate.transform.SetPositionAndRotation(new Vector3(x, y, 0), Quaternion.identity);
-            var skill = GameManager.Instance.SkillManager.GetSelectableSkills()[0];
+            var skill = GameManager.Instance.EquipmentManager.GetSelectableSkills()[0];
             gate.Initialize(skill);
             gate.SetDropId(raw["drop_id"]);
         }

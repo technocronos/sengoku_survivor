@@ -1,4 +1,3 @@
-using SengokuSurvivors;
 using System.Collections;
 using UnityEngine;
 
@@ -198,7 +197,7 @@ namespace Vs.Controllers.Game
 
         private IEnumerator KnockbackRoutine(float knockbackStrength, float knockbackDuration)
         {
-            var movement = GetComponent<IEnemyMovement>();
+            var movement = GetComponent<SengokuSurvivors.IEnemyMovement>();
             movement.SetKnockbackState(true);
             float elapsed = 0f;
             while (elapsed < knockbackDuration)

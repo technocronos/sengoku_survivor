@@ -8,7 +8,7 @@ namespace Vs.Controllers.Game
 {
     public sealed class PopupPause : MonoBehaviour
     {
-        public void Show(List<Skill> current)
+        public void Show(Dictionary<int,Equipment> current)
         {
             this.gameObject.SetActive(true);
             Time.timeScale = 0.0f;

@@ -141,21 +141,21 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     public void UpdateEquipmentView()
     {
         equipmentHud.UpdateEquipmentView();
-        string text = "";
-        var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetCurrentSkills();
-        foreach (var entry in allEquipment)
-        {
-            text += string.Format("{0} Lvl {1}\n", entry.SkillTypes[0].Name, entry.SkillTypes[0].Level);
-            //foreach (var skillType in entry.SkillTypes)
-            //{
-            //    if (skillType.Value.Level > 0)
-            //        text += string.Format("{0} Lvl {1}\n", skillType.Value.Name, skillType.Value.Level);
-            //    else
-            //        text += string.Format("{0}\n", skillType.Value.Name);
-            //}
-        }
+        //string text = "";
+        //var allEquipment = Vs.Controllers.Game.GameManager.Instance.EquipmentManager.GetCurrentSkills();
+        //foreach (var entry in allEquipment)
+        //{
+        //    text += string.Format("{0} Lvl {1}\n", entry.SkillTypes[0].Name, entry.SkillTypes[0].Level);
+        //    //foreach (var skillType in entry.SkillTypes)
+        //    //{
+        //    //    if (skillType.Value.Level > 0)
+        //    //        text += string.Format("{0} Lvl {1}\n", skillType.Value.Name, skillType.Value.Level);
+        //    //    else
+        //    //        text += string.Format("{0}\n", skillType.Value.Name);
+        //    //}
+        //}
 
-        weaponDebugLabel1.text = text;
+        //weaponDebugLabel1.text = text;
     }
 
     private void Update()
@@ -241,7 +241,6 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         sb.Append(string.Format("<KATANA:>\n"));
         sb.Append(string.Format("Damage: {0}\n", Katana.Damage));
         sb.Append(string.Format("Cooldown: {0}\n", Katana.Cooldown));
-        sb.Append(string.Format("Scale: {0}\n", Katana.Size));
         sb.Append(string.Format("<SHURIKEN:>\n"));
         sb.Append(string.Format("Damage: {0}\n", Projectile.ShurikenDamage));
         sb.Append(string.Format("Cooldown: {0}\n", Projectile.CooldownShuriken));
@@ -260,7 +259,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         for (int i = 0; i < DebugMenuButtonsContainer.childCount; i++)
             DebugMenuButtons.Add(DebugMenuButtonsContainer.GetChild(i).GetComponent<Button>());
 
-        var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetSelectableSkillsAll();
+        var allEquipment = Vs.Controllers.Game.GameManager.Instance.EquipmentManager.GetSelectableSkillsAll();
         int buttonIndex = 0;
         foreach (var entry in allEquipment)
         {
@@ -268,7 +267,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
             DebugMenuButtons[buttonIndex].gameObject.SetActive(true);
             DebugMenuButtons[buttonIndex].onClick.RemoveAllListeners();
             DebugMenuButtons[buttonIndex].onClick.AddListener(()=> OnDebugButton(ii));
-            DebugMenuButtons[buttonIndex].GetComponentInChildren<TMP_Text>().text = $"{entry["name"]}\n{entry["type_name"]}";
+            DebugMenuButtons[buttonIndex].GetComponentInChildren<TMP_Text>().text = $"{entry["name"]}";
             buttonIndex++;
         }
         for (int i = buttonIndex; i < DebugMenuButtons.Count; i++)
@@ -279,11 +278,10 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 
     private void OnDebugButton(int index)
     {
-        var allEquipment = Vs.Controllers.Game.GameManager.Instance.SkillManager.GetSelectableSkillsAll();
+        var allEquipment = Vs.Controllers.Game.GameManager.Instance.EquipmentManager.GetSelectableSkillsAll();
         var row = allEquipment[index];
-        var skillId = row["skill_id"];
-        var type = row["type"];
-        Vs.Controllers.Game.GameManager.Instance.AddSkill(skillId, type);
+        var skillId = row["item_id"];
+        Vs.Controllers.Game.GameManager.Instance.AddSkill(skillId);
     }
 
     private void ToggleStats()
