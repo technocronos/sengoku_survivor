@@ -10,7 +10,6 @@ namespace Vs.Controllers.Game
         [SerializeField]
         private UnityEngine.UI.Text text;
 
-        private int skillId;
         private int dropId;
 
         protected override void OnComplete()
@@ -22,16 +21,11 @@ namespace Vs.Controllers.Game
             {
                 SengokuSurvivors.DropManager.Instance.DropItem(position, this.dropId);
             }
-            else if (this.skillId > 0)
-            {
-                // dropIdが設定されていない場合は、直接AddSkillを呼ぶ（旧来の動作を維持）
-                //GameManager.Instance.AddSkill(this.skillId);
-            }
         }
 
         public void Initialize(JsonObject raw)
         {
-            this.skillId = raw["skill_id"];
+            this.dropId = raw["drop_id"];
             this.text.text = $"{raw["name"]}\n{raw["type_name"]}";
         }
 
