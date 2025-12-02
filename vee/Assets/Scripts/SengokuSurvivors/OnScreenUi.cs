@@ -202,7 +202,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
             DebugMenuButtons[buttonIndex].gameObject.SetActive(true);
             DebugMenuButtons[buttonIndex].onClick.RemoveAllListeners();
             DebugMenuButtons[buttonIndex].onClick.AddListener(()=> OnDebugButton(ii));
-            DebugMenuButtons[buttonIndex].GetComponentInChildren<TMP_Text>().text = $"{entry["name"]}\n{entry["type_name"]}";
+            DebugMenuButtons[buttonIndex].GetComponentInChildren<TMP_Text>().text = $"{entry["name"]}";
             buttonIndex++;
         }
         for (int i = buttonIndex; i < DebugMenuButtons.Count; i++)
@@ -215,7 +215,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     {
         var allEquipment = Vs.Controllers.Game.GameManager.Instance.EquipmentManager.GetSelectableSkillsAll();
         var row = allEquipment[index];
-        var skillId = row["skill_id"];
+        var skillId = row["item_id"];
         Vs.Controllers.Game.GameManager.Instance.AddSkill(skillId);
     }
 

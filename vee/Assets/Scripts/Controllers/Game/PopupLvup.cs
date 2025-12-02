@@ -32,7 +32,7 @@ namespace Vs.Controllers.Game
                     listItem.Initialize(i);
                     listItem.SetName(row["name"]);
                     listItem.SetDescription(row["description"]);
-                    listItem.SetSprite(GameManager.Instance.EquipmentManager.GetSkillSprite(row["skill_id"]));
+                    listItem.SetSprite(GameManager.Instance.EquipmentManager.GetSkillSprite(row["item_id"]));
 
                     // var sprite = Resources.Load<Sprite>($"Skills/{raw["image_id"]}");
                     // listItem.SetSprite(sprite);
@@ -56,7 +56,7 @@ namespace Vs.Controllers.Game
             this.Hide();
 
             var raw = this.rows[index];
-            this.Selected.Invoke(raw["skill_id"]);
+            this.Selected.Invoke(raw["item_id"]);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace SengokuSurvivors
             {
                 var row = GameManager.Instance.EquipmentManager.GetSelectableSkills()[0];
                 dropId = row["drop_id"];
-                text = $"{row["name"]}\n{row["type_name"]}";
+                text = $"{row["name"]}";
             }
 
             var box = (itemBoxCache.Count > 0) ? itemBoxCache.Dequeue() : Instantiate(this.prefab, this.world);

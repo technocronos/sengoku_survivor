@@ -26,7 +26,7 @@ namespace Vs.Controllers.Game
         public void Initialize(JsonObject raw)
         {
             this.dropId = raw["drop_id"];
-            this.text.text = $"{raw["name"]}\n{raw["type_name"]}";
+            this.text.text = $"{raw["name"]}";
         }
 
         public void SetDropId(int dropId)

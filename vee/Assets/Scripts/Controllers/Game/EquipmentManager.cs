@@ -128,8 +128,8 @@ namespace Vs.Controllers.Game
             for(int i = 0; i < dropMst.Count; i++)
             {
                 int level = 1;
-                var id = dropMst[i]["item_id"];
-                var category = (ItemCategory)(int) dropMst[i]["category"];
+                int id = dropMst[i]["item_id"];
+                ItemCategory category = (ItemCategory)(int) dropMst[i]["category"];
                 if (skills.ContainsKey(id))
                     { level = skills[id].Level; }
                 List<JsonObject> data;
