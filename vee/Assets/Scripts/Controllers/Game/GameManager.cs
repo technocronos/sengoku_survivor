@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -99,7 +99,9 @@ namespace Vs.Controllers.Game
             var dropMst = Backend.MstDatas.Instance.Get("drop_mst");
             var weaponsMst = Backend.MstDatas.Instance.Get("weapons_mst");
             var accessoriesMst = Backend.MstDatas.Instance.Get("accessories_mst");
-            this.EquipmentManager.Initialize(dropMst, weaponsMst, accessoriesMst);
+            var itemMst = Backend.MstDatas.Instance.Get("item_mst");
+
+            this.EquipmentManager.Initialize(dropMst, weaponsMst, accessoriesMst, itemMst);
             this.Player.Damaged += this.OnDamaged;
             this.Player.Initialize(playerMst[0]);
 
@@ -112,6 +114,13 @@ namespace Vs.Controllers.Game
             var min = Mathf.FloorToInt(record / 60);
             var sec = Mathf.FloorToInt(record % 60);
             this.recordText.text = $"TIME：{min:00}:{sec:00}";
+
+            //初期非表示
+            popupLvUp.gameObject.SetActive(false);
+            popupPause.gameObject.SetActive(false);
+            popupGameOver.gameObject.SetActive(false);
+            popupGameClear.gameObject.SetActive(false);
+
         }
 
         public void Play()

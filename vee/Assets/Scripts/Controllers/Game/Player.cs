@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -234,6 +234,10 @@ namespace Vs.Controllers.Game
                     break;
                 case ItemCategory.Accessory:
                     this.UpgradeStats(skill as Accessory);
+                    break;
+                case ItemCategory.item:
+                    var item = skill as Items;
+                    GameManager.Instance.Player.RecoverHp(int.Parse(item.Value));
                     break;
             }
             OnScreenUi.Instance.UpdateEquipmentView();

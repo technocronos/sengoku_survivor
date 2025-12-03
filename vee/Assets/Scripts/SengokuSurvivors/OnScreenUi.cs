@@ -1,14 +1,15 @@
-﻿using SengokuSurvivors;
+﻿using MyGame;
+using SengokuSurvivors;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
+using UNCHAIN.ThirdSdk;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
-using MyGame;
-using UNCHAIN.ThirdSdk;
-using UnityEditor.Rendering;
+using Vs.Controllers.Game;
 
 public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 {
@@ -263,6 +264,9 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         int buttonIndex = 0;
         foreach (var entry in allEquipment)
         {
+            ItemCategory category = (ItemCategory)(int)entry["category"];
+            if (category == ItemCategory.item) continue;
+
             var ii = buttonIndex;
             DebugMenuButtons[buttonIndex].gameObject.SetActive(true);
             DebugMenuButtons[buttonIndex].onClick.RemoveAllListeners();

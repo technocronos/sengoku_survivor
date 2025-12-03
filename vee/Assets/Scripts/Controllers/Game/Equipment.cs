@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +18,8 @@ namespace Vs.Controllers.Game
     {
         None = 0,
         Weapon = 1,
-        Accessory = 2
+        Accessory = 2,
+        item = 3
     }
 
     public sealed class Weapon : Equipment
@@ -37,4 +38,10 @@ namespace Vs.Controllers.Game
         public string EffectId;
         public int EffectValue;
     }
+
+    public sealed class Items : Equipment
+    {
+        public string Value;
+    }
+
 }

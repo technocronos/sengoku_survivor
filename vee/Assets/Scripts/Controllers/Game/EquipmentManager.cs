@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,14 +12,16 @@ namespace Vs.Controllers.Game
         private List<JsonObject> dropMst;
         private List<JsonObject> weaponsMst;
         private List<JsonObject> accessoriesMst;
+        private List<JsonObject> itemMst;
         private Dictionary<int, Equipment> skills = new Dictionary<int, Equipment>();
         private readonly Dictionary<int, Sprite> skillSpriteAssets = new Dictionary<int, Sprite>();
 
-        public void Initialize(List<JsonObject> dropMst, List<JsonObject> weaponsMst, List<JsonObject> accessoriesMst)
+        public void Initialize(List<JsonObject> dropMst, List<JsonObject> weaponsMst, List<JsonObject> accessoriesMst, List<JsonObject> itemMst)
         {
             this.dropMst = dropMst;
             this.weaponsMst = weaponsMst;
             this.accessoriesMst = accessoriesMst;
+            this.itemMst = itemMst;
         }
 
         public Equipment UpgradeSkill(int itemId)
@@ -44,10 +46,12 @@ namespace Vs.Controllers.Game
             else if (category == ItemCategory.Accessory)
             {
                 itemRow = accessoriesMst.Find(i => i["item_id"] == itemId && i["level"] == newLevel);
+            }else if(category == ItemCategory.item)
+            {
+                itemRow = itemMst.Find(i => i["item_id"] == itemId);
+                
             }
             if (itemRow == null) return null;
-
-
 
             Equipment item;
             if (!hasItem)//取得していない武器や装備の場合
@@ -56,28 +60,35 @@ namespace Vs.Controllers.Game
                 {
                     item = new Weapon();
                 }
-                else if (category == ItemCategory.Accessory) 
+                else if (category == ItemCategory.Accessory)
                 {
                     item = new Accessory();
                 }
-                else
+                else if (category == ItemCategory.item)
+                {
+                    item = new Items();
+                }
+                else 
                 {
                     return null;
                 }
+
                 item.ItemId = itemId;
                 item.ItemIcon = GetSkillSprite(itemId);
                 item.Category = category;
-                this.skills.Add(itemId, item);
+
+                if (category == ItemCategory.Weapon || category == ItemCategory.Accessory)
+                    this.skills.Add(itemId, item);
             }
             else
             {
                 item = skills[itemId];
             }
 
-            item.Level = itemRow["level"];
-
             if (item.Category == ItemCategory.Weapon)
             {
+                item.Level = itemRow["level"];
+
                 var weapon = item as Weapon;
                 weapon.Atk = itemRow["atk"];
                 weapon.CoolTime = itemRow["cooltime"] / 1000f;
@@ -87,9 +98,16 @@ namespace Vs.Controllers.Game
             }
             else if (item.Category == ItemCategory.Accessory)
             {
+                item.Level = itemRow["level"];
+
                 var acc = item as Accessory;
                 acc.EffectId = itemRow["effect_id"];
                 acc.EffectValue = itemRow["effect_value"];
+            }
+            else if (item.Category == ItemCategory.item)
+            {
+                var itm = item as Items;
+                itm.Value = itemRow["value"];
             }
             else
             {
@@ -129,10 +147,18 @@ namespace Vs.Controllers.Game
             {
                 int level = 1;
                 int id = dropMst[i]["item_id"];
+
                 ItemCategory category = (ItemCategory)(int) dropMst[i]["category"];
+                if (category == ItemCategory.item)
+                {
+                    continue;
+                }
+
                 if (skills.ContainsKey(id))
                     { level = skills[id].Level; }
+
                 List<JsonObject> data;
+
                 if (category == ItemCategory.Weapon)
                 {
                     data = weaponsMst;
@@ -151,6 +177,22 @@ namespace Vs.Controllers.Game
 
                 list.Add(dropMst[i]);
             }
+
+            //もしドロップアイテムが無い場合
+            if(list.Count == 0)
+            {
+                for (int i = 0; i < dropMst.Count; i++)
+                {
+                    ItemCategory category = (ItemCategory)(int)dropMst[i]["category"];
+                    if (category == ItemCategory.item)
+                    {
+                        list.Add(dropMst[i]);
+
+                    }
+                }
+            }
+
+
             return list;
         }
 
