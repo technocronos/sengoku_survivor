@@ -66,6 +66,8 @@ namespace Vs.Controllers.Game
 
         private ThirdController thirdController;
 
+        public Dictionary<int, int> onScreenEnemy = new Dictionary<int, int>();
+
         override protected void OnAwake()
         {
             //GameのシーンからでもエディターでプレイできるようにBootstrapからロード
@@ -120,6 +122,8 @@ namespace Vs.Controllers.Game
             popupPause.gameObject.SetActive(false);
             popupGameOver.gameObject.SetActive(false);
             popupGameClear.gameObject.SetActive(false);
+
+            onScreenEnemy.Clear();
 
         }
 
@@ -196,6 +200,8 @@ namespace Vs.Controllers.Game
             var min = Mathf.FloorToInt(this.time / 60);
             var sec = Mathf.FloorToInt(this.time % 60);
             this.timeText.text = $"{min:00}:{sec:00}";
+
+            OnScreenUi.Instance.SetOnScreenEnemy(onScreenEnemy);
 
             // if (this.enemySpawner.IsCompleted && this.Enemies.Count(i => i.IsTarget) == 0)
             // {

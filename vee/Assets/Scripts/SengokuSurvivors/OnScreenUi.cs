@@ -2,6 +2,7 @@
 using SengokuSurvivors;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TMPro;
 using UNCHAIN.ThirdSdk;
@@ -38,6 +39,9 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private Button DebugButton2;
     [SerializeField]
     private Button DebugButton3;
+
+    [SerializeField]
+    private TextMeshProUGUI TextOnScreenEnemy;
 
     [SerializeField]
     private Button DebugMenuButton;
@@ -117,6 +121,23 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
                 hpFadeSlider.value += (hpSlider.value - hpFadeSlider.value) * 2f * Time.unscaledDeltaTime;
             }
         }
+    }
+
+    public void SetOnScreenEnemy(Dictionary<int,int> onScreenEnemy)
+    {
+        TextOnScreenEnemy.text = "";
+
+        if (onScreenEnemy == null || onScreenEnemy.Count == 0)
+        {
+            return;
+        }
+
+        sb.Clear();
+        foreach (var kvp in onScreenEnemy.OrderBy(x => x.Key))
+        {
+            sb.AppendLine($"ID：{kvp.Key}　Num:{kvp.Value}");
+        }
+        TextOnScreenEnemy.text = sb.ToString();
     }
 
     public void SetCurrHp(int hp, int maxHp)

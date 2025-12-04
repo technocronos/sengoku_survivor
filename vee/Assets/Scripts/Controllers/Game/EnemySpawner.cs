@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -127,11 +127,21 @@ namespace Vs.Controllers.Game
             GameManager.Instance.RegisterEnemy(enemy);
             enemy.Initialize(this);
             enemy.transform.SetPositionAndRotation(new Vector3(x, y, 0), Quaternion.identity);
+            enemy.SetEnemyId(enemyId);
             enemy.SetHp(hp);
             enemy.SetAtk(atk);
             enemy.SetDropId(raw["drop_id"]);
             enemy.SetEnemyType(enemyType);
             enemy.SetExpAmount(expAmount);
+
+            if (GameManager.Instance.onScreenEnemy.ContainsKey(enemyId))
+            {
+                GameManager.Instance.onScreenEnemy[enemyId]++;
+            }
+            else
+            {
+                GameManager.Instance.onScreenEnemy.Add(enemyId, 1);
+            }
         }
 
         private void OnDestroy()

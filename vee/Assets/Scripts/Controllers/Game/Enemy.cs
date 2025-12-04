@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Vs.Controllers.Game
@@ -14,6 +14,7 @@ namespace Vs.Controllers.Game
         public bool IsTarget = true;
         public bool IsDead { get; private set; }
 
+        public int enemyId;
         public int Hp = 20;
         public int Atk { get; private set; }
         public int DropId { get; private set; }
@@ -46,6 +47,11 @@ namespace Vs.Controllers.Game
             {
                 hpText.gameObject.SetActive(false);
             }
+        }
+
+        public void SetEnemyId(int enemyId)
+        {
+            this.enemyId = enemyId;
         }
 
         public void SetHp(int hp)
@@ -120,6 +126,15 @@ namespace Vs.Controllers.Game
             isInKnockback = false;
             StopAllCoroutines();
             spawner.Despawn(this);
+
+            if (GameManager.Instance.onScreenEnemy.ContainsKey(this.enemyId))
+            {
+                int value = GameManager.Instance.onScreenEnemy[this.enemyId];
+                if (value > 0)
+                {
+                    GameManager.Instance.onScreenEnemy[this.enemyId]--;
+                }
+            }
         }
 
         public bool OnWeaponTrigger(int damage, string soundId, float knockbackLength = 0f, float knockbackTime = 0f)
