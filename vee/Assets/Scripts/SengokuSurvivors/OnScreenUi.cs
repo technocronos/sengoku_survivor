@@ -5,9 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UNCHAIN.ThirdSdk;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 using Vs.Controllers.Game;
 
