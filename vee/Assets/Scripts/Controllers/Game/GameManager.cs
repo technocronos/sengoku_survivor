@@ -4,6 +4,8 @@ using System.Linq;
 using UnityEngine;
 using MyGame;
 using UNCHAIN.ThirdSdk;
+using UnityEngine.UI;
+using TMPro;
 
 namespace Vs.Controllers.Game
 {
@@ -32,6 +34,15 @@ namespace Vs.Controllers.Game
 
         [SerializeField]
         private PopupLvup popupLvUp;
+
+        [SerializeField]
+        private Image IrritateGauge;
+
+        [SerializeField]
+        private TextMeshProUGUI CommentText;
+
+        [SerializeField]
+        private Image StreamerImage;
 
         [SerializeField]
         private PopupPause popupPause;
@@ -201,7 +212,12 @@ namespace Vs.Controllers.Game
             var sec = Mathf.FloorToInt(this.time % 60);
             this.timeText.text = $"{min:00}:{sec:00}";
 
+#if DEVELOP
             OnScreenUi.Instance.SetOnScreenEnemy(onScreenEnemy);
+#endif
+            var irritate_point = OnScreenUi.Instance.GetIrritatePoint(onScreenEnemy);
+            SetIrritateInfo(irritate_point);
+
 
             // if (this.enemySpawner.IsCompleted && this.Enemies.Count(i => i.IsTarget) == 0)
             // {
@@ -215,6 +231,73 @@ namespace Vs.Controllers.Game
             //    this.CalcLevel();
             //    this.ShowLvUp();
             //}
+        }
+
+        private void SetIrritateInfo(int irritate_point)
+        {
+            int i = 1;
+            int chara = 0;
+
+            if (irritate_point >= 0 && irritate_point < 10)
+            {
+                i = 1;
+                chara = 0;
+            }
+            else if (irritate_point >= 10 && irritate_point < 20)
+            {
+                i = 2;
+                chara = 0;
+            }
+            else if (irritate_point >= 20 && irritate_point < 30)
+            {
+                i = 3;
+                chara = 1;
+            }
+            else if (irritate_point >= 30 && irritate_point < 40)
+            {
+                i = 4;
+                chara = 1;
+            }
+            else if (irritate_point >= 40 && irritate_point < 50)
+            {
+                i = 5;
+                chara = 2;
+            }
+            else if (irritate_point >= 50 && irritate_point < 60)
+            {
+                i = 6;
+                chara = 2;
+            }
+            else if (irritate_point >= 60 && irritate_point < 70)
+            {
+                i = 7;
+                chara = 3;
+            }
+            else if (irritate_point >= 70 && irritate_point < 80)
+            {
+                i = 8;
+                chara = 3;
+            }
+            else if (irritate_point >= 80)
+            {
+                i = 9;
+                chara = 4;
+            }
+
+            IrritateGauge.sprite = Resources.Load<Sprite>("Gauge/ira_" + i);
+
+            StreamerImage.sprite = Resources.Load<Sprite>("Chara/chara_" + chara);
+            if (chara == 0)
+                CommentText.text = "配信来てくれてあざまるー<sprite name=\"1f60b\">";
+            else if (chara == 1)
+                CommentText.text = "何かイライラするなぁ・・<sprite name=\"2639\">";
+            else if (chara == 2)
+                CommentText.text = "つかマジでイライラ・・<sprite name=\"1f606\">";
+            else if (chara == 3)
+                CommentText.text = "イライラする～イライラする～うが～<sprite name=\"1f606\"><sprite name=\"1f606\">";
+            else if (chara == 4)
+                CommentText.text = "イライラマーーーーーックス<sprite name=\"1f606\"><sprite name=\"1f606\"><sprite name=\"1f606\"><sprite name=\"1f606\">";
+
         }
 
         public string GetTimeText()

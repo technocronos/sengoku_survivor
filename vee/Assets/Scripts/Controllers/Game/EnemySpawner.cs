@@ -118,6 +118,7 @@ namespace Vs.Controllers.Game
             var atk = Mathf.FloorToInt(raw["atk"] * growth["atk_rate"] / 1000.0f);
             var enemyType = (SengokuSurvivors.EnemyType)(int)raw["enemy_type"];
             var expAmount = (int)raw["exp_amount"];
+            var irritate = (int)raw["irritate"];
 
             var modelId = raw["model_id"];
             if (!enemyPrefabsCache.ContainsKey(modelId))
@@ -133,6 +134,7 @@ namespace Vs.Controllers.Game
             enemy.SetDropId(raw["drop_id"]);
             enemy.SetEnemyType(enemyType);
             enemy.SetExpAmount(expAmount);
+            enemy.SetIrritate(irritate);
 
             if (GameManager.Instance.onScreenEnemy.ContainsKey(enemyId))
             {

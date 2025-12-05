@@ -1,9 +1,25 @@
-using UnityEngine;
+﻿using UnityEngine;
+using Vs.Controllers.Game;
 
 public class EnemyProjectile : MonoBehaviour
 {
     private Vector3 dir;
     private int damage = 10;
+    private int enemyId = 90000001;
+
+    public void Start()
+    {
+        if (GameManager.Instance.onScreenEnemy.ContainsKey(this.enemyId))
+        {
+            GameManager.Instance.onScreenEnemy[this.enemyId]++;
+        }
+        else
+        {
+            GameManager.Instance.onScreenEnemy.Add(this.enemyId, 1);
+        }
+    }
+
+
     public void Setup(Vector3 dir)
     {
         this.dir = dir; 
@@ -18,7 +34,16 @@ public class EnemyProjectile : MonoBehaviour
 
     public void Remove()
     {
-        Destroy(gameObject); 
+        Destroy(gameObject);
+
+        if (GameManager.Instance.onScreenEnemy.ContainsKey(this.enemyId))
+        {
+            int value = GameManager.Instance.onScreenEnemy[this.enemyId];
+            if (value > 0)
+            {
+                GameManager.Instance.onScreenEnemy[this.enemyId]--;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

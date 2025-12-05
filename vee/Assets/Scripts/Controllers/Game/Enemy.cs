@@ -19,6 +19,7 @@ namespace Vs.Controllers.Game
         public int Atk { get; private set; }
         public int DropId { get; private set; }
         public int ExpAmount = 1;
+        public int Irritate { get; private set; }
 
         public SengokuSurvivors.EnemyType EnemyType { get; private set; } = SengokuSurvivors.EnemyType.Normal;
 
@@ -78,6 +79,11 @@ namespace Vs.Controllers.Game
         public void SetExpAmount(int expAmount)
         {
             this.ExpAmount = expAmount;
+        }
+
+        public void SetIrritate(int irritate)
+        {
+            this.Irritate = irritate;
         }
 
         private void Update()

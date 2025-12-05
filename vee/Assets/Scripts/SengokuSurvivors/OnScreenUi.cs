@@ -8,6 +8,7 @@ using TMPro;
 using UNCHAIN.ThirdSdk;
 using UnityEngine;
 using UnityEngine.UI;
+using Vs.Backend;
 using Vs.Controllers.Game;
 
 public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
@@ -133,11 +134,63 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         }
 
         sb.Clear();
+
+        var enemyMst = MstDatas.Instance.Get("enemy_mst");        
+        float litateTotal = 0;
         foreach (var kvp in onScreenEnemy.OrderBy(x => x.Key))
         {
-            sb.AppendLine($"ID：{kvp.Key}　Num:{kvp.Value}");
+            var name = "";
+
+            // enemy_mstからirritate値を取得
+            var enemyData = enemyMst.Find(i => i["enemy_id"] == kvp.Key);
+            if (enemyData != null)
+            {
+                var irritate = (int)enemyData["irritate"];
+                // 出現数にirritate/1000をかけて重みづけ
+                litateTotal += kvp.Value * (irritate / 1000.0f);
+                name = (string)enemyData["name"];
+            }
+            else
+            {
+                // enemy_mstにデータがない場合は出現数のまま
+                litateTotal += kvp.Value;
+                name = "その他";
+            }
+
+            sb.AppendLine($"{name}:{kvp.Value}");
         }
+
+        sb.AppendLine($"");
+        sb.AppendLine($"イライラpt：{litateTotal}");
+
         TextOnScreenEnemy.text = sb.ToString();
+    }
+
+    public int GetIrritatePoint(Dictionary<int, int> onScreenEnemy)
+    {
+        if (onScreenEnemy == null || onScreenEnemy.Count == 0)
+        {
+            return 0;
+        }
+        float litateTotal = 0;
+        var enemyMst = MstDatas.Instance.Get("enemy_mst");
+        foreach (var kvp in onScreenEnemy)
+        {
+            // enemy_mstからirritate値を取得
+            var enemyData = enemyMst.Find(i => i["enemy_id"] == kvp.Key);
+            if (enemyData != null)
+            {
+                var irritate = (int)enemyData["irritate"];
+                // 出現数にirritate/1000をかけて重みづけ
+                litateTotal += kvp.Value * (irritate / 1000.0f);
+            }
+            else
+            {
+                // enemy_mstにデータがない場合は出現数のまま
+                litateTotal += kvp.Value;
+            }
+        }
+        return Mathf.FloorToInt(litateTotal);
     }
 
     public void SetCurrHp(int hp, int maxHp)
