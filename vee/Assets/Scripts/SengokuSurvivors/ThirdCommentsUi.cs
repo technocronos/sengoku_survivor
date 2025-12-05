@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Vs;
@@ -42,7 +42,7 @@ namespace SengokuSurvivors
             texts.Enqueue(a);
             a.text = text;
             scrollView.verticalNormalizedPosition = 0f;
-            SoundService.Instance.PlaySe("decide");
+            SoundService.Instance.PlaySe("se_getprice");
         }
     }
 }
