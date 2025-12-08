@@ -20,6 +20,7 @@ namespace Vs.Controllers.Game
         public int DropId { get; private set; }
         public int ExpAmount = 1;
         public int Irritate { get; private set; }
+        public int Score { get; private set; }
 
         public SengokuSurvivors.EnemyType EnemyType { get; private set; } = SengokuSurvivors.EnemyType.Normal;
 
@@ -86,6 +87,11 @@ namespace Vs.Controllers.Game
             this.Irritate = irritate;
         }
 
+        public void SetScore(int score)
+        {
+            this.Score = score;
+        }
+
         private void Update()
         {
             if (this.IsDead)
@@ -122,7 +128,9 @@ namespace Vs.Controllers.Game
                 GameManager.Instance.AddCount();
                 SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position, this.ExpAmount);
 
-                if(this.EnemyType == SengokuSurvivors.EnemyType.Elite)
+                GameManager.Instance.getCurrScore(this.enemyId, this.Score);
+
+                if (this.EnemyType == SengokuSurvivors.EnemyType.Elite)
                     SengokuSurvivors.DropManager.Instance.DropItem(this.transform.position, this.DropId);
                 if (this.EnemyType == SengokuSurvivors.EnemyType.Boss)
                 {

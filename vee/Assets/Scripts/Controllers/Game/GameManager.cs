@@ -48,10 +48,10 @@ namespace Vs.Controllers.Game
         private PopupPause popupPause;
 
         [SerializeField]
-        private PopupGameOver popupGameOver;
+        private PopupResult popupResult;
 
         [SerializeField]
-        private PopupGameClear popupGameClear;
+        private TextMeshProUGUI CurrScore;
 
         public Player Player;
         public List<Enemy> Enemies { get; private set; } = new List<Enemy>();
@@ -78,6 +78,13 @@ namespace Vs.Controllers.Game
         private ThirdController thirdController;
 
         public Dictionary<int, int> onScreenEnemy = new Dictionary<int, int>();
+
+        public Dictionary<int, int> ScoreStore = new Dictionary<int, int>();
+
+        public int totalScore = 0;
+
+        private const int ScoreExpId = 1;
+        private const int ScoreExp = 10;
 
         override protected void OnAwake()
         {
@@ -131,11 +138,10 @@ namespace Vs.Controllers.Game
             //初期非表示
             popupLvUp.gameObject.SetActive(false);
             popupPause.gameObject.SetActive(false);
-            popupGameOver.gameObject.SetActive(false);
-            popupGameClear.gameObject.SetActive(false);
+            popupResult.gameObject.SetActive(false);
 
             onScreenEnemy.Clear();
-
+            UpdateCurrScore();
         }
 
         public void Play()
@@ -151,7 +157,8 @@ namespace Vs.Controllers.Game
         private void GameClear()
         {
             this.isStop = true;
-            this.popupGameClear.Show(() =>
+            var result = new PopupResult.GameResult(PopupResult.GameResult.Win);
+            this.popupResult.Show(result, () =>
             {
                 this.OnNext();
             });
@@ -163,7 +170,8 @@ namespace Vs.Controllers.Game
             PlayerPrefs.Save();
 
             this.isStop = true;
-            this.popupGameOver.Show(() =>
+            var result = new PopupResult.GameResult(PopupResult.GameResult.Lose);
+            this.popupResult.Show(result, () =>
             {
                 this.OnNext();
             });
@@ -326,6 +334,9 @@ namespace Vs.Controllers.Game
             }
             OnScreenUi.Instance.SetExp(this.exp, expToLevelUp);
             OnScreenUi.Instance.SetCurrLevel(this.level);
+
+            getCurrScore(ScoreExpId, ScoreExp);
+
             return;
             this.exp += Mathf.FloorToInt(value * this.Player.Stats.ExpRate / 1000.0f);
 
@@ -336,6 +347,7 @@ namespace Vs.Controllers.Game
             var exp = this.exp - prev["exp"];
             var calced = this.levelMst.FindLast(i => i["exp"] <= exp);
             this.levelCalced = calced["level"];
+
         }
 
         public void Recover(int value)
@@ -371,6 +383,35 @@ namespace Vs.Controllers.Game
         {
             this.count++;
             this.countText.text = this.count.ToString();
+        }
+
+        public void getCurrScore(int id, int score)
+        {
+            if(score > 0)
+            {
+                if (GameManager.Instance.ScoreStore.ContainsKey(id))
+                {
+                    GameManager.Instance.ScoreStore[id] += score;
+                }
+                else
+                {
+                    GameManager.Instance.ScoreStore.Add(id, score);
+                }
+                UpdateCurrScore();
+            }
+        }
+
+        public void UpdateCurrScore()
+        {
+            this.totalScore = 0;
+            foreach (var score in this.ScoreStore.Values)
+            {
+                this.totalScore += score;
+            }
+            if (this.CurrScore != null)
+            {
+                this.CurrScore.text = this.totalScore.ToString();
+            }
         }
 
         public void Bomb()

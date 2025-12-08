@@ -119,6 +119,7 @@ namespace Vs.Controllers.Game
             var enemyType = (SengokuSurvivors.EnemyType)(int)raw["enemy_type"];
             var expAmount = (int)raw["exp_amount"];
             var irritate = (int)raw["irritate"];
+            var score = (int)raw["score"];
 
             var modelId = raw["model_id"];
             if (!enemyPrefabsCache.ContainsKey(modelId))
@@ -135,6 +136,7 @@ namespace Vs.Controllers.Game
             enemy.SetEnemyType(enemyType);
             enemy.SetExpAmount(expAmount);
             enemy.SetIrritate(irritate);
+            enemy.SetScore(score);
 
             if (GameManager.Instance.onScreenEnemy.ContainsKey(enemyId))
             {
