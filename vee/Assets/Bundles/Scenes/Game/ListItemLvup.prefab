@@ -473,6 +473,104 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2874483033654854284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6363041049879072095}
+  - component: {fileID: 4296312438058947195}
+  - component: {fileID: 7097318830225369978}
+  - component: {fileID: 3608949099439642470}
+  m_Layer: 5
+  m_Name: TextLv
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6363041049879072095
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874483033654854284}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8143632280170766337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.0014953613, y: 39}
+  m_SizeDelta: {x: 0.0031, y: -314.6871}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4296312438058947195
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874483033654854284}
+  m_CullTransparentMesh: 1
+--- !u!114 &7097318830225369978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874483033654854284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5686275, g: 0.4039216, b: 0.73333335, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: d356a2c5b1b96c24d8d3d0cd855c01ce, type: 3}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1.2
+  m_Text: "Lv1\u2192Lv2"
+--- !u!114 &3608949099439642470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874483033654854284}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fa14f34c688404480a7f1153f88d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
+  m_circleCount: 3
+  m_firstSample: 3
+  m_sampleIncrement: 3
 --- !u!1 &3514717722776441579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,6 +1254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 8143632279365853518}
   nameText: {fileID: 5163433668789241601}
+  TextLv: {fileID: 7097318830225369978}
   descriptionText: {fileID: 8143632279399997635}
   icon: {fileID: 8143632278633320653}
   newLabel: {fileID: 1961773939756725120}
@@ -1307,8 +1406,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0014953613, y: -64}
-  m_SizeDelta: {x: 0.0031, y: -128}
+  m_AnchoredPosition: {x: 0.0014953613, y: -107.83539}
+  m_SizeDelta: {x: 0.0031, y: -215.6708}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8143632279399997636
 CanvasRenderer:
@@ -1644,6 +1743,7 @@ RectTransform:
   - {fileID: 1799377355395920044}
   - {fileID: 3669671911313982431}
   - {fileID: 8143632278633320652}
+  - {fileID: 6363041049879072095}
   - {fileID: 8143632279399997634}
   - {fileID: 3440787250181469592}
   - {fileID: 8143632279400254774}

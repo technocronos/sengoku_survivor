@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cbf45627df3146d4c86be248e54a91ac
+guid: a515bf6f222692b42af105e1c5eff758
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -628197183183637407
-    second: frame_chat_l_0
+      213: -5335278015230317376
+    second: srreaming_bg_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: frame_chat_l_0
+      name: srreaming_bg_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 667
+        width: 495
+        height: 253
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 220, y: 0, z: 143, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 164307f7df13847f0800000000000000
-      internalID: -628197183183637407
+      spriteID: 0ccee34a9e845f5b0800000000000000
+      internalID: -5335278015230317376
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      frame_chat_l_0: -628197183183637407
+      srreaming_bg_0: -5335278015230317376
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

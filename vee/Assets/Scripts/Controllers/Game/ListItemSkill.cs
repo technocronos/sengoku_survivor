@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +13,9 @@ namespace Vs.Controllers.Game
 
         [SerializeField]
         private UnityEngine.UI.Text nameText;
+
+        [SerializeField]
+        private UnityEngine.UI.Text TextLv;
 
         [SerializeField]
         private UnityEngine.UI.Text descriptionText;
@@ -42,6 +45,15 @@ namespace Vs.Controllers.Game
         {
             this.descriptionText.text = description;
         }
+
+        public void SetLevelInfo(int curLevel)
+        {
+            if(curLevel > 0)
+                this.TextLv.text = "Lv" + curLevel + "→" + ((int)curLevel + 1);
+            else
+                this.TextLv.text = "Lv1";
+        }
+
 
         public void SetLevel(int level)
         {
