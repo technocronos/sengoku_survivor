@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using Vs;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace SengokuSurvivors
@@ -13,36 +14,86 @@ namespace SengokuSurvivors
         [SerializeField]
         private Transform commentsContainer;
         [SerializeField]
-        private TMP_Text commentPrefab;
+        private GameObject commentPrefab;
 
-        private int maxTexts = 10;
-        private readonly Queue<TMP_Text> texts = new Queue<TMP_Text>();
+        private int maxTexts = 9;
+        private readonly Queue<GameObject> texts = new Queue<GameObject>();
 
         private void Awake()
         {
             var a = FindAnyObjectByType<ThirdController>();
             if (a != null) a.CommentsUi = this;
+
+            commentPrefab.gameObject.SetActive(false);
         }
 
         public void AddComment(string text)
         {
-            TMP_Text a;
-            if (texts.Count > maxTexts - 1)
+            GameObject obj;
+
+            if (GetScrollViewHeight() < GetCommentsContainerHeight())
             {
-                a = texts.Dequeue();
-                a.transform.SetParent(null);
-                a.transform.SetParent(commentsContainer);
+                obj = texts.Dequeue();
+                obj.transform.SetParent(null);
+                obj.transform.SetParent(commentsContainer);
             }
             else
             {
-                a = Instantiate(commentPrefab, commentsContainer);
+                obj = Instantiate(commentPrefab, commentsContainer);
             }
 
-            a.gameObject.SetActive(true);
-            texts.Enqueue(a);
-            a.text = text;
-            scrollView.verticalNormalizedPosition = 0f;
+            obj.gameObject.SetActive(true);
+            texts.Enqueue(obj);
+
+            var txt = obj.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+
+            txt.text = text;
+            
+            // レイアウト更新後にスクロール位置を設定（見切れを防ぐため）
+            StartCoroutine(ScrollToBottomAfterLayout());
+
             SoundService.Instance.PlaySe("se_getprice");
+        }
+
+        /// <summary>
+        /// レイアウト更新後にスクロールを最下部に移動
+        /// </summary>
+        private IEnumerator ScrollToBottomAfterLayout()
+        {
+            // レイアウト更新を強制
+            Canvas.ForceUpdateCanvases();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(commentsContainer.GetComponent<RectTransform>());
+            
+            // 1フレーム待つ（レイアウト更新を確実にする）
+            yield return null;
+            
+            // スクロール位置を最下部に設定
+            if (scrollView != null)
+            {
+                scrollView.verticalNormalizedPosition = 0f;
+            }
+        }
+
+        /// <summary>
+        /// scrollViewの高さを取得
+        /// </summary>
+        public float GetScrollViewHeight()
+        {
+            if (scrollView == null) return 0f;
+            var rectTransform = scrollView.GetComponent<RectTransform>();
+            if (rectTransform == null) return 0f;
+            return rectTransform.rect.height;
+        }
+
+        /// <summary>
+        /// commentsContainerの高さを取得
+        /// </summary>
+        public float GetCommentsContainerHeight()
+        {
+            if (commentsContainer == null) return 0f;
+            var rectTransform = commentsContainer.GetComponent<RectTransform>();
+            if (rectTransform == null) return 0f;
+            return rectTransform.rect.height;
         }
     }
 }
