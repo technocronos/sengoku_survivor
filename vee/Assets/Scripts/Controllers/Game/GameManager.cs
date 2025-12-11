@@ -75,6 +75,30 @@ namespace Vs.Controllers.Game
 
         public EquipmentManager EquipmentManager = new EquipmentManager();
 
+        private int previousChara = -1; // 前回のcharaの値を保持
+        private float commentTimer = 0f; // コメント表示用のタイマー
+        private const float commentInterval = 10f; // コメント表示間隔（10秒）
+
+        /// <summary>
+        /// text_mst.csvからシンボルに基づいてテキストを取得する
+        /// 同じシンボルで複数のテキストがある場合はランダムに選ぶ
+        /// </summary>
+        /// <param name="symbol">シンボル名（例: "broadcast_1"）</param>
+        /// <returns>テキスト（見つからない場合は空文字列）</returns>
+        public string GetTextFromMst(string symbol)
+        {
+            var textMst = Backend.MstDatas.Instance.Get("text_mst");
+            // シンボルでフィルタリング（明示的に文字列に変換）
+            var texts = textMst.FindAll(i => (string)i["symbol"] == symbol);
+            if (texts == null || texts.Count == 0)
+            {
+                return "";
+            }
+            // 同じシンボルで複数のテキストがある場合はランダムに選ぶ
+            var randomIndex = Random.Range(0, texts.Count);
+            return (string)texts[randomIndex]["Ja"];
+        }
+
         private ThirdController thirdController;
 
         public Dictionary<int, int> onScreenEnemy = new Dictionary<int, int>();
@@ -226,19 +250,13 @@ namespace Vs.Controllers.Game
             var irritate_point = OnScreenUi.Instance.GetIrritatePoint(onScreenEnemy);
             SetIrritateInfo(irritate_point);
 
-
-            // if (this.enemySpawner.IsCompleted && this.Enemies.Count(i => i.IsTarget) == 0)
-            // {
-            //     this.OnGameClear();
-            //     return;
-            // }
-
-            //if (this.levelCalced > this.level)
-            //{
-            //    this.level++;
-            //    this.CalcLevel();
-            //    this.ShowLvUp();
-            //}
+            // 10秒ごとにランダムコメントを表示
+            commentTimer += Time.deltaTime;
+            if (commentTimer >= commentInterval)
+            {
+                commentTimer = 0f;
+                ShowRandomComment();
+            }
         }
 
         private void SetIrritateInfo(int irritate_point)
@@ -294,18 +312,44 @@ namespace Vs.Controllers.Game
 
             IrritateGauge.sprite = Resources.Load<Sprite>("Gauge/ira_" + i);
 
-            StreamerImage.sprite = Resources.Load<Sprite>("Chara/chara_" + chara);
-            if (chara == 0)
-                CommentText.text = "配信来てくれてあざまるー<sprite name=\"1f60b\">";
-            else if (chara == 1)
-                CommentText.text = "何かイライラするなぁ・・<sprite name=\"2639\">";
-            else if (chara == 2)
-                CommentText.text = "つかマジでイライラ・・<sprite name=\"1f606\">";
-            else if (chara == 3)
-                CommentText.text = "イライラする～イライラする～うが～<sprite name=\"1f606\"><sprite name=\"1f606\">";
-            else if (chara == 4)
-                CommentText.text = "イライラマーーーーーックス<sprite name=\"1f606\"><sprite name=\"1f606\"><sprite name=\"1f606\"><sprite name=\"1f606\">";
+            
+            // charaが変わったかどうかを判定
+            bool chara_change_flg = (chara != previousChara);
+            
+            // charaが変わった場合のみセリフを更新
+            if (chara_change_flg)
+            {
 
+                StreamerImage.sprite = Resources.Load<Sprite>("Chara/chara_" + chara);
+
+                // text_mst.csvからテキストを取得
+                string symbol = $"broadcast_{chara + 1}";
+                string text = GetTextFromMst(symbol);
+                if (!string.IsNullOrEmpty(text))
+                {
+                    CommentText.text = text;
+                }
+                // 前回のcharaを更新
+                previousChara = chara;
+            }
+
+        }
+
+        /// <summary>
+        /// text_mst.csvのrand_commentからランダムに1つ選んでCommentsUiに表示
+        /// </summary>
+        private void ShowRandomComment()
+        {
+            if (thirdController == null || thirdController.CommentsUi == null)
+            {
+                return;
+            }
+
+            string text = GetTextFromMst("rand_comment");
+            if (!string.IsNullOrEmpty(text))
+            {
+                thirdController.CommentsUi.AddComment(text);
+            }
         }
 
         public string GetTimeText()
