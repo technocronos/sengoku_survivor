@@ -12,9 +12,14 @@ namespace Vs.Controllers.MyPage
         [SerializeField]
         private Button ButtonSettings;
         [SerializeField]
+        private Button BtnThird;
+        
+        [SerializeField]
         private Button ButtonQuit;
         [SerializeField]
         private GameObject MenuSettings;
+        [SerializeField]
+        private GameObject MenuThird;
         [SerializeField]
         private Button ButtonCloseMenuSettings;
         [SerializeField]
@@ -42,8 +47,10 @@ namespace Vs.Controllers.MyPage
         {
             ButtonPlay.onClick.AddListener(OnButtonPlay);
             ButtonSettings.onClick.AddListener(OnButtonSettings);
+            BtnThird.onClick.AddListener(OnButtonThird);
+
             ButtonQuit.onClick.AddListener(OnButtonQuit);
-            ButtonCloseMenuSettings.onClick.AddListener(OnButtonCloseSettings);
+
             MenuSettings.gameObject.SetActive(false);
             InputFieldStreamId.onValueChanged.AddListener(OnInputFieldChanged);
             thirdController = FindAnyObjectByType<ThirdController>();
@@ -62,19 +69,30 @@ namespace Vs.Controllers.MyPage
             ViewService.Instance.ChangeView(context);
             SoundService.Instance.PlaySe("get_item");
         }
+        
+        private void OnButtonThird()
+        {
+            SoundService.Instance.PlaySe("get_item");
+            MenuThird.SetActive(true);
+            InputFieldStreamId.Select();
+            InputFieldStreamId.caretPosition = InputFieldStreamId.text.Length;
+        }
 
         private void OnButtonSettings()
         {
             SoundService.Instance.PlaySe("get_item");
             MenuSettings.SetActive(true);
-            InputFieldStreamId.Select();
-            InputFieldStreamId.caretPosition = InputFieldStreamId.text.Length;
         }
 
-        private void OnButtonCloseSettings()
+        public void OnButtonCloseSettings()
         {
             SoundService.Instance.PlaySe("get_item");
             MenuSettings.SetActive(false);
+        }
+        public void OnButtonCloseThird()
+        {
+            SoundService.Instance.PlaySe("get_item");
+            MenuThird.SetActive(false);
         }
 
         private void OnButtonQuit() 
