@@ -35,6 +35,9 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private Slider hpFadeSlider;
 
     [SerializeField]
+    private Image gauge;
+
+    [SerializeField]
     private Button DebugButton1;
     [SerializeField]
     private Button DebugButton2;
@@ -197,7 +200,17 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     {
         currentHealthText.text = string.Format("{0}/{1}", hp, maxHp);
         hpSlider.value = (float)hp / maxHp;
-        hpSlider.gameObject.SetActive(hpSlider.value < 1f - float.Epsilon);
+        //hpSlider.gameObject.SetActive(hpSlider.value < 1f - float.Epsilon);
+
+        Debug.Log("SetCurrHp");
+        var rect = gauge.transform.GetComponent<RectTransform>().rect;
+        float gauge_width = gauge.transform.GetComponent<RectTransform>().rect.width; ;
+
+        gauge_width = 143;
+
+        int posx = (int)(((hp * 1.0f) / maxHp) * gauge_width);
+        gauge.transform.localPosition = new Vector3(posx - gauge_width, 0, 0);
+
     }
 
     public void SetExp(int currExp, int maxExp)
