@@ -8017,7 +8017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e154ae0d4f7e14356a768d06b203b67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2491538897313561984}
+  animator: {fileID: 1728678658}
   avatar: {fileID: 56370948}
   blood: {fileID: 119019935}
   shooters:
@@ -55671,6 +55671,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1728678658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4878593151756918662, guid: 2e4cb7efdaa494b76ba8432a8e560b8d, type: 3}
+  m_PrefabInstance: {fileID: 1654580822}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a533f96aa2b614acca3ed8bc77dc92e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1750811406
 GameObject:
   m_ObjectHideFlags: 0
@@ -60558,17 +60569,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e4cb7efdaa494b76ba8432a8e560b8d, type: 3}
---- !u!114 &2491538897313561984 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4878593151756918662, guid: 2e4cb7efdaa494b76ba8432a8e560b8d, type: 3}
-  m_PrefabInstance: {fileID: 2491538897313561983}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a533f96aa2b614acca3ed8bc77dc92e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4606194110106201029
 PrefabInstance:
   m_ObjectHideFlags: 0
