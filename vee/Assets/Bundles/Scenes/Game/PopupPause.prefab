@@ -408,7 +408,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: EXIT TO TITLE
+  m_Text: EXIT TO MYPEGE
 --- !u!114 &6400521506122436730
 MonoBehaviour:
   m_ObjectHideFlags: 0

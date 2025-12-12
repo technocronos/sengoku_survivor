@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MyGame;
@@ -36,7 +36,7 @@ namespace Vs.Controllers.Game
 
         public void OnButtonToTitleClicked()
         {
-            var context = new Controllers.Home.Home.Context();
+            var context = new Controllers.MyPage.MyPage.Context();
             ViewService.Instance.ChangeView(context);
         }
     }

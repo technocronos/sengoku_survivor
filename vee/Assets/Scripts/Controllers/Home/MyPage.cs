@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Vs.Controllers.Home
+namespace Vs.Controllers.MyPage
 {
-    public sealed class Home : Controller
+    public sealed class MyPage : Controller
     {
         [SerializeField]
         private Button ButtonPlay;
@@ -58,7 +58,7 @@ namespace Vs.Controllers.Home
 
         private void OnButtonPlay()
         {
-            var context = new MyPage.MyPage.Context();
+            var context = new Game.Game.Context();
             ViewService.Instance.ChangeView(context);
             SoundService.Instance.PlaySe("get_item");
         }

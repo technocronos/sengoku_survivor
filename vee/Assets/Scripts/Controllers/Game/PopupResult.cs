@@ -73,7 +73,7 @@ namespace Vs.Controllers.Game
 
         public void OnButtonToTitle()
         {
-            var context = new Controllers.Home.Home.Context();
+            var context = new Controllers.MyPage.MyPage.Context();
             ViewService.Instance.ChangeView(context);
         }
     }
