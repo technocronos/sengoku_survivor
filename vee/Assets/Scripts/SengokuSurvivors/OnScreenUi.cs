@@ -221,7 +221,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 
     public void SetCurrLevel(int value)
     {
-        currentLevelText.text = (value * 100).ToString("N0");
+        currentLevelText.text = "どうせつすう " + (value * 100).ToString("N0");
     }
 
     public void UpdateEquipmentView()
