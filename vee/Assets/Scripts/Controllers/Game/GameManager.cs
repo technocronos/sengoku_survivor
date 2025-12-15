@@ -193,6 +193,8 @@ namespace Vs.Controllers.Game
             PlayerPrefs.SetFloat("record", this.time);
             PlayerPrefs.Save();
 
+            Player.gameObject.SetActive(false);
+
             this.isStop = true;
             var result = new PopupResult.GameResult(PopupResult.GameResult.Lose);
             this.popupResult.Show(result, () =>
@@ -511,7 +513,8 @@ namespace Vs.Controllers.Game
             }
             if (hp <= 0)
             {
-                this.GameOver();
+                SoundService.Instance.PlaySe("decide");
+                StartCoroutine(Player.PlayAnim("player_death", 1f, ()=> GameOver()));
             }
         }
 

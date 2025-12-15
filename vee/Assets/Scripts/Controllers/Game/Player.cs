@@ -8,6 +8,10 @@ namespace Vs.Controllers.Game
 {
     public sealed class Player : MonoBehaviour
     {
+        public delegate void OnCompleteDelegate();
+        public OnCompleteDelegate CompleteHandler;
+        public OnCompleteDelegate CompleteHandlerFunc;
+
         public class PlayerStats
         {
             public int HpRate = 1000;
@@ -28,14 +32,13 @@ namespace Vs.Controllers.Game
         public event System.Action<int, int> Recovered = (damage, hp) => { };
 
         [SerializeField]
-        private SpriteAnimator animator;
+        private Animator Anim;
 
         [SerializeField]
         private SpriteRenderer avatar;
 
         [SerializeField]
         private ParticleSystem blood;
-        private SengokuSurvivors.OnHitFlashingEffect flashing;
 
         [SerializeField]
         private ParticleController[] shooters;
@@ -63,23 +66,28 @@ namespace Vs.Controllers.Game
         private float verticalSpeedOffset = -0.3f;
         private float verticalAccelerationOffset = -0.05f;
 
-        public float BuffSpeedMulti = 1f;        
+        public float BuffSpeedMulti = 1f;
+
+        private int hashAnim { get; set; }
 
         private void Start()
         {
             // this.direction.transform.LookAt(Vector3.right);
             this.autoDir.transform.LookAt(Vector3.right);
-            flashing = GetComponentInChildren<SengokuSurvivors.OnHitFlashingEffect>();
         }
 
         public void Initialize(JsonObject raw)
         {
+            this.gameObject.SetActive(true);
+
             this.hpMaxRaw = raw["hp"];
             this.speed = raw["speed"];
             this.Stats = new PlayerStats();
             this.CalcStats();
             this.hp = this.hpMax;
             OnScreenUi.Instance.SetCurrHp(hp, hpMax);
+
+            StartCoroutine(this.PlayAnim("player_stand"));
         }
 
         private void Update()
@@ -114,11 +122,11 @@ namespace Vs.Controllers.Game
             this.transform.localPosition = position;
             if (new Vector2(horizontal, vertical).magnitude > 0)
             {
-                this.animator.Play();
+                StartCoroutine(this.PlayAnim("player_walk")) ;
             }
             else
             {
-                this.animator.Stop();
+                StartCoroutine(this.PlayAnim("player_stand"));
             }
 
             //var dir = this.joystick.Horizontal;
@@ -176,7 +184,6 @@ namespace Vs.Controllers.Game
             }
             var enemy = collision.gameObject.GetComponent<Enemy>();
             this.Damage(enemy.Hp);
-            //enemy.Death();
         }
 
         public void Damage(int value)
@@ -185,12 +192,13 @@ namespace Vs.Controllers.Game
             SoundService.Instance.PlaySe(soundId);
 
             this.blood.Play();
-            flashing.TriggerMaterialChange();
             this.hp -= value;
             if (this.hp < 0)
             {
                 this.hp = 0;
             }
+
+            StartCoroutine(this.PlayAnim("player_damage"));
             OnScreenUi.Instance.SetCurrHp(hp, hpMax);
             this.Damaged.Invoke(value, this.hp);
         }
@@ -327,5 +335,36 @@ namespace Vs.Controllers.Game
         {
             return calcedSpeed;
         }
+
+        public IEnumerator PlayAnim(string anim, float spd = 1f, OnCompleteDelegate _callback = null)
+        {
+            Debug.Log("PlayAnim start.. anim = " + anim);
+
+            if (_callback != null)
+                CompleteHandler += _callback;
+
+            Anim.SetFloat("speed", spd);
+            var a = Animator.StringToHash(anim);
+
+            if(hashAnim == a)
+            {
+                yield break;
+            }
+
+            hashAnim = a;
+            Anim.Play(hashAnim);
+
+            yield return null;
+            yield return new WaitForAnimation(Anim, 0);
+
+            Debug.Log("AvatarBehaviour PlayAnim end..");
+
+            if (CompleteHandler != null)
+            {
+                CompleteHandler?.Invoke();
+                CompleteHandler = null;
+            }
+        }
+    
     }
 }
