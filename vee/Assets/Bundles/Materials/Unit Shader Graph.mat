@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FlashingMaterial
+  m_Name: Unit Shader Graph
   m_Shader: {fileID: -6465566751694194690, guid: 4290145a44048c340af5a5811251e9cd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -23,20 +23,28 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
+    - Texture2D_881348ed45f5433f8fbbf4b098600e9c:
+        m_Texture: {fileID: 2800000, guid: a29fbb947ac059741a11e4a186d70290, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_d60926aeb09c498e80ce93e55c15fd8c:
+        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 453bb509a8b9a844e993a55d758e97ca, type: 3}
+        m_Texture: {fileID: 2800000, guid: b7b8aee4701bb6a4aad46c05ae0ef9a6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MaskTex:
+    - _SampleTexture2D_ca38d26098d24967813884a67626270c_Texture_1:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
+    - _Texture2DAsset_8d42b81260fb456a8c2c9c26b912fbff_Out_0:
+        m_Texture: {fileID: 2800000, guid: a29fbb947ac059741a11e4a186d70290, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_973bc5d91a0f4454ad28da1de68ea107_Out_0:
+        m_Texture: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _UIMask:
@@ -57,19 +65,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EnableExternalAlpha: 0
-    - _FlashAmount: 0
-    - _Intensity: 1
+    - Vector1_25892e70578e4a6abeb8fe45890e6563: 1
+    - Vector1_ebeb6b3fbbd34519ac8a803c777b880b: 1
+    - _Intensity: 4.26
     - _OffsetY: 1
-    - _ZWrite: 0
+    - _QueueControl: 0
+    - _QueueOffset: 0
     m_Colors:
+    - Color_addc93a147b44462b93ca82c3f40d2bb: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _FlashColor: {r: 1, g: 1, b: 1, a: 0}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - __EmissionColor: {r: 1, g: 1, b: 1, a: 0.9882353}
+    - __EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &9194922109953388346
+--- !u!114 &8003159160828487086
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

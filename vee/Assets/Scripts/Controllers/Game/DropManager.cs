@@ -24,6 +24,8 @@ namespace SengokuSurvivors
 
         private List<JsonObject> drop_mst;
 
+        string text;
+
         private void Start()
         {
             this.drop_mst = Vs.Backend.MstDatas.Instance.Get("drop_mst");
@@ -32,17 +34,17 @@ namespace SengokuSurvivors
         public void DropItem(Vector3 pos, int dropId)
         {
 
+            //dropId = 0の場合ランダム
+            if (dropId == 0)
+            {
+                var row = GameManager.Instance.EquipmentManager.GetSelectableSkills()[0];
+                dropId = row["item_id"];
+                text = $"{row["name"]}";
+            }
+
             var dropRow = this.drop_mst.Find(row => row["item_id"] == dropId);
 
             if (dropRow["category"] == 1 || dropRow["category"] == 2) { 
-                var text = "報酬を選択";
-                if (dropId == 0)//dropId = 0の場合ランダム
-                {
-                    var row = GameManager.Instance.EquipmentManager.GetSelectableSkills()[0];
-                    dropId = row["item_id"];
-                    text = $"{row["name"]}";
-                }
-
                 var box = (itemBoxCache.Count > 0) ? itemBoxCache.Dequeue() : Instantiate(this.prefab, this.world);
                 box.gameObject.SetActive(true);
                 box.transform.SetPositionAndRotation(pos, Quaternion.identity);
