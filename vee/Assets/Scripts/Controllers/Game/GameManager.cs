@@ -103,6 +103,9 @@ namespace Vs.Controllers.Game
 
         public Dictionary<int, int> onScreenEnemy = new Dictionary<int, int>();
 
+        public Queue<int> onScreenTreasure = new Queue<int>();
+        public int onScreenTreasureCount = 0;
+
         public Dictionary<int, int> ScoreStore = new Dictionary<int, int>();
 
         public int totalScore = 0;
@@ -166,6 +169,9 @@ namespace Vs.Controllers.Game
 
             onScreenEnemy.Clear();
             UpdateCurrScore();
+
+            onScreenTreasure.Clear();
+            onScreenTreasureCount = 0;
         }
 
         public void Play()

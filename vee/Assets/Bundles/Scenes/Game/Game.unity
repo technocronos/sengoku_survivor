@@ -25583,6 +25583,7 @@ MonoBehaviour:
   Player: {fileID: 312491266}
   buffKnockBackLengthMulti: 1
   buffKnockBackTimeMulti: 1
+  onScreenTreasureCount: 0
   totalScore: 0
 --- !u!114 &926630624
 MonoBehaviour:
@@ -45951,8 +45952,8 @@ MonoBehaviour:
   m_text: "\u30A4\u30E9\u30A4\u30E9\u3059\u308B\uFF5E\u30A4\u30E9\u30A4\u30E9\u3059\u308B\uFF5E\u30A4\u30E9\u30A4\u30E9\u3059\u308B\uFF5E<sprite
     name=\"1f923\">"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ef78abce92d55fe418b5795843403b65, type: 2}
-  m_sharedMaterial: {fileID: 3391353687766369975, guid: ef78abce92d55fe418b5795843403b65, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6cc0f0d77241ae84d80ae5a5e645a883, type: 2}
+  m_sharedMaterial: {fileID: 8234691956068325213, guid: 6cc0f0d77241ae84d80ae5a5e645a883, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -57039,7 +57040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5C0F\u56DE\u5FA9\uFF08\u8996\u8074\u8005\u540D\u524D)"
+  m_text: "\u732B\u80CC\u306A\u304A\u305D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ef78abce92d55fe418b5795843403b65, type: 2}
   m_sharedMaterial: {fileID: 3391353687766369975, guid: ef78abce92d55fe418b5795843403b65, type: 2}

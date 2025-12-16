@@ -24,6 +24,8 @@ namespace SengokuSurvivors
 
         private List<JsonObject> drop_mst;
 
+        public const int MAX_DROP_COUNT = 5;
+
         string text;
 
         private void Start()
@@ -52,11 +54,18 @@ namespace SengokuSurvivors
                 box.Setup(dropId, text, this);
             }else if(dropRow["category"] == 3)
             {
-                var treasure = (TreasureCache.Count > 0) ? TreasureCache.Dequeue() : Instantiate(this.prefab_t, this.world);
-                treasure.gameObject.SetActive(true);
-                treasure.transform.SetPositionAndRotation(pos, Quaternion.identity);
-                treasure.transform.Rotate(Vector3.right, -30f);
-                treasure.Setup(dropId, this);
+                if (GameManager.Instance.onScreenTreasureCount < MAX_DROP_COUNT)
+                {
+                    var treasure = (TreasureCache.Count > 0) ? TreasureCache.Dequeue() : Instantiate(this.prefab_t, this.world);
+                    treasure.gameObject.SetActive(true);
+                    treasure.transform.SetPositionAndRotation(pos, Quaternion.identity);
+                    treasure.transform.Rotate(Vector3.right, -30f);
+                    treasure.Setup(dropId, this);
+                }
+                else
+                {
+                    GameManager.Instance.onScreenTreasure.Enqueue(dropId);
+                }
             }
         }
 
@@ -93,6 +102,43 @@ namespace SengokuSurvivors
             else
             {
                 Destroy(item.gameObject);
+            }
+        }
+
+        public Vector3 getRandumPosition()
+        {
+            var px = GameManager.Instance.Player.transform.position.x + Random.Range(-3.0f, 3.0f);
+            var py = GameManager.Instance.Player.transform.position.y + Random.Range(1.0f, 5.0f);
+
+            // ステージの可動範囲内に補正
+            px = Mathf.Clamp(px, Player.stageMinX, Player.stageMaxX);
+
+            var position = new Vector3(px, py, 0);
+
+            return position;
+        }
+
+        public void DespawnTreasure(Item item)
+        {
+            var Treasure = item as Treasure;
+            if (Treasure != null)
+            {
+                item.gameObject.SetActive(false);
+                TreasureCache.Enqueue(Treasure);
+            }
+            else
+            {
+                Destroy(item.gameObject);
+            }
+
+
+            //キューにある空箱をドロップする
+            if (GameManager.Instance.onScreenTreasureCount < MAX_DROP_COUNT && GameManager.Instance.onScreenTreasure.Count > 0)
+            {
+                var item_id = GameManager.Instance.onScreenTreasure.Dequeue();
+                Vector3 position = getRandumPosition();
+
+                DropItem(position, item_id);
             }
         }
     }

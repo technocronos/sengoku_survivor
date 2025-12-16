@@ -165,6 +165,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 
         sb.AppendLine($"");
         sb.AppendLine($"イライラpt：{litateTotal}");
+        sb.AppendLine($"onScreenTreasureCount：{GameManager.Instance.onScreenTreasureCount}");
 
         TextOnScreenEnemy.text = sb.ToString();
     }

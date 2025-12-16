@@ -1,4 +1,4 @@
-using SengokuSurvivors;
+﻿using SengokuSurvivors;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,8 +20,11 @@ namespace Vs.Controllers.Game
             if (collision.GetComponent<Player>() == null) return;
             SoundService.Instance.PlaySe("get_item");
             this.OnComplete();
-            dropManager.DespawnItem(this);
-            //this.Obtain(collision.gameObject);
+            if(this is ItemBox)
+                dropManager.DespawnItem(this);
+
+            if (this is Treasure)
+                dropManager.DespawnTreasure(this);
         }
 
         public void Obtain(GameObject target)
@@ -70,7 +73,17 @@ namespace Vs.Controllers.Game
         private void Update()
         {
             var pos = Camera.main.WorldToViewportPoint(transform.position);
-            if (pos.x > 1.5f || pos.x < -0.5f || pos.y > 1.5f || pos.y < -0.5f) dropManager.DespawnItem(this);
+            if (pos.x > 1.5f || pos.x < -0.5f || pos.y > 1.5f || pos.y < -0.5f) {
+                if (this is ItemBox)
+                    dropManager.DespawnItem(this);
+
+                if (this is Treasure)
+                {
+                    GameManager.Instance.onScreenTreasureCount--;
+                    dropManager.DespawnTreasure(this);
+                }
+
+            }
         }
     }
 }
