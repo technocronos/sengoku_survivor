@@ -70,6 +70,13 @@ namespace Vs.Controllers.Game
 
         private int hashAnim { get; set; }
 
+        // ステージの可動範囲内
+        public const float stageMinX = -4.0f;
+        public const float stageMaxX = 4.0f;
+        public const float stageMinY = -0.7f;
+        public const float stageMaxY = 11.0f;
+
+
         private void Start()
         {
             // this.direction.transform.LookAt(Vector3.right);
@@ -92,12 +99,14 @@ namespace Vs.Controllers.Game
 
         private void Update()
         {
+            /*
             this.elapsed += Time.deltaTime;
             if (this.elapsed >= 1.0f)
             {
                 this.elapsed -= 1.0f;
                 this.RecoverHp(Mathf.FloorToInt(this.hpMax * this.Stats.AutoRecover / 1000.0f));
             }
+            */
 
             var horizontal = Input.GetAxis("Horizontal"); // this.joystick.Horizontal;
             var vertical = Input.GetAxis("Vertical");//1; // this.joystick.Vertical;
@@ -117,8 +126,8 @@ namespace Vs.Controllers.Game
             position.x += currSpeed.x * Time.deltaTime;
             position.y += currSpeed.y * Time.deltaTime;
             // this.direction.transform.LookAt(position);
-            position.x = Mathf.Clamp(position.x, -4.0f, 4.0f);
-            position.y = Mathf.Clamp(position.y, -0.7f, 11.0f);
+            position.x = Mathf.Clamp(position.x, stageMinX, stageMaxX);
+            position.y = Mathf.Clamp(position.y, stageMinY, stageMaxY);
             this.transform.localPosition = position;
             if (new Vector2(horizontal, vertical).magnitude > 0)
             {
@@ -210,6 +219,9 @@ namespace Vs.Controllers.Game
             {
                 this.hp = this.hpMax;
             }
+
+            SoundService.Instance.PlaySe("se_repair");
+
             OnScreenUi.Instance.SetCurrHp(hp, hpMax);
             this.Recovered.Invoke(value, this.hp);
         }

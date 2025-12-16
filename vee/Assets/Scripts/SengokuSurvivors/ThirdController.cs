@@ -1,8 +1,9 @@
-﻿using UnityEngine;
-using UNCHAIN.ThirdSdk;
+﻿using SengokuSurvivors;
 using System.Collections;
+using UNCHAIN.ThirdSdk;
+using UnityEngine;
+using UnityEngine.UIElements;
 using Vs.Controllers.Game;
-using SengokuSurvivors;
 
 [RequireComponent(typeof(UNCHAIN.ThirdSdk.ThirdConnector))]
 public class ThirdController : MonoBehaviour
@@ -73,19 +74,34 @@ public class ThirdController : MonoBehaviour
         string symbol = $"{data.commandKey}";
         string text =GameManager.Instance.GetTextFromMst(symbol);
 
+        int item_id;
+
+        var px = GameManager.Instance.Player.transform.position.x + Random.Range(-3.0f, 3.0f);
+        var py = GameManager.Instance.Player.transform.position.y + Random.Range(1.0f, 5.0f);
+        
+        // ステージの可動範囲内に補正
+        px = Mathf.Clamp(px, Player.stageMinX, Player.stageMaxX);
+        
+        var position = new Vector3(px, py, 0);
 
         switch (data.commandKey)
         {
             case "HEAL_SMALL":
-                GameManager.Instance.Player.RecoverHp(10);
+                item_id = 10100101;
+
+                DropManager.Instance.DropItem(position, item_id);
                 isAction = true;
                 break;
             case "HEAL_MEDIUM":
-                GameManager.Instance.Player.RecoverHp(20);
+                item_id = 10100102;
+
+                DropManager.Instance.DropItem(position, item_id);
                 isAction = true;
                 break;
             case "HEAL_LARGE":
-                GameManager.Instance.Player.RecoverHp(30);
+                item_id = 10100103;
+
+                DropManager.Instance.DropItem(position, item_id);
                 isAction = true;
                 break;
             case "SPEED_BOOST_ITEM":

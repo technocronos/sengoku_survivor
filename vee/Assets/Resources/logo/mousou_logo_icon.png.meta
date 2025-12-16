@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c303c2ce8ff719147ac6782919160e89
+guid: 11c8d33d73c6ef74dadc7cee2c68009b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5361633850953255357
-    second: treasurebox_0
+      213: 5081621714630850905
+    second: mousou_logo_icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: treasurebox_0
+      name: mousou_logo_icon_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 34
         y: 0
-        width: 276
-        height: 241
+        width: 956
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 346b8327b66a795b0800000000000000
-      internalID: -5361633850953255357
+      spriteID: 959bb7f960c858640800000000000000
+      internalID: 5081621714630850905
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      treasurebox_0: -5361633850953255357
+      mousou_logo_icon_0: 5081621714630850905
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
