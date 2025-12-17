@@ -72,7 +72,12 @@ namespace SengokuSurvivors
         public void DropExp(Vector3 pos, int amount)
         {
             var count = amount / expPref.GetExpAmount();
-            var player = FindAnyObjectByType<Player>().gameObject;
+            var playerobj = FindAnyObjectByType<Vs.Controllers.Game.Player>();
+
+            if (playerobj == null || !playerobj || playerobj.transform == null) return;
+
+            var player = playerobj.gameObject;
+
             for (int i = 0; i < count; i++)
             {
                 var offset = new Vector3(
