@@ -13,7 +13,11 @@ namespace Vs.Controllers.MyPage
         private Button ButtonSettings;
         [SerializeField]
         private Button BtnThird;
-        
+        [SerializeField]
+        private Button BtnHelp;
+        [SerializeField]
+        private Button BtnTitle;
+
         [SerializeField]
         private Button ButtonQuit;
         [SerializeField]
@@ -21,7 +25,11 @@ namespace Vs.Controllers.MyPage
         [SerializeField]
         private GameObject MenuThird;
         [SerializeField]
+        private GameObject MenuHelp;
+        [SerializeField]
         private Button ButtonCloseMenuSettings;
+        [SerializeField]
+        private Button ButtonCloseHelp;
         [SerializeField]
         private TMP_InputField InputFieldStreamId;
 
@@ -47,9 +55,13 @@ namespace Vs.Controllers.MyPage
         {
             ButtonPlay.onClick.AddListener(OnButtonPlay);
             ButtonSettings.onClick.AddListener(OnButtonSettings);
+            BtnHelp.onClick.AddListener(OnButtonHelp);
+            BtnTitle.onClick.AddListener(OnButtonTitle); 
             BtnThird.onClick.AddListener(OnButtonThird);
 
             ButtonQuit.onClick.AddListener(OnButtonQuit);
+            ButtonCloseMenuSettings.onClick.AddListener(OnButtonCloseSettings);
+            ButtonCloseHelp.onClick.AddListener(OnButtonCloseHelp);
 
             MenuSettings.gameObject.SetActive(false);
             InputFieldStreamId.onValueChanged.AddListener(OnInputFieldChanged);
@@ -84,6 +96,18 @@ namespace Vs.Controllers.MyPage
             MenuSettings.SetActive(true);
         }
 
+        private void OnButtonHelp()
+        {
+            SoundService.Instance.PlaySe("get_item");
+            MenuHelp.SetActive(true);
+        }
+        private void OnButtonTitle()
+        {
+            SoundService.Instance.PlaySe("get_item");
+            var context = new Home.Home.Context();
+            ViewService.Instance.ChangeView(context);
+        }
+
         public void OnButtonCloseSettings()
         {
             SoundService.Instance.PlaySe("get_item");
@@ -94,6 +118,13 @@ namespace Vs.Controllers.MyPage
             SoundService.Instance.PlaySe("get_item");
             MenuThird.SetActive(false);
         }
+
+        public void OnButtonCloseHelp()
+        {
+            SoundService.Instance.PlaySe("get_item");
+            MenuHelp.SetActive(false);
+        }
+        
 
         private void OnButtonQuit() 
         {

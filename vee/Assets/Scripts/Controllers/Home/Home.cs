@@ -10,15 +10,31 @@ namespace Vs.Controllers.Home
         [SerializeField]
         private Button ButtonPlay;
         [SerializeField]
+        private Button ButtonThird;
+        [SerializeField]
         private Button ButtonSettings;
         [SerializeField]
         private Button ButtonQuit;
+        [SerializeField]
+        private Button ButtonQuit2;
+        [SerializeField]
+        private GameObject MenuThird;
         [SerializeField]
         private GameObject MenuSettings;
         [SerializeField]
         private Button ButtonCloseMenuSettings;
         [SerializeField]
+        private Button ButtonCloseThird;
+        [SerializeField]
         private TMP_InputField InputFieldStreamId;
+        [SerializeField]
+        private Button BtnHelp;
+        [SerializeField]
+        private Button BtnTitle;
+        [SerializeField]
+        private GameObject MenuHelp;
+        [SerializeField]
+        private Button ButtonCloseHelp;
 
         [SerializeField]
         private GameObject StreamIdInputContainer;
@@ -42,11 +58,16 @@ namespace Vs.Controllers.Home
         {
             ButtonPlay.onClick.AddListener(OnButtonPlay);
             ButtonSettings.onClick.AddListener(OnButtonSettings);
+            ButtonThird.onClick.AddListener(OnButtonThird);
             ButtonQuit.onClick.AddListener(OnButtonQuit);
+            ButtonQuit2.onClick.AddListener(OnButtonQuit);
+            BtnHelp.onClick.AddListener(OnButtonHelp);
             ButtonCloseMenuSettings.onClick.AddListener(OnButtonCloseSettings);
+            ButtonCloseThird.onClick.AddListener(OnButtonCloseThird);
             MenuSettings.gameObject.SetActive(false);
             InputFieldStreamId.onValueChanged.AddListener(OnInputFieldChanged);
             thirdController = FindAnyObjectByType<ThirdController>();
+            ButtonCloseHelp.onClick.AddListener(OnButtonCloseHelp);
 
 #if DEVELOP
             Debug.Log("DEVELOP build");
@@ -70,6 +91,13 @@ namespace Vs.Controllers.Home
             InputFieldStreamId.Select();
             InputFieldStreamId.caretPosition = InputFieldStreamId.text.Length;
         }
+        private void OnButtonThird()
+        {
+            SoundService.Instance.PlaySe("get_item");
+            MenuThird.SetActive(true);
+            InputFieldStreamId.Select();
+            InputFieldStreamId.caretPosition = InputFieldStreamId.text.Length;
+        }
 
         private void OnButtonCloseSettings()
         {
@@ -83,10 +111,26 @@ namespace Vs.Controllers.Home
             Application.Quit();
         }
 
+        private void OnButtonCloseThird()
+        {
+            SoundService.Instance.PlaySe("get_item");
+            MenuThird.SetActive(false);
+        }
+
         private void OnInputFieldChanged(string value)
         {
             thirdController.StreamId = value;
         }
 
+        private void OnButtonHelp()
+        {
+            SoundService.Instance.PlaySe("get_item");
+            MenuHelp.SetActive(true);
+        }
+        public void OnButtonCloseHelp()
+        {
+            SoundService.Instance.PlaySe("get_item");
+            MenuHelp.SetActive(false);
+        }
     }
 }
