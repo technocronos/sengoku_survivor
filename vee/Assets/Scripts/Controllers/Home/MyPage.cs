@@ -67,6 +67,10 @@ namespace Vs.Controllers.MyPage
             InputFieldStreamId.onValueChanged.AddListener(OnInputFieldChanged);
             thirdController = FindAnyObjectByType<ThirdController>();
 
+            MenuSettings.SetActive(false);
+            MenuHelp.SetActive(false);
+            MenuThird.SetActive(false);
+
 #if DEVELOP
             Debug.Log("DEVELOP build");
 #else

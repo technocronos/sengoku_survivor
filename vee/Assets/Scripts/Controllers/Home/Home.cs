@@ -69,6 +69,9 @@ namespace Vs.Controllers.Home
             thirdController = FindAnyObjectByType<ThirdController>();
             ButtonCloseHelp.onClick.AddListener(OnButtonCloseHelp);
 
+            MenuSettings.SetActive(false);
+            MenuHelp.SetActive(false);
+            MenuThird.SetActive(false);
 #if DEVELOP
             Debug.Log("DEVELOP build");
 #else
