@@ -36,6 +36,12 @@ namespace Vs.Controllers.MyPage
         [SerializeField]
         private GameObject StreamIdInputContainer;
 
+
+        [SerializeField]
+        private GameObject Explain1;
+        [SerializeField]
+        private GameObject Explain2;
+
         private ThirdController thirdController;
 
         public sealed class Context : ViewContext
@@ -71,6 +77,11 @@ namespace Vs.Controllers.MyPage
             MenuHelp.SetActive(false);
             MenuThird.SetActive(false);
 
+            Explain1.SetActive(false);
+            Explain2.SetActive(false);
+
+            Explain1Play();
+
 #if DEVELOP
             Debug.Log("DEVELOP build");
 #else
@@ -78,6 +89,25 @@ namespace Vs.Controllers.MyPage
             Debug.Log("RELEASE build");
 #endif
         }
+
+        private void Explain1Play()
+        {
+            Explain1.SetActive(true);
+        }
+        private void Explain2Play()
+        {
+            Explain2.SetActive(true);
+        }
+        public void onExplain1End()
+        {
+            Explain1.SetActive(false);
+            Explain2Play();
+        }
+        public void onExplain2End()
+        {
+            Explain2.SetActive(false);
+        }
+
 
         private void OnButtonPlay()
         {
