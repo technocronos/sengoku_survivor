@@ -20,6 +20,32 @@ namespace Vs
 
         private string currentBgm;
 
+        //ボリューム保存用のkeyとデフォルト値
+        private const string BGM_VOLUME_KEY = "BGM_VOLUME_KEY";
+        private const string SE_VOLUME_KEY = "SE_VOLUME_KEY";
+        public const float BGM_VOLUME_DEFULT = 8f;
+        public const float SE_VOLUME_DEFULT = 0.5f;
+
+        private void Awake()
+        {
+            // 保存されたボリュームを読み込んで適用
+            if (this.bgmCh != null)
+            {
+                this.bgmCh.volume = this.getBGMVol();
+            }
+            if (this.seCh != null && this.seCh.Length > 0)
+            {
+                float seVol = this.getSEVol();
+                foreach (var ch in this.seCh)
+                {
+                    if (ch != null)
+                    {
+                        ch.volume = seVol;
+                    }
+                }
+            }
+        }
+
         public void PlayBgm(string filename, bool loop = true)
         {
             if (this.currentBgm == filename)
@@ -76,6 +102,52 @@ namespace Vs
             foreach (var i in this.seCh)
             {
                 i.Stop();
+            }
+        }
+
+        public float getBGMVol()
+        {
+            return PlayerPrefs.GetFloat(BGM_VOLUME_KEY, BGM_VOLUME_DEFULT);
+        }
+        
+        public float getSEVol()
+        {
+            return PlayerPrefs.GetFloat(SE_VOLUME_KEY, SE_VOLUME_DEFULT);
+        }
+
+        /// <summary>
+        /// BGMのボリュームを設定する（0.0～1.0の範囲を推奨）
+        /// </summary>
+        /// <param name="volume">ボリューム値</param>
+        public void SetBgmVolume(float volume)
+        {
+            volume = Mathf.Clamp01(volume);
+            PlayerPrefs.SetFloat(BGM_VOLUME_KEY, volume);
+            PlayerPrefs.Save();
+            if (this.bgmCh != null)
+            {
+                this.bgmCh.volume = volume;
+            }
+        }
+
+        /// <summary>
+        /// SEのボリュームを設定する（0.0～1.0の範囲を推奨）
+        /// </summary>
+        /// <param name="volume">ボリューム値</param>
+        public void SetSeVolume(float volume)
+        {
+            volume = Mathf.Clamp01(volume);
+            PlayerPrefs.SetFloat(SE_VOLUME_KEY, volume);
+            PlayerPrefs.Save();
+            if (this.seCh != null && this.seCh.Length > 0)
+            {
+                foreach (var ch in this.seCh)
+                {
+                    if (ch != null)
+                    {
+                        ch.volume = volume;
+                    }
+                }
             }
         }
 
