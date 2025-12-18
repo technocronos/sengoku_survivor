@@ -11,8 +11,7 @@ namespace Vs.Controllers.Game
 {
     public sealed class GameManager : SingletonMonoBehaviour<GameManager>
     {
-        [SerializeField]
-        private UnityEngine.UI.Text timeText;
+        public UnityEngine.UI.Text timeText;
 
         [SerializeField]
         private UnityEngine.UI.Text levelText;
