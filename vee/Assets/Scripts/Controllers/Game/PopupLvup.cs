@@ -38,7 +38,6 @@ namespace Vs.Controllers.Game
                     listItem.Initialize(i);
                     listItem.SetName(row["name"]);
                     listItem.SetDescription(row["description"]);
-                    listItem.SetLevelInfo(getEquipLevel(row));
                     listItem.SetSprite(GameManager.Instance.EquipmentManager.GetSkillSprite(row["item_id"]));
 
                     // var sprite = Resources.Load<Sprite>($"Skills/{raw["image_id"]}");

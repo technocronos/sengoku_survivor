@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Vs.Controllers.Game
@@ -12,19 +13,13 @@ namespace Vs.Controllers.Game
         private UnityEngine.UI.Image bg;
 
         [SerializeField]
-        private UnityEngine.UI.Text nameText;
+        private TextMeshProUGUI nameText;
 
         [SerializeField]
-        private UnityEngine.UI.Text TextLv;
-
-        [SerializeField]
-        private UnityEngine.UI.Text descriptionText;
+        private TextMeshProUGUI descriptionText;
 
         [SerializeField]
         private UnityEngine.UI.Image icon;
-
-        [SerializeField]
-        private GameObject newLabel;
 
         [SerializeField]
         private GameObject[] stars;
@@ -45,15 +40,6 @@ namespace Vs.Controllers.Game
         {
             this.descriptionText.text = description;
         }
-
-        public void SetLevelInfo(int curLevel)
-        {
-            if(curLevel > 0)
-                this.TextLv.text = "Lv" + curLevel + "→" + ((int)curLevel + 1);
-            else
-                this.TextLv.text = "Lv1";
-        }
-
 
         public void SetLevel(int level)
         {
