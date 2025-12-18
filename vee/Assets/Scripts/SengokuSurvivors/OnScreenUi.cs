@@ -248,7 +248,6 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private void Update()
     {
         UpdateDebugStatsView();
-        if (Input.GetKeyDown(KeyCode.Escape)) Vs.Controllers.Game.GameManager.Instance.OnPauseClicked();
 
 #if DEVELOP
         ThirdResponse response = new ThirdResponse();

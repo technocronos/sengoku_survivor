@@ -239,6 +239,27 @@ namespace Vs.Controllers.Game
 
         private void Update()
         {
+            // Escキーでポーズ/ポーズ解除（ゲームオーバー中は無効）
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (this.popupResult != null && this.popupResult.gameObject.activeSelf)
+                {
+                    // ゲームオーバー中は何もしない
+                    return;
+                }
+                
+                if (this.popupPause != null && this.popupPause.gameObject.activeSelf)
+                {
+                    // ポーズ中はEscキーでポーズ解除
+                    this.popupPause.OnClicked();
+                }
+                else if (this.popupPause != null)
+                {
+                    // ポーズ中でない場合はポーズを開く
+                    this.OnPauseClicked();
+                }
+            }
+
             if (this.isStop)
             {
                 return;
