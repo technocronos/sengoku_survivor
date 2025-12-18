@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FlashingMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 79557336ca2e14243b539d3cad331d29, type: 3}
+  m_Name: Shader Graphs_Avatar Shader Graph
+  m_Shader: {fileID: -6465566751694194690, guid: 4290145a44048c340af5a5811251e9cd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,19 +23,7 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 453bb509a8b9a844e993a55d758e97ca, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -57,19 +45,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EnableExternalAlpha: 0
-    - _FlashAmount: 0
-    - _Intensity: 0.97
+    - _Intensity: 1
     - _OffsetY: 1
-    - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _FlashColor: {r: 1, g: 0, b: 0, a: 0}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - __EmissionColor: {r: 1, g: 1, b: 1, a: 0.9882353}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &9194922109953388346
+--- !u!114 &2833091699377211625
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
