@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using MyGame;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using MyGame;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Vs.Controllers.Game
 {
@@ -18,6 +19,8 @@ namespace Vs.Controllers.Game
         private TextMeshProUGUI score;
         [SerializeField]
         private TextMeshProUGUI time;
+        [SerializeField]
+        private GameObject Rotator;
 
         [SerializeField]
         private EquipmentHudIcon[] weaponSlots;
@@ -48,7 +51,9 @@ namespace Vs.Controllers.Game
             this.callbackOnce = callbackOnce;
             this.gameObject.SetActive(true);
             Time.timeScale = 0.0f;
-                        
+
+            Rotator.SetActive(false);
+
             WinTitle.SetActive(false);
             LoseTitle.SetActive(false);
 
@@ -60,6 +65,7 @@ namespace Vs.Controllers.Game
 
             if (result.Result == GameResult.Win)
             {
+                Rotator.SetActive(true);
                 WinTitle.SetActive(true);
                 SoundService.Instance.PlaySe("se_congrats");
             }
