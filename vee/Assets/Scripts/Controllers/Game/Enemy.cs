@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
 namespace Vs.Controllers.Game
@@ -10,6 +11,8 @@ namespace Vs.Controllers.Game
 
         [SerializeField]
         private UnityEngine.UI.Text hpText;
+        [SerializeField]
+        private TextMeshProUGUI TextName;
 
         public bool IsTarget = true;
         public bool IsDead { get; private set; }
@@ -30,7 +33,10 @@ namespace Vs.Controllers.Game
 
         private bool isInKnockback = false;
 
-        public void Initialize(EnemySpawner spawner)
+        public bool isLimit { get; set; } = false;
+        public string name { get; set; } = "";
+
+        public void Initialize(EnemySpawner spawner, string name = "")
         {
             this.spawner = spawner;
             IsDead = false;
@@ -48,6 +54,17 @@ namespace Vs.Controllers.Game
             if (hpText != null)
             {
                 hpText.gameObject.SetActive(false);
+            }
+
+            if(name != "")
+            {
+                this.name = name;
+                TextName.text = this.name;
+                TextName.gameObject.SetActive(true);
+            }
+            else
+            {
+                TextName.gameObject.SetActive(false);
             }
         }
 

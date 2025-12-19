@@ -136,3 +136,6 @@ text_id,symbol,Ja
 100135,rand_comment,また来るね
 100136,rand_comment,明日も楽しみ
 100137,rand_comment,解散～！
+100138,ENEMY_SEND_1,敵を送り込み1
+100139,ENEMY_SEND_2,敵を送り込み2
+100140,ENEMY_SEND_3,敵を送り込み3

@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using MyGame;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 namespace Vs.Controllers.Game
 {
-    public sealed class EnemySpawner : MonoBehaviour
+    public sealed class EnemySpawner : SingletonMonoBehaviour<EnemySpawner>
     {
         [SerializeField]
         private Transform world;
@@ -15,8 +17,17 @@ namespace Vs.Controllers.Game
         private readonly Dictionary<int, Enemy> enemyPrefabsCache = new Dictionary<int, Enemy>();
         private readonly Dictionary<int, ItemGate> itemGatePrefabsCache = new Dictionary<int, ItemGate>();
 
+        public const int MAX_THIRD_ENEMY_COUNT = 5;
+        public int onScreenEnemyCount = 0;
+        public readonly Queue<Enemy> ThirdEmenyCache = new Queue<Enemy>();
+
+        private float Timer = 0f; // タイマー
+        private const float Interval = 1f; // 間隔（10秒）
+
+
         private void Start()
         {
+            onScreenEnemyCount = 0;
             StartCoroutine(MainRoutine());
         }
 
@@ -97,7 +108,13 @@ namespace Vs.Controllers.Game
             gate.SetDropId(raw["drop_id"]);
         }
 
-        private void Spawn(int enemyId, int y, int x, int level)
+        public void LimitSpawn(int enemyId, int y, int x, string name)
+        {
+            onScreenEnemyCount++;
+            Spawn(enemyId, y, x, 1, true, name);
+        }
+
+        private void Spawn(int enemyId, int y, int x, int level, bool isLimit = false, string name = "")
         {
             var enemyMst = Backend.MstDatas.Instance.Get("enemy_mst");
             var growthMst = Backend.MstDatas.Instance.Get("growth_mst");
@@ -125,11 +142,22 @@ namespace Vs.Controllers.Game
             if (!enemyPrefabsCache.ContainsKey(modelId))
             { enemyPrefabsCache.Add(modelId, Resources.Load<Enemy>($"Enemies/{modelId}")); }
             var prefeb = enemyPrefabsCache[modelId];
-            var enemy = Instantiate(prefeb, world);
-            GameManager.Instance.RegisterEnemy(enemy);
-            enemy.Initialize(this);
-            enemy.transform.SetPositionAndRotation(new Vector3(x, y, 0), Quaternion.identity);
+
+            Enemy enemy;
+
+            enemy = Instantiate(prefeb, world);
+            enemy.Initialize(this, name);
+            enemy.isLimit = isLimit;
             enemy.SetEnemyId(enemyId);
+
+            if (isLimit && onScreenEnemyCount > MAX_THIRD_ENEMY_COUNT)
+            {
+                enemy.gameObject.SetActive(false);
+                ThirdEmenyCache.Enqueue(enemy);
+                return;
+            }
+
+            enemy.transform.SetPositionAndRotation(new Vector3(x, y, 0), Quaternion.identity);
             enemy.SetHp(hp);
             enemy.SetAtk(atk);
             enemy.SetDropId(raw["drop_id"]);
@@ -137,6 +165,8 @@ namespace Vs.Controllers.Game
             enemy.SetExpAmount(expAmount);
             enemy.SetIrritate(irritate);
             enemy.SetScore(score);
+
+            GameManager.Instance.RegisterEnemy(enemy);
 
             if (GameManager.Instance.onScreenEnemy.ContainsKey(enemyId))
             {
@@ -155,11 +185,54 @@ namespace Vs.Controllers.Game
             Resources.UnloadUnusedAssets();
         }
 
+        public Vector3 getRandumPosition()
+        {
+            // カメラのビューポート上端（ステージの奥）のY座標を取得（スクロールに対応）
+            float stageTopY = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, -2 * Camera.main.transform.position.z)).y;
+            var enemy_pos_x = Random.Range(0, 3);
+            var enemy_pos_y = stageTopY - 5;
+
+            var position = new Vector3(enemy_pos_x, enemy_pos_y, 0);
+
+            return position;
+        }
+
+        private void Update()
+        {
+            // 1秒ごとに実行
+            Timer += Time.deltaTime;
+            if (Timer >= Interval)
+            {
+                Timer = 0f;
+
+                onScreenEnemyCount = 0;
+
+                foreach (var enemy in GameManager.Instance.Enemies)
+                {
+                    if (enemy.isLimit)
+                    {
+                        onScreenEnemyCount++;
+                    }
+                }
+
+                //敵がisLimitならキューにある敵を出現させる
+                if (onScreenEnemyCount < MAX_THIRD_ENEMY_COUNT && ThirdEmenyCache.Count > 0)
+                {
+                    var _enemy = ThirdEmenyCache.Dequeue();
+                    Vector3 enemy_position = EnemySpawner.Instance.getRandumPosition();
+                    Spawn(_enemy.enemyId, (int)enemy_position.y, (int)enemy_position.x, 1, true, _enemy.name);
+
+                    Despawn(_enemy);
+                }
+            }
+        }
+
         public void Despawn(Enemy enemy)
         {
             //enemyCache.Enqueue(enemy);
             GameManager.Instance.DeregisterEnemy(enemy);
             Destroy(enemy.gameObject);
+
         }
 
         public void Despawn(ItemGate itemGate)

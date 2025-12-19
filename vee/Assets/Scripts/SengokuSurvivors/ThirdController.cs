@@ -75,7 +75,10 @@ public class ThirdController : MonoBehaviour
         string text =GameManager.Instance.GetTextFromMst(symbol);
 
         int item_id;
-        Vector3 position = DropManager.Instance.getRandumPosition();        
+        int enemy_id;
+        Vector3 position = DropManager.Instance.getRandumPosition();
+        Vector3 enemy_position = EnemySpawner.Instance.getRandumPosition();
+
 
         switch (data.commandKey)
         {
@@ -124,6 +127,18 @@ public class ThirdController : MonoBehaviour
                 break;
             case "NAMECHAT_TEXT_LIKE":
                 text = string.Format("{0}: {1}", data.displayName, text);
+                break;
+            case "ENEMY_SEND_1":
+                enemy_id = 10100013;
+                EnemySpawner.Instance.LimitSpawn(enemy_id, (int)enemy_position.y, (int)enemy_position.x, data.displayName);
+                break;
+            case "ENEMY_SEND_2":
+                enemy_id = 10100011;
+                EnemySpawner.Instance.LimitSpawn(enemy_id, (int)enemy_position.y, (int)enemy_position.x, data.displayName);
+                break;
+            case "ENEMY_SEND_3":
+                enemy_id = 10100014;
+                EnemySpawner.Instance.LimitSpawn(enemy_id, (int)enemy_position.y, (int)enemy_position.x, data.displayName);
                 break;
             default:
                 break;

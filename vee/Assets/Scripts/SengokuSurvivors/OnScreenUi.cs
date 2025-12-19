@@ -166,6 +166,8 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         sb.AppendLine($"");
         sb.AppendLine($"イライラpt：{litateTotal}");
         sb.AppendLine($"onScreenTreasureCount：{GameManager.Instance.onScreenTreasureCount}");
+        sb.AppendLine($"onScreenEnemyCount：{EnemySpawner.Instance.onScreenEnemyCount}");
+        sb.AppendLine($"ThirdEmenyCache：{EnemySpawner.Instance.ThirdEmenyCache.Count}");
 
         TextOnScreenEnemy.text = sb.ToString();
     }
@@ -300,6 +302,18 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         else if (Input.GetKeyDown(KeyCode.E))
         {
             response.commandKey = "NAMECHAT_TEXT_LIKE";
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            response.commandKey = "ENEMY_SEND_1";
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            response.commandKey = "ENEMY_SEND_2";
+        }
+        else if (Input.GetKeyDown(KeyCode.Y))
+        {
+            response.commandKey = "ENEMY_SEND_3";
         }
 
 
