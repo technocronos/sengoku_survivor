@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: RESTART
+  m_Text: "\u3084\u308A\u306A\u304A\u3057"
 --- !u!114 &7053181201083035160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CONTINUE
+  m_Text: "\u7D9A\u3051\u308B\u3008ESC\u3009"
 --- !u!114 &4180422175424186104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,7 +408,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: EXIT TO MYPEGE
+  m_Text: "\u30DE\u30A4\u30DA\u30FC\u30B8\u306B\u8131\u51FA"
 --- !u!114 &6400521506122436730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,18 +935,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: d356a2c5b1b96c24d8d3d0cd855c01ce, type: 3}
-    m_FontSize: 60
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 60
+    m_MaxSize: 80
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PAUSE
+  m_Text: "\u30DD\u30FC\u30BA"
 --- !u!114 &1811672676429443074
 MonoBehaviour:
   m_ObjectHideFlags: 0

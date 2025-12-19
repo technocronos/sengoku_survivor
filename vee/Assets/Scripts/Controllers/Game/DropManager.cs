@@ -24,7 +24,7 @@ namespace SengokuSurvivors
 
         private List<JsonObject> drop_mst;
 
-        public const int MAX_DROP_COUNT = 5;
+        public const int MAX_DROP_COUNT = 10;
 
         string text;
 
