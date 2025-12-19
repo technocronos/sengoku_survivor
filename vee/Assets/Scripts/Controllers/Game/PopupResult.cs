@@ -68,7 +68,7 @@ namespace Vs.Controllers.Game
             this.gameObject.SetActive(false);
             Time.timeScale = 1.0f;
 
-            SoundService.Instance.PlayBgm("bgm1");
+            SoundService.Instance.PlayBgm("bgm2");
         }
 
         public void OnClicked()

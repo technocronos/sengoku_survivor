@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace Vs.Controllers.Game
 
         public override IEnumerator OnViewLoaded(ViewContext viewContext)
         {
-            SoundService.Instance.PlayBgm("bgm1");
+            SoundService.Instance.PlayBgm("bgm2");
             GameManager.Instance.Initialize();
             yield break;
         }

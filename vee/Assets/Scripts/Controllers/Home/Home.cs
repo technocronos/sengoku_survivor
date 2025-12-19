@@ -49,7 +49,7 @@ namespace Vs.Controllers.Home
         public override IEnumerator OnViewLoaded(ViewContext viewContext)
         {
             yield return null;
-            SoundService.Instance.PlayBgm("menu");
+            SoundService.Instance.PlayBgm("menu2");
             var response = Api.Stats.Get();
             UserService.Instance.Set(response);
         }
