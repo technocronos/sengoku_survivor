@@ -100,11 +100,13 @@ namespace Vs.Controllers.MyPage
         }
         public void onExplain1End()
         {
+            SoundService.Instance.PlaySe("get_item");
             Explain1.SetActive(false);
             Explain2Play();
         }
         public void onExplain2End()
         {
+            SoundService.Instance.PlaySe("get_item");
             Explain2.SetActive(false);
         }
 
