@@ -316,6 +316,11 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
             response.commandKey = "ENEMY_SEND_3";
         }
 
+        // デバッグ用: Mキーでゲームクリア
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            GameManager.Instance.GameClear();
+        }
 
         if (response.commandKey != "")
             thirdController.OnMessageReceived(response);

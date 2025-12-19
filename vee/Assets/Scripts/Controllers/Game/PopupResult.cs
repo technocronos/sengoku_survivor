@@ -24,6 +24,12 @@ namespace Vs.Controllers.Game
         [SerializeField]
         private EquipmentHudIcon[] itemSlots;
 
+        public delegate void OnCompleteDelegate();
+        public OnCompleteDelegate CompleteHandler;
+        public OnCompleteDelegate CompleteHandlerFunc;
+
+        private int hashAnim { get; set; }
+
         public class GameResult
         {
             public static readonly int Win = 1;
@@ -42,6 +48,7 @@ namespace Vs.Controllers.Game
             this.callbackOnce = callbackOnce;
             this.gameObject.SetActive(true);
             Time.timeScale = 0.0f;
+                        
             WinTitle.SetActive(false);
             LoseTitle.SetActive(false);
 
@@ -129,5 +136,6 @@ namespace Vs.Controllers.Game
             var context = new Controllers.MyPage.MyPage.Context();
             ViewService.Instance.ChangeView(context);
         }
+
     }
 }
