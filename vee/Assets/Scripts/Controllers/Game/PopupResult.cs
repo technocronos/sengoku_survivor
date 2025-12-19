@@ -109,7 +109,7 @@ namespace Vs.Controllers.Game
                     itemSlots[it].EquipmentIcon.sprite = entry.Value.ItemIcon;
 
                     bool isMaxLevel = !accessoriesMst.Exists(j => (j["level"] == entry.Value.Level + 1) && (j["item_id"] == entry.Value.ItemId));
-                    itemSlots[it].EquipmentLvlText.text = isMaxLevel ? "Lv MAX\n" : string.Format("Lv {0}\n", entry.Value.Level);
+                    itemSlots[it].EquipmentLvlText.text = isMaxLevel ? "MAX\n" : string.Format("{0}\n", entry.Value.Level);
                     it++;
                 }
                 else if (entry.Value.Category == Vs.Controllers.Game.ItemCategory.Weapon)//weapon
@@ -119,7 +119,7 @@ namespace Vs.Controllers.Game
                     weaponSlots[wp].EquipmentIcon.sprite = entry.Value.ItemIcon;
 
                     bool isMaxLevel = !weaponsMst.Exists(j => (j["level"] == entry.Value.Level + 1) && (j["item_id"] == entry.Value.ItemId));
-                    weaponSlots[wp].EquipmentLvlText.text = isMaxLevel ? "Lv MAX\n" : string.Format("Lv {0}\n", entry.Value.Level);
+                    weaponSlots[wp].EquipmentLvlText.text = isMaxLevel ? "MAX\n" : string.Format("{0}\n", entry.Value.Level);
                     wp++;
                 }
             }

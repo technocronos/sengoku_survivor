@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5b3a34df373e0f34a9790e2de04cce01
+guid: c846d0206273577479d827f24a722cc7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4345462867533152315
-    second: shuriken_0
+      213: 9136574636451808338
+    second: homing_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1000
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: shuriken_0
+      name: homing_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 409
-        height: 409
+        width: 93
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5cf39049b80d1b3c0800000000000000
-      internalID: -4345462867533152315
+      spriteID: 254cd856932abce70800000000000000
+      internalID: 9136574636451808338
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      shuriken_0: -4345462867533152315
+      homing_0: 9136574636451808338
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

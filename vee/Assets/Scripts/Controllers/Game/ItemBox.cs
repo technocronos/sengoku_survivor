@@ -1,4 +1,4 @@
-using SengokuSurvivors;
+﻿using SengokuSurvivors;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +22,7 @@ namespace Vs.Controllers.Game
             this.dropManager = dropManager;
             this.skillId = skillId;
             this.text.text = text;
+            this.text.gameObject.SetActive(false);
         }
     }
 }
