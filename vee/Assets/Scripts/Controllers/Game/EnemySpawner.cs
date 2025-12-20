@@ -17,7 +17,7 @@ namespace Vs.Controllers.Game
         private readonly Dictionary<int, Enemy> enemyPrefabsCache = new Dictionary<int, Enemy>();
         private readonly Dictionary<int, ItemGate> itemGatePrefabsCache = new Dictionary<int, ItemGate>();
 
-        public const int MAX_THIRD_ENEMY_COUNT = 5;
+        public const int MAX_THIRD_ENEMY_COUNT = 10;
         public int onScreenEnemyCount = 0;
         public readonly Queue<Enemy> ThirdEmenyCache = new Queue<Enemy>();
 

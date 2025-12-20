@@ -140,6 +140,9 @@ public class ThirdController : MonoBehaviour
                 enemy_id = 10100014;
                 EnemySpawner.Instance.LimitSpawn(enemy_id, (int)enemy_position.y, (int)enemy_position.x, data.displayName);
                 break;
+            case "EXPLOSION":
+                GameManager.Instance.SpawnExplosion();
+                break;
             default:
                 break;
         }

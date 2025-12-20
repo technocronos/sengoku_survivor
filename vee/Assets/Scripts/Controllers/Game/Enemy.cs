@@ -150,7 +150,7 @@ namespace Vs.Controllers.Game
                 //irritate_point >= 80 （イライラマックス）の時は2倍にする
                 if (irritate_point >= 80)
                 {
-                    this.ExpAmount *= 2;
+                    //this.ExpAmount *= 2;
                 }
 
                 SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position, this.ExpAmount);

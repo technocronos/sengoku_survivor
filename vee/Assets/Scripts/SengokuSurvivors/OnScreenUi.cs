@@ -314,6 +314,9 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         else if (Input.GetKeyDown(KeyCode.Y))
         {
             response.commandKey = "ENEMY_SEND_3";
+        }else if (Input.GetKeyDown(KeyCode.B))
+        {            
+            response.commandKey = "EXPLOSION";
         }
 
         // デバッグ用: Mキーでゲームクリア

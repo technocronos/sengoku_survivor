@@ -8021,7 +8021,6 @@ MonoBehaviour:
   Anim: {fileID: 312491269}
   avatar: {fileID: 56370948}
   blood: {fileID: 119019935}
-  recv: {fileID: 535821227}
   shooters:
   - {fileID: 1205063843}
   - {fileID: 389900315}
@@ -25659,6 +25658,8 @@ MonoBehaviour:
   popupPause: {fileID: 289043359182643496}
   popupResult: {fileID: 1535502184}
   CurrScore: {fileID: 1302882039}
+  world: {fileID: 0}
+  explosionPrefab: {fileID: 6435013854608546439, guid: 4aed987e2fe2cd34c867cb8f5439c8ea, type: 3}
   Player: {fileID: 312491266}
   buffKnockBackLengthMulti: 1
   buffKnockBackTimeMulti: 1

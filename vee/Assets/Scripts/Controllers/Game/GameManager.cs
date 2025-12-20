@@ -52,6 +52,12 @@ namespace Vs.Controllers.Game
         [SerializeField]
         private TextMeshProUGUI CurrScore;
 
+        [SerializeField]
+        private Transform world; // 爆発などのエフェクトを生成する親オブジェクト
+
+        [SerializeField]
+        private GameObject explosionPrefab; // 爆発プレハブ
+
         public Player Player;
         public List<Enemy> Enemies { get; private set; } = new List<Enemy>();
         public List<Box> Boxes { get; private set; } = new List<Box>();
@@ -77,6 +83,9 @@ namespace Vs.Controllers.Game
         private int previousChara = -1; // 前回のcharaの値を保持
         private float commentTimer = 0f; // コメント表示用のタイマー
         private const float commentInterval = 10f; // コメント表示間隔（10秒）
+
+        private bool explosion_flg = false;
+        private const int irritate_explosion_count = 7;
 
         /// <summary>
         /// text_mst.csvからシンボルに基づいてテキストを取得する
@@ -277,6 +286,18 @@ namespace Vs.Controllers.Game
 #endif
             var irritate_point = OnScreenUi.Instance.GetIrritatePoint(onScreenEnemy);
             SetIrritateInfo(irritate_point);
+
+            // 90以上になった瞬間に0.5秒おきに5回連続で爆発
+            if(irritate_point >= 90 && !explosion_flg)
+            {
+                StartCoroutine(SpawnExplosionsSequence(irritate_explosion_count));
+                explosion_flg = true;
+            }
+            // 90以下に下がったらフラグをリセット
+            else if(irritate_point < 90)
+            {
+                explosion_flg = false;
+            }
 
             // 10秒ごとにランダムコメントを表示
             commentTimer += Time.deltaTime;
@@ -491,6 +512,57 @@ namespace Vs.Controllers.Game
             foreach (var i in this.Enemies)
             {
                 i.Death();
+            }
+        }
+
+        /// <summary>
+        /// ステージ範囲内のランダムな位置に爆発を生成する
+        /// </summary>
+        /// <summary>
+        /// 0.5秒おきに5回連続で爆発を発生させるコルーチン
+        /// </summary>
+        private IEnumerator SpawnExplosionsSequence(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                SpawnExplosion();
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
+        public void SpawnExplosion()
+        {
+            if (explosionPrefab == null)
+            {
+                Debug.LogWarning("GameManager: Explosion prefab is not assigned!");
+                return;
+            }
+
+            // カメラのビューポートからステージ範囲を取得（スクロールに対応）
+            Camera mainCamera = Camera.main;
+            if (mainCamera == null)
+            {
+                Debug.LogWarning("GameManager: Main camera not found!");
+                return;
+            }
+
+            float zDistance = -2 * mainCamera.transform.position.z;
+            
+            // ビューポートの各端のワールド座標を取得
+            Vector3 bottomLeft = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, zDistance));
+            Vector3 topRight = mainCamera.ViewportToWorldPoint(new Vector3(1, 1, zDistance));
+            
+            // ステージ範囲内のランダムな位置を生成
+            float randomX = Random.Range(Player.stageMinX, Player.stageMaxX);
+            float randomY = Random.Range(bottomLeft.y + 2, topRight.y - 5);
+
+            Vector3 explosionPosition = new Vector3(randomX, randomY, 0);
+
+            // 爆発を生成
+            var explosionObj = Instantiate(explosionPrefab, explosionPosition, Quaternion.identity);
+            if (world != null)
+            {
+                explosionObj.transform.SetParent(world);
             }
         }
 
