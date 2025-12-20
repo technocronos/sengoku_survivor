@@ -219,7 +219,7 @@ namespace Vs.Controllers.Game
             {
                 this.hp = this.hpMax;
             }
-
+            
             StartCoroutine(this.PlayAnim("player_recov"));
             SoundService.Instance.PlaySe("se_repair");
 
