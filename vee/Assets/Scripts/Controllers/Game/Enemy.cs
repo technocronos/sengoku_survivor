@@ -25,6 +25,8 @@ namespace Vs.Controllers.Game
         public int Irritate { get; private set; }
         public int Score { get; private set; }
 
+        private int irritate_point = 0;
+
         public SengokuSurvivors.EnemyType EnemyType { get; private set; } = SengokuSurvivors.EnemyType.Normal;
 
         private float hitElapsed;
@@ -102,6 +104,7 @@ namespace Vs.Controllers.Game
         public void SetIrritate(int irritate)
         {
             this.Irritate = irritate;
+            this.irritate_point = (int)(this.Irritate / 1000.0f);
         }
 
         public void SetScore(int score)
@@ -144,8 +147,11 @@ namespace Vs.Controllers.Game
             {
                 GameManager.Instance.AddCount();
 
-                //irritate >= 80 （イライラマックス）の時は2倍にする
-                if(this.Irritate >= 80) this.ExpAmount *= 2;
+                //irritate_point >= 80 （イライラマックス）の時は2倍にする
+                if (irritate_point >= 80)
+                {
+                    this.ExpAmount *= 2;
+                }
 
                 SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position, this.ExpAmount);
 
