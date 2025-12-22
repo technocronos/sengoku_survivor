@@ -58,7 +58,7 @@ namespace Vs.Controllers.Game
             LoseTitle.SetActive(false);
 
             SoundService.Instance.StopBgm();
-            score.text = GameManager.Instance.totalScore.ToString();
+            score.text = GameManager.Instance.totalScore.ToString("N0");
             time.text = GameManager.Instance.timeText.text;
 
             UpdateEquipmentView();

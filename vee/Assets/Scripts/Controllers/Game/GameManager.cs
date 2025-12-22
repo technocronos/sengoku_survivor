@@ -503,7 +503,7 @@ namespace Vs.Controllers.Game
             }
             if (this.CurrScore != null)
             {
-                this.CurrScore.text = this.totalScore.ToString();
+                this.CurrScore.text = this.totalScore.ToString("N0");
             }
         }
 
