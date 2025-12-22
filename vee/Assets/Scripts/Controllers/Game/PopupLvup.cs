@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyGame;
 using UnityEngine.Scripting;
+using UnityEngine.UI;
 
 namespace Vs.Controllers.Game
 {
@@ -39,6 +40,12 @@ namespace Vs.Controllers.Game
                     listItem.SetName(row["name"]);
                     listItem.SetDescription(row["description"]);
                     listItem.SetSprite(GameManager.Instance.EquipmentManager.GetSkillSprite(row["item_id"]));
+                    
+                    // クロージャの問題を回避するため、ローカル変数にコピー
+                    int index = i;
+                    Button button = listItem.GetComponent<Button>();
+                    button.onClick.RemoveAllListeners(); // 既存のリスナーをクリア
+                    button.onClick.AddListener(() => OnClicked(index));
 
                     // var sprite = Resources.Load<Sprite>($"Skills/{raw["image_id"]}");
                     // listItem.SetSprite(sprite);
@@ -119,6 +126,8 @@ namespace Vs.Controllers.Game
 
         public void OnClicked(int index)
         {
+            SoundService.Instance.PlaySe("se_getprice");
+
             this.Hide();
 
             var raw = this.rows[index];

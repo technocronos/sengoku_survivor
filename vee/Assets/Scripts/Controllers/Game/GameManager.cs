@@ -586,7 +586,7 @@ namespace Vs.Controllers.Game
             var skills = this.EquipmentManager.GetSelectableSkills();            
             this.popupLvUp.Show(skills);
 
-            SoundService.Instance.PlaySe("levelup");
+            SoundService.Instance.PlaySe("se_congrats");
         }
 
         private void OnLvUpPopupSelected(int skillId)
