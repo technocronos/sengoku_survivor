@@ -27,7 +27,7 @@ namespace SengokuSurvivors
             commentPrefab.gameObject.SetActive(false);
         }
 
-        public void AddComment(string text)
+        public void AddComment(string text, bool isAction = false)
         {
             GameObject obj;
 
@@ -48,6 +48,24 @@ namespace SengokuSurvivors
             var txt = obj.transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
             txt.text = text;
+            
+            // Imageコンポーネントの透過度を設定
+            var image = obj.GetComponent<Image>();
+            if (image != null)
+            {
+                Color color = image.color;
+                if (isAction)
+                {
+                    // isAction=trueの場合、アルファ値を50/255に設定
+                    color.a = 50f / 255f;
+                }
+                else
+                {
+                    // isAction=falseの場合、アルファ値を0に設定
+                    color.a = 0f;
+                }
+                image.color = color;
+            }
             
             // レイアウト更新後にスクロール位置を設定（見切れを防ぐため）
             StartCoroutine(ScrollToBottomAfterLayout());

@@ -131,23 +131,27 @@ public class ThirdController : MonoBehaviour
             case "ENEMY_SEND_1":
                 enemy_id = 10100013;
                 EnemySpawner.Instance.LimitSpawn(enemy_id, (int)enemy_position.y, (int)enemy_position.x, data.displayName);
+                isAction = true;
                 break;
             case "ENEMY_SEND_2":
                 enemy_id = 10100011;
                 EnemySpawner.Instance.LimitSpawn(enemy_id, (int)enemy_position.y, (int)enemy_position.x, data.displayName);
+                isAction = true;
                 break;
             case "ENEMY_SEND_3":
                 enemy_id = 10100014;
                 EnemySpawner.Instance.LimitSpawn(enemy_id, (int)enemy_position.y, (int)enemy_position.x, data.displayName);
+                isAction = true;
                 break;
             case "EXPLOSION":
                 GameManager.Instance.SpawnExplosion();
+                isAction = true;
                 break;
             default:
                 break;
         }
-        if (isAction) CommentsUi.AddComment(string.Format("[{0}] {1} ({2})", GameManager.Instance.GetTimeText(), text, data.displayName));
-        else CommentsUi.AddComment(text);
+        if (isAction) CommentsUi.AddComment(string.Format("[{0}] {1} ({2})", GameManager.Instance.GetTimeText(), text, data.displayName), isAction);
+        else CommentsUi.AddComment(text, isAction);
     }
 
     public void OnErrorMessageReceived(string message)
