@@ -24,6 +24,8 @@ namespace Vs.Controllers.Game
 
         public void Show(List<JsonObject> rows)
         {
+            SoundService.Instance.PlaySe("mousou_lvup");
+
             this.gameObject.SetActive(true);
             Time.timeScale = 0;
             this.rows = rows;

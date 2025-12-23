@@ -14,12 +14,6 @@ namespace Vs.Controllers.Game
         public UnityEngine.UI.Text timeText;
 
         [SerializeField]
-        private UnityEngine.UI.Text levelText;
-
-        [SerializeField]
-        private UnityEngine.UI.Image expImage;
-
-        [SerializeField]
         private UnityEngine.UI.Text coinsText;
 
         [SerializeField]
@@ -58,6 +52,12 @@ namespace Vs.Controllers.Game
         [SerializeField]
         private GameObject explosionPrefab; // 爆発プレハブ
 
+        [SerializeField]
+        private GameObject IrritateMaxEffects;
+
+        [SerializeField]
+        private Animator irritate_animator;
+
         public Player Player;
         public List<Enemy> Enemies { get; private set; } = new List<Enemy>();
         public List<Box> Boxes { get; private set; } = new List<Box>();
@@ -85,6 +85,8 @@ namespace Vs.Controllers.Game
         private const float commentInterval = 10f; // コメント表示間隔（10秒）
 
         private bool explosion_flg = false;
+        private bool irritate_max_flg = false;
+        
         private const int irritate_explosion_count = 7;
 
         /// <summary>
@@ -143,7 +145,6 @@ namespace Vs.Controllers.Game
         {
             this.popupLvUp.Selected += this.OnLvUpPopupSelected;
 
-            this.CalcLevel();
             OnScreenUi.Instance.SetExp(exp, expToLevelUp);
             OnScreenUi.Instance.SetCurrLevel(level);
 
@@ -288,7 +289,7 @@ namespace Vs.Controllers.Game
             SetIrritateInfo(irritate_point);
 
             // 90以上になった瞬間に0.5秒おきに5回連続で爆発
-            if(irritate_point >= 90 && !explosion_flg)
+            if (irritate_point >= 90 && !explosion_flg)
             {
                 StartCoroutine(SpawnExplosionsSequence(irritate_explosion_count));
                 explosion_flg = true;
@@ -409,10 +410,6 @@ namespace Vs.Controllers.Game
         public void CalcLevel()
         {
             return;
-            this.levelText.text = $"LV{this.level}";
-            var prev = this.levelMst.Find(i => i["level"] == this.level);
-            var next = this.levelMst.Find(i => i["level"] == this.level + 1);
-            this.expImage.fillAmount = (float)(this.exp - prev["exp"]) / next["exp"];
         }
 
         public void AddExp(int value)
@@ -431,16 +428,6 @@ namespace Vs.Controllers.Game
             getCurrScore(ScoreExpId, ScoreExp);
 
             return;
-            this.exp += Mathf.FloorToInt(value * this.Player.Stats.ExpRate / 1000.0f);
-
-            var prev = this.levelMst.Find(i => i["level"] == this.level);
-            var next = this.levelMst.Find(i => i["level"] == this.level + 1);
-            this.expImage.fillAmount = (float)(this.exp - prev["exp"]) / next["exp"];
-
-            var exp = this.exp - prev["exp"];
-            var calced = this.levelMst.FindLast(i => i["exp"] <= exp);
-            this.levelCalced = calced["level"];
-
         }
 
         public void Recover(int value)
@@ -516,10 +503,38 @@ namespace Vs.Controllers.Game
         }
 
         /// <summary>
+        /// IrritateMaxEffectsのアニメーションを再生し、終了後に爆発シーケンスを開始する
+        /// </summary>
+        private IEnumerator PlayIrritateMaxEffects()
+        {
+            // IrritateMaxEffectsを表示
+            IrritateMaxEffects.SetActive(true);
+
+            // ゲームを停止
+            Time.timeScale = 0.0f;
+
+            // アニメーションを再生
+            irritate_animator.Play("irritateeffects");
+
+            // アニメーション終了まで待機
+            yield return null; // 1フレーム待機してアニメーションが開始されるのを待つ
+            yield return new WaitForAnimation(irritate_animator, 0);
+
+            // ゲームを再開
+            Time.timeScale = 1.0f;
+
+            // IrritateMaxEffectsを非表示
+            IrritateMaxEffects.SetActive(false);
+
+            //爆発
+            StartCoroutine(SpawnExplosionsSequence(irritate_explosion_count));
+        }
+
+        /// <summary>
         /// ステージ範囲内のランダムな位置に爆発を生成する
         /// </summary>
         /// <summary>
-        /// 0.5秒おきに5回連続で爆発を発生させるコルーチン
+        /// 0.5秒おきにcount回連続で爆発を発生させるコルーチン
         /// </summary>
         private IEnumerator SpawnExplosionsSequence(int count)
         {
@@ -585,8 +600,6 @@ namespace Vs.Controllers.Game
 
             var skills = this.EquipmentManager.GetSelectableSkills();            
             this.popupLvUp.Show(skills);
-
-            SoundService.Instance.PlaySe("se_congrats");
         }
 
         private void OnLvUpPopupSelected(int skillId)

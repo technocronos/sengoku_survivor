@@ -67,12 +67,12 @@ namespace Vs.Controllers.Game
             {
                 Rotator.SetActive(true);
                 WinTitle.SetActive(true);
-                SoundService.Instance.PlaySe("se_congrats");
+                SoundService.Instance.PlaySe("moousou_win");
             }
             else
             {
                 LoseTitle.SetActive(true);
-                SoundService.Instance.PlaySe("se_retire");
+                SoundService.Instance.PlaySe("mousou_gameover");
             }
         }
 
@@ -81,6 +81,8 @@ namespace Vs.Controllers.Game
             this.gameObject.SetActive(false);
             Time.timeScale = 1.0f;
 
+            
+            SoundService.Instance.StopSe();
             SoundService.Instance.PlayBgm("bgm2");
         }
 
