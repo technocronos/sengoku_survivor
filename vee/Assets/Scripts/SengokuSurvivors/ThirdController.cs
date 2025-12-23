@@ -24,10 +24,10 @@ public class ThirdController : MonoBehaviour
     private string appId = "019aa5a7-eaf9-74f2-be28-66f51ecbc243";
     private string apiKey = "4c1c654d340ac6c6c67b97cf22d7ebb145ee7174516310d317776f2fad0ab3c1";
 #else
-    private string url = @"https://dev.live-ctl.com";//@"https://live-ctl.com";
-    private string wsurl = @"wss://dev.live-ctl.com";//@"wss://live-ctl.com";
-    private string appId = "019aa5a7-eaf9-74f2-be28-66f51ecbc243";
-    private string apiKey = "4c1c654d340ac6c6c67b97cf22d7ebb145ee7174516310d317776f2fad0ab3c1";
+    private string url = @"https://live-ctl.com";
+    private string wsurl = @"wss://live-ctl.com";
+    private string appId = "019b2a6a-9539-70f8-9669-6120acc67d09";
+    private string apiKey = "099d1d88c14221b7b2e39f12cfb501dd01131517768b84f7eb6ec7695e74942e";
 #endif
 
     private void Awake()
