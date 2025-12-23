@@ -256,7 +256,7 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         response.txId = "019adf3c-dad1-7732-a70c-eb07f35f8a18";
         response.streamId = "019ade66-0868-72eb-804d-9117fa2d091c";
         response.actionId = "019ade76-7619-71f9-b75c-3e4d02dfe456";
-        response.displayName = "デバッグ";
+        response.displayName = "ユーザー";
         response.commandKey = "";
         response.quantity = "1";
 
