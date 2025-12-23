@@ -360,8 +360,16 @@ namespace Vs.Controllers.Game
                 chara = 4;
             }
 
-            IrritateGauge.sprite = Resources.Load<Sprite>("Gauge/ira_" + i);
+            if(irritate_point >= 80)
+            {
+                IrritateMaxEffects.SetActive(true);
+            }
+            else
+            {
+                IrritateMaxEffects.SetActive(false);
+            }
 
+            IrritateGauge.sprite = Resources.Load<Sprite>("Gauge/ira_" + i);
             
             // charaが変わったかどうかを判定
             bool chara_change_flg = (chara != previousChara);
