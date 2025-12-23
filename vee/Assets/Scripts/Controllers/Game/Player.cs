@@ -311,6 +311,14 @@ namespace Vs.Controllers.Game
         {
             if (skill == null) return;
             var value = skill.EffectValue;
+            
+            // HPレベルアップ時は、増加分を現在のHPに充当するために現在の最大HPを保存
+            int oldHpMax = 0;
+            if (skill.EffectId == "hp")
+            {
+                oldHpMax = this.hpMax;
+            }
+            
             switch (skill.EffectId)
             {
                 case "hp":
@@ -342,6 +350,22 @@ namespace Vs.Controllers.Game
                     break;
             }
             this.CalcStats();
+            
+            // HPレベルアップ時、最大HPの増加分を現在のHPに充当
+            if (skill.EffectId == "hp")
+            {
+                int hpIncrease = this.hpMax - oldHpMax;
+                if (hpIncrease > 0)
+                {
+                    this.hp += hpIncrease;
+                    // 最大HPを超えないようにする
+                    if (this.hp > this.hpMax)
+                    {
+                        this.hp = this.hpMax;
+                    }
+                    OnScreenUi.Instance.SetCurrHp(hp, hpMax);
+                }
+            }
         }
 
         public int GetPlayerSpeedInt()
