@@ -148,12 +148,13 @@ namespace Vs.Controllers.Game
                 GameManager.Instance.AddCount();
 
                 //irritate_point >= 80 （イライラマックス）の時は2倍にする
+                var exp = this.ExpAmount;
                 if (irritate_point >= 80)
                 {
-                    //this.ExpAmount *= 2;
+                    //exp *= 2;
                 }
 
-                SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position, this.ExpAmount);
+                SengokuSurvivors.DropManager.Instance.DropExp(this.transform.position, exp);
 
                 GameManager.Instance.getCurrScore(this.enemyId, this.Score);
 
