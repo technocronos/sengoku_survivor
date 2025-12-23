@@ -161,7 +161,9 @@ namespace Vs.Controllers.Game
                     SengokuSurvivors.DropManager.Instance.DropItem(this.transform.position, this.DropId);
                 if (this.EnemyType == SengokuSurvivors.EnemyType.Boss)
                 {
-                    GameManager.Instance.GameClear(1f);
+                    // ボスの場合は死亡アニメーションを再生してからゲームクリア
+                    StartCoroutine(PlayBossDeathAnimation());
+                    return; // アニメーション終了後に処理が続く
                 }
             }
             isInKnockback = false;
@@ -176,6 +178,80 @@ namespace Vs.Controllers.Game
                     GameManager.Instance.onScreenEnemy[this.enemyId]--;
                 }
             }
+        }
+
+        /// <summary>
+        /// ボスの死亡アニメーションを再生（Time.timeScale = 0でも再生できるようにUnscaledTimeに設定）
+        /// </summary>
+        private IEnumerator PlayBossDeathAnimation()
+        {
+            Time.timeScale = 0.0f;
+
+            // avatar（C109_0オブジェクト）からAnimatorを取得
+            Animator bossAnimator = null;
+            if (avatar != null)
+            {
+                bossAnimator = avatar.GetComponent<Animator>();
+            }
+
+            // 見つからない場合は子オブジェクト全体から検索（フォールバック）
+            if (bossAnimator == null)
+            {
+                bossAnimator = GetComponentInChildren<Animator>();
+            }
+
+            AnimatorUpdateMode originalUpdateMode = AnimatorUpdateMode.Normal;
+            
+            if (bossAnimator != null)
+            {
+                originalUpdateMode = bossAnimator.updateMode;
+                bossAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+
+                SoundService.Instance.PlaySe("decide");
+                // アニメーションを再生
+                bossAnimator.Play("EnemyDeath");
+            }
+            else
+            {
+                Debug.LogWarning("Enemy: Boss Animator not found!");
+            }
+
+            // アニメーション終了まで待機
+            if (bossAnimator != null)
+            {
+                yield return null; // 1フレーム待機してアニメーションが開始されるのを待つ
+                yield return new WaitForAnimation(bossAnimator, 0);
+            }
+            else
+            {
+                // Animatorがない場合は一定時間待機（フォールバック）
+                yield return new WaitForSecondsRealtime(1.0f);
+            }
+
+            // アニメーション終了後にupdateModeを元に戻す
+            if (bossAnimator != null)
+            {
+                bossAnimator.updateMode = originalUpdateMode;
+                this.gameObject.SetActive(false);
+            }
+
+            // 通常の死亡処理を続行
+            isInKnockback = false;
+            StopAllCoroutines();
+            spawner.Despawn(this);
+
+            if (GameManager.Instance.onScreenEnemy.ContainsKey(this.enemyId))
+            {
+                int value = GameManager.Instance.onScreenEnemy[this.enemyId];
+                if (value > 0)
+                {
+                    GameManager.Instance.onScreenEnemy[this.enemyId]--;
+                }
+            }
+            Time.timeScale = 1.0f;
+
+            // ゲームクリア
+            GameManager.Instance.GameClear();
         }
 
         public bool OnWeaponTrigger(int damage, string soundId, float knockbackLength = 0f, float knockbackTime = 0f)

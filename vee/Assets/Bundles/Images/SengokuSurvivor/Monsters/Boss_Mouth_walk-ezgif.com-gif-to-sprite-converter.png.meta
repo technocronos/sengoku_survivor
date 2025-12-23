@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 32d8a8dd77226ff418f1159088c64253
+guid: 31124e2ed81ba4c41a24730a523d3318
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5158764822678352342
-    second: Grandpa_walk-ezgif.com-gif-to-sprite-converter_0
+      213: 8058259519509644462
+    second: Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_0
   - first:
-      213: 438912187891098199
-    second: Grandpa_walk-ezgif.com-gif-to-sprite-converter_1
+      213: 3495201301960096667
+    second: Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_1
   - first:
-      213: 8202041356742650189
-    second: Grandpa_walk-ezgif.com-gif-to-sprite-converter_2
+      213: -1752542795234312556
+    second: Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_2
   - first:
-      213: -4986057606829406515
-    second: Grandpa_walk-ezgif.com-gif-to-sprite-converter_3
+      213: -5008987255002032355
+    second: Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,89 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Grandpa_walk-ezgif.com-gif-to-sprite-converter_0
+      name: Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 12
-        height: 19
+        width: 31
+        height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6d1368f164d979740800000000000000
-      internalID: 5158764822678352342
+      spriteID: ea44848a650b4df60800000000000000
+      internalID: 8058259519509644462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grandpa_walk-ezgif.com-gif-to-sprite-converter_1
+      name: Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_1
       rect:
         serializedVersion: 2
-        x: 20
-        y: 2
-        width: 12
-        height: 18
+        x: 49
+        y: 1
+        width: 32
+        height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 752a6d63f44571600800000000000000
-      internalID: 438912187891098199
+      spriteID: b9b70d5d013718030800000000000000
+      internalID: 3495201301960096667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grandpa_walk-ezgif.com-gif-to-sprite-converter_2
+      name: Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_2
       rect:
         serializedVersion: 2
-        x: 40
+        x: 99
         y: 0
-        width: 12
-        height: 19
+        width: 32
+        height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4965bd582183d170800000000000000
-      internalID: 8202041356742650189
+      spriteID: 49e7364fc97bda7e0800000000000000
+      internalID: -1752542795234312556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grandpa_walk-ezgif.com-gif-to-sprite-converter_3
+      name: Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_3
       rect:
         serializedVersion: 2
-        x: 60
-        y: 2
-        width: 12
-        height: 18
+        x: 149
+        y: 1
+        width: 31
+        height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dc68c4b1607fdcab0800000000000000
-      internalID: -4986057606829406515
+      spriteID: d17152d51a08c7ab0800000000000000
+      internalID: -5008987255002032355
       vertices: []
       indices: 
       edges: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7713fb5323d2af34daaf773bbe69282e
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Grandpa_walk-ezgif.com-gif-to-sprite-converter_0: 5158764822678352342
-      Grandpa_walk-ezgif.com-gif-to-sprite-converter_1: 438912187891098199
-      Grandpa_walk-ezgif.com-gif-to-sprite-converter_2: 8202041356742650189
-      Grandpa_walk-ezgif.com-gif-to-sprite-converter_3: -4986057606829406515
+      Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_0: 8058259519509644462
+      Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_1: 3495201301960096667
+      Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_2: -1752542795234312556
+      Boss_Mouth_walk-ezgif.com-gif-to-sprite-converter_3: -5008987255002032355
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

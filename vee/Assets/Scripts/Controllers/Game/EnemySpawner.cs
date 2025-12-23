@@ -157,7 +157,9 @@ namespace Vs.Controllers.Game
                 return;
             }
 
-            enemy.transform.SetPositionAndRotation(new Vector3(x, y, 0), Quaternion.identity);
+            // プレハブのrotationを保持して位置だけを設定
+            enemy.transform.position = new Vector3(x, y, 0);
+            // rotationはプレハブの設定をそのまま使用（既にInstantiateで設定されている）
             enemy.SetHp(hp);
             enemy.SetAtk(atk);
             enemy.SetDropId(raw["drop_id"]);

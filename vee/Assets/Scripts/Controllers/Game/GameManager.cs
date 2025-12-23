@@ -625,7 +625,32 @@ namespace Vs.Controllers.Game
             if (hp <= 0)
             {
                 SoundService.Instance.PlaySe("decide");
-                StartCoroutine(Player.PlayAnim("player_death", 1f, ()=> GameOver()));
+                StartCoroutine(PlayPlayerDeathAnimation());
+            }
+        }
+
+        /// <summary>
+        /// プレイヤーの死亡アニメーションを再生（Time.timeScale = 0でも再生できるようにUnscaledTimeに設定）
+        /// </summary>
+        private IEnumerator PlayPlayerDeathAnimation()
+        {
+            Time.timeScale = 0.0f;
+            Animator playerAnimator = Player.GetComponent<Animator>();
+            AnimatorUpdateMode originalUpdateMode = AnimatorUpdateMode.Normal;
+            
+            if (playerAnimator != null)
+            {
+                originalUpdateMode = playerAnimator.updateMode;
+                playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+            }
+
+            yield return StartCoroutine(Player.PlayAnim("player_death"));
+
+            // アニメーション終了後にupdateModeを元に戻す
+            if (playerAnimator != null)
+            {
+                playerAnimator.updateMode = originalUpdateMode;
+                GameOver();
             }
         }
 

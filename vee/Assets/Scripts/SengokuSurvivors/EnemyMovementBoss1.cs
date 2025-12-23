@@ -14,12 +14,30 @@ namespace SengokuSurvivors
         private float stoppedTime = 0f;
         public bool isStopped { get { return Time.time - stoppedTime < stopLength; } }
 
+        private SpriteRenderer spriteRenderer;
+
         void Start()
         {
             if (Camera.main.WorldToViewportPoint(transform.position).x > 0.5f)
                 xDir = 1f;
             else
                 xDir = -1f;
+
+            // SpriteRendererを取得（Enemyコンポーネントのavatarまたは子オブジェクトから）
+            var enemy = GetComponent<Vs.Controllers.Game.Enemy>();
+            if (enemy != null)
+            {
+                // Enemyコンポーネントからavatarを取得するためにリフレクションを使用
+                // または、子オブジェクトから直接取得
+                spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            }
+            else
+            {
+                spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            }
+
+            // 初期方向に応じて画像を反転
+            UpdateSpriteFlip();
 
             //speed += Random.Range(-speedDispersion, speedDispersion);
             StartCoroutine(MovingRoutine());
@@ -60,6 +78,7 @@ namespace SengokuSurvivors
 
                 //if (xDir > 0 && Camera.main.WorldToViewportPoint(transform.position).x > 0.7f) { xDir = -1f; }
                 //else if (xDir < 0 && Camera.main.WorldToViewportPoint(transform.position).x < 0.3f) { xDir = 1f; }
+                float previousXDir = xDir;
                 if (xDir > 0 && transform.position.x > 4.1f) {
                     stoppedTime = Time.time;
                     xDir = -1f; }
@@ -71,6 +90,12 @@ namespace SengokuSurvivors
                     stoppedTime = Time.time;
                 }
                 lastPositionX = transform.position.x;
+
+                // 方向が変わったら画像を反転
+                if (previousXDir != xDir)
+                {
+                    UpdateSpriteFlip();
+                }
 
                 var viewportYpos = Camera.main.WorldToViewportPoint(transform.position).y;
                 //if (viewportYpos > 0.9f) targetPosViewportY = 0f;
@@ -99,6 +124,18 @@ namespace SengokuSurvivors
         public void Initialize()
         {
             
+        }
+
+        /// <summary>
+        /// 移動方向に応じて画像を反転する
+        /// xDir > 0（右に移動）のときは反転、xDir < 0（左に移動）のときは通常
+        /// </summary>
+        private void UpdateSpriteFlip()
+        {
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.flipX = xDir > 0;
+            }
         }
     }
 }
