@@ -9,14 +9,22 @@ namespace Vs
     {
         public string LoadText(string path)
         {
-// #if DEVELOPMENT_BUILD
-            var spath = System.IO.Path.Combine(Application.streamingAssetsPath, path);
-            return System.IO.File.ReadAllText(spath);
-// #else
-//             var spath = System.IO.Path.ChangeExtension(path, null);
-//             var asset = Resources.Load<TextAsset>(spath);
-//             return asset != null ? asset.text : null;
-// #endif
+            // Resourcesフォルダから読み込む（拡張子を削除）
+            var spath = System.IO.Path.ChangeExtension(path, null);
+            var asset = Resources.Load<TextAsset>(spath);
+            if (asset != null)
+            {
+                return asset.text;
+            }
+            
+            // フォールバック: StreamingAssetsから読み込む（開発用）
+            var fallbackPath = System.IO.Path.Combine(Application.streamingAssetsPath, path);
+            if (System.IO.File.Exists(fallbackPath))
+            {
+                return System.IO.File.ReadAllText(fallbackPath);
+            }
+            
+            return null;
         }
     }
 }
