@@ -91,8 +91,6 @@ namespace Vs.Controllers.Home
         {
             SoundService.Instance.PlaySe("get_item");
             MenuSettings.SetActive(true);
-            InputFieldStreamId.Select();
-            InputFieldStreamId.caretPosition = InputFieldStreamId.text.Length;
         }
         private void OnButtonThird()
         {
