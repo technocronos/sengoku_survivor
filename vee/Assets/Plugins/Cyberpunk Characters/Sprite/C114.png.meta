@@ -90,7 +90,7 @@ TextureImporter:
       213: 5333554824552444070
     second: C114_28
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -154,7 +154,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 1
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -167,7 +167,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -180,8 +180,8 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
+  - serializedVersion: 4
+    buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 4
@@ -193,7 +193,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -206,7 +206,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -219,7 +219,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -241,11 +241,12 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 96
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -262,11 +263,12 @@ TextureImporter:
         serializedVersion: 2
         x: 32
         y: 96
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -283,11 +285,12 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -304,11 +307,12 @@ TextureImporter:
         serializedVersion: 2
         x: 32
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -325,11 +329,12 @@ TextureImporter:
         serializedVersion: 2
         x: 64
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -346,11 +351,12 @@ TextureImporter:
         serializedVersion: 2
         x: 96
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -367,11 +373,12 @@ TextureImporter:
         serializedVersion: 2
         x: 128
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -388,11 +395,12 @@ TextureImporter:
         serializedVersion: 2
         x: 160
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -409,11 +417,12 @@ TextureImporter:
         serializedVersion: 2
         x: 192
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -430,11 +439,12 @@ TextureImporter:
         serializedVersion: 2
         x: 224
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -449,13 +459,14 @@ TextureImporter:
       name: C114_10
       rect:
         serializedVersion: 2
-        x: 256
+        x: 257
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -470,13 +481,14 @@ TextureImporter:
       name: C114_11
       rect:
         serializedVersion: 2
-        x: 288
+        x: 289
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -493,11 +505,12 @@ TextureImporter:
         serializedVersion: 2
         x: 320
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -514,11 +527,12 @@ TextureImporter:
         serializedVersion: 2
         x: 352
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -535,11 +549,12 @@ TextureImporter:
         serializedVersion: 2
         x: 384
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -556,11 +571,12 @@ TextureImporter:
         serializedVersion: 2
         x: 416
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -577,11 +593,12 @@ TextureImporter:
         serializedVersion: 2
         x: 448
         y: 64
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -598,11 +615,12 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -618,12 +636,13 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 32
-        width: 32
-        height: 32
+        y: 34
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -638,13 +657,14 @@ TextureImporter:
       name: C114_19
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
+        x: 65
+        y: 40
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -659,13 +679,14 @@ TextureImporter:
       name: C114_20
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
+        x: 98
+        y: 33
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -680,13 +701,14 @@ TextureImporter:
       name: C114_21
       rect:
         serializedVersion: 2
-        x: 128
+        x: 130
         y: 32
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -701,13 +723,14 @@ TextureImporter:
       name: C114_22
       rect:
         serializedVersion: 2
-        x: 160
+        x: 163
         y: 32
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -724,11 +747,12 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -745,11 +769,12 @@ TextureImporter:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -766,11 +791,12 @@ TextureImporter:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -787,11 +813,12 @@ TextureImporter:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -808,11 +835,12 @@ TextureImporter:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -829,11 +857,12 @@ TextureImporter:
         serializedVersion: 2
         x: 160
         y: 0
-        width: 32
-        height: 32
+        width: 13
+        height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -845,6 +874,7 @@ TextureImporter:
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -854,6 +884,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
       C114_0: 77881581809054479
       C114_1: 7556472498044220140

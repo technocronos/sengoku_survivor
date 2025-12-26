@@ -183,8 +183,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 0.5}
+  m_Offset: {x: 0.000000059604645, y: -0.014920294}
+  m_Size: {x: 0.6432352, y: 0.82824683}
   m_Direction: 0
 --- !u!50 &-8428750132414878492
 Rigidbody2D:
@@ -408,7 +408,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9018522783192268283}
   m_LocalRotation: {x: 0.258819, y: -0, z: -0, w: 0.9659259}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.098}
   m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -418,7 +418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.171}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1898136714479300892
@@ -476,6 +476,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1031127952309427879}
     m_Modifications:
     - target: {fileID: 5298800963591901450, guid: fa9698a11a1bacf4baaca9769818eae0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6393353422790089683, guid: 86178c6a42f4a714d8503e508a3d0994, type: 3}
+    - target: {fileID: 5298800963591901450, guid: fa9698a11a1bacf4baaca9769818eae0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2e36cce8b84af0e42bab8e0638e87078, type: 2}
@@ -485,7 +489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5298800963591901451, guid: fa9698a11a1bacf4baaca9769818eae0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5298800963591901451, guid: fa9698a11a1bacf4baaca9769818eae0, type: 3}
       propertyPath: m_LocalPosition.z
