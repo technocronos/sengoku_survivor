@@ -49,21 +49,23 @@ namespace SengokuSurvivors
 
             txt.text = text;
             
-            // Imageコンポーネントの透過度を設定
+            // Imageコンポーネントの色を設定
             var image = obj.GetComponent<Image>();
             if (image != null)
             {
-                Color color = image.color;
+                Color color;
                 if (isAction)
                 {
-                    // isAction=trueの場合、アルファ値を50/255に設定
-                    color.a = 50f / 255f;
+                    // isAction=trueの場合、#FF3838（赤色）に設定
+                    ColorUtility.TryParseHtmlString("#FF3838", out color);
                 }
                 else
                 {
-                    // isAction=falseの場合、アルファ値を0に設定
-                    color.a = 0f;
+                    // isAction=falseの場合、#005DFF（青色）に設定
+                    ColorUtility.TryParseHtmlString("#005DFF", out color);
                 }
+                // 既存のアルファ値を保持
+                color.a = image.color.a;
                 image.color = color;
             }
             
