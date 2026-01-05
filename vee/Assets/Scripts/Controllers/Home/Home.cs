@@ -116,6 +116,9 @@ namespace Vs.Controllers.Home
         {
             SoundService.Instance.PlaySe("get_item");
             MenuThird.SetActive(false);
+
+            var context = new MyPage.MyPage.Context();
+            ViewService.Instance.ChangeView(context);
         }
 
         private void OnInputFieldChanged(string value)
