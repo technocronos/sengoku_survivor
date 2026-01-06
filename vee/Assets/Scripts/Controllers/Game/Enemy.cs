@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Vs.Controllers.Game
 {
@@ -10,9 +11,12 @@ namespace Vs.Controllers.Game
         private SpriteRenderer avatar;
 
         [SerializeField]
-        private UnityEngine.UI.Text hpText;
+        private Text hpText;
         [SerializeField]
         private TextMeshProUGUI TextName;
+
+        [SerializeField]
+        private Image gauge;
 
         public bool IsTarget = true;
         public bool IsDead { get; private set; }
@@ -24,6 +28,8 @@ namespace Vs.Controllers.Game
         public int ExpAmount = 1;
         public int Irritate { get; private set; }
         public int Score { get; private set; }
+
+        private int MaxHP = 0;
 
         private int irritate_point = 0;
 
@@ -48,7 +54,7 @@ namespace Vs.Controllers.Game
             movementComponent.Initialize();
 
             this.hpText.text = $"{this.Hp}";
-            
+
             if (avatar.GetComponent<SengokuSurvivors.OnHitFlashingEffect>() == null)
             {
                 avatar.gameObject.AddComponent<SengokuSurvivors.OnHitFlashingEffect>();
@@ -78,6 +84,8 @@ namespace Vs.Controllers.Game
         public void SetHp(int hp)
         {
             this.Hp = hp;
+            this.MaxHP = hp;
+
             this.hpText.text = $"{this.Hp}";
         }
 
@@ -315,6 +323,9 @@ namespace Vs.Controllers.Game
 
             this.Hp -= calcedDamage;
             this.hpText.text = $"{this.Hp}";
+
+            SetCurrHp(Hp,MaxHP);
+
             if (this.Hp <= 0)
             {
                 this.Death();
@@ -343,6 +354,19 @@ namespace Vs.Controllers.Game
             }
             isInKnockback = false;
             movement.SetKnockbackState(false);
+        }
+
+        public void SetCurrHp(int hp, int maxHp)
+        {
+            if (gauge == null) return;
+
+            Debug.Log("SetCurrHp");
+            var rect = gauge.transform.GetComponent<RectTransform>().rect;
+            float gauge_width = gauge.transform.GetComponent<RectTransform>().rect.width + 11;
+
+            int posx = (int)(((hp * 1.0f) / maxHp) * gauge_width);
+            gauge.transform.localPosition = new Vector3(posx - gauge_width, 0, 0);
+
         }
     }
 }
