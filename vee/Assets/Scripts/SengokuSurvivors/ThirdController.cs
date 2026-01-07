@@ -56,6 +56,14 @@ public class ThirdController : MonoBehaviour
         this.ThirdConnector.Disconnect();
     }
 
+    /// <summary>
+    /// Thirdに接続されているかどうかを確認
+    /// </summary>
+    public bool IsConnected()
+    {
+        return this.ThirdConnector != null && this.ThirdConnector.IsConnected();
+    }
+
     public void OnConnected()
     {
         Debug.Log("connected.");

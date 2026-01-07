@@ -94,6 +94,14 @@ namespace UNCHAIN.ThirdSdk
             this.con = null;
         }
 
+        /// <summary>
+        /// Thirdに接続されているかどうかを確認
+        /// </summary>
+        public bool IsConnected()
+        {
+            return this.con != null && this.con.State == WebSocketState.Connected;
+        }
+
         public IEnumerator Reconnect()
         {
             if (this.con == null)
