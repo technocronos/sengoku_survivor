@@ -192,7 +192,7 @@ namespace Vs.Controllers.Game
                 return;
             }
             var enemy = collision.gameObject.GetComponent<Enemy>();
-            this.Damage(enemy.Hp);
+            this.Damage(enemy.Atk);
         }
 
         public void Damage(int value)
