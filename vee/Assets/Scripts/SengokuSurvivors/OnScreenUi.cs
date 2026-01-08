@@ -59,6 +59,8 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
     private GameObject DebugStatsContainer;
     [SerializeField]
     private EquipmentHud equipmentHud;
+    [SerializeField]
+    private Text ThirdText;
 
     private List<Button> DebugMenuButtons = new List<Button>();
     private Vs.Controllers.Game.Player Player;
@@ -112,6 +114,15 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 
     private void Start()
     {
+        if (thirdController.IsConnected())
+        {
+            ThirdText.text = "◎Third接続中";
+        }
+        else 
+        {
+            ThirdText.text = "✖Third未接続";
+        }
+
         StartCoroutine(UnscaledRoutine());
     }
 
