@@ -22,6 +22,9 @@ namespace Vs.Controllers.Game
             this.dropManager = dropManager;
             this.skillId = skillId;
             this.text.text = text;
+            this.textcanvas.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
+            this.transform.GetComponent<SpriteRenderer>().enabled = true;
+            this.textcanvas.gameObject.SetActive(false);
             this.text.gameObject.SetActive(false);
         }
     }
