@@ -7,8 +7,8 @@ namespace Vs.Controllers.Game
 {
     public sealed class ItemBox : Item
     {
-        [SerializeField]
-        private UnityEngine.UI.Text text;
+        public UnityEngine.UI.Text text;
+        public Transform textcanvas;
 
         private int skillId;
 

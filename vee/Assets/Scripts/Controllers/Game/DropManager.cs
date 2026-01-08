@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using MyGame;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MyGame;
+using UnityEngine.UI;
 using Vs.Controllers.Game;
 
 namespace SengokuSurvivors
@@ -101,8 +103,19 @@ namespace SengokuSurvivors
             var itemBox = item as ItemBox;
             if (itemBox != null)
             {
-                item.gameObject.SetActive(false);
-                itemBoxCache.Enqueue(itemBox);
+                itemBox.transform.GetComponent<SpriteRenderer>().enabled = false;
+                itemBox.textcanvas.gameObject.SetActive(true);
+                itemBox.text.gameObject.SetActive(true);
+
+                int _x = 0;
+                int _y = 4;
+
+                // ブレーキをかけながらに飛び出すようにする
+                itemBox.textcanvas.GetComponent<RectTransform>().DOAnchorPos(new Vector3(_x, _y, 0), 1.0f).SetEase(Ease.OutCubic).OnComplete(() => {
+                    item.gameObject.SetActive(false);
+                    itemBoxCache.Enqueue(itemBox);
+                });
+
             }
             else
             {
