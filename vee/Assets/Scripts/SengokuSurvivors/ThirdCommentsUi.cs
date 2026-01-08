@@ -72,7 +72,7 @@ namespace SengokuSurvivors
             // レイアウト更新後にスクロール位置を設定（見切れを防ぐため）
             StartCoroutine(ScrollToBottomAfterLayout());
             
-            SoundService.Instance.PlaySe("se_pallet_rotate");
+            SoundService.Instance.PlaySe("mousou_comment");
         }
 
         /// <summary>
