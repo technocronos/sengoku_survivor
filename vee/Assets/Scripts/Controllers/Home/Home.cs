@@ -96,8 +96,12 @@ namespace Vs.Controllers.Home
         {
             SoundService.Instance.PlaySe("get_item");
             MenuThird.SetActive(true);
+
             InputFieldStreamId.Select();
             InputFieldStreamId.caretPosition = InputFieldStreamId.text.Length;
+
+            if (InputFieldStreamId.text.Length == 0)
+                ButtonCloseThird.interactable = false;
         }
 
         private void OnButtonCloseSettings()
@@ -124,6 +128,11 @@ namespace Vs.Controllers.Home
         private void OnInputFieldChanged(string value)
         {
             thirdController.StreamId = value;
+
+            if (InputFieldStreamId.text.Length == 0)
+                ButtonCloseThird.interactable = false;
+            else
+                ButtonCloseThird.interactable = true;
         }
 
         private void OnButtonHelp()
