@@ -37,6 +37,10 @@ public class ThirdController : MonoBehaviour
         ThirdConnector.wsurl = wsurl;
         ThirdConnector.appId = appId;
         ThirdConnector.apiKey = apiKey;
+        
+        // 接続状態の変化を監視
+        ThirdConnector.Connected.AddListener(OnConnected);
+        ThirdConnector.Disconnected.AddListener(OnDisconnected);
     }
 
     public void Connect()
@@ -67,11 +71,21 @@ public class ThirdController : MonoBehaviour
     public void OnConnected()
     {
         Debug.Log("connected.");
+        // OnScreenUiに接続状態の変化を通知
+        if (OnScreenUi.Instance != null)
+        {
+            OnScreenUi.Instance.UpdateThirdConnectionStatus();
+        }
     }
 
     public void OnDisconnected()
     {
         Debug.Log("disconnected.");
+        // OnScreenUiに接続状態の変化を通知
+        if (OnScreenUi.Instance != null)
+        {
+            OnScreenUi.Instance.UpdateThirdConnectionStatus();
+        }
     }
 
     public void OnMessageReceived(ThirdResponse data)
@@ -126,19 +140,15 @@ public class ThirdController : MonoBehaviour
             case "CHAT_TEXT_LIKE":
                 break;
             case "NAMECHAT_TEXT_QUESTION_DOG":
-                text = string.Format("{0}: {1}", data.displayName, text);
                 isAuthorComment = true;
                 break;
             case "NAMECHAT_TEXT_888":
-                text = string.Format("{0}: {1}", data.displayName, text);
                 isAuthorComment = true;
                 break;
             case "NAMECHAT_TEXT_FIRST_VISIT":
-                text = string.Format("{0}: {1}", data.displayName, text);
                 isAuthorComment = true;
                 break;
             case "NAMECHAT_TEXT_LIKE":
-                text = string.Format("{0}: {1}", data.displayName, text);
                 isAuthorComment = true;
                 break;
             case "ENEMY_SEND_1":

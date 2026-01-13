@@ -114,7 +114,13 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 
     private void Start()
     {
-        if (thirdController.IsConnected())
+        UpdateThirdConnectionStatus();
+        StartCoroutine(UnscaledRoutine());
+    }
+
+    public void UpdateThirdConnectionStatus()
+    {
+        if (thirdController != null && thirdController.IsConnected())
         {
             ThirdText.text = "◎Third接続中";
         }
@@ -122,8 +128,6 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
         {
             ThirdText.text = "✖Third未接続";
         }
-
-        StartCoroutine(UnscaledRoutine());
     }
 
     private IEnumerator UnscaledRoutine()
@@ -260,6 +264,9 @@ public class OnScreenUi : MyGame.SingletonMonoBehaviour<OnScreenUi>
 
     private void Update()
     {
+        // 接続状態を定期的に確認（フォールバック）
+        UpdateThirdConnectionStatus();
+        
         UpdateDebugStatsView();
 
 #if DEVELOP
