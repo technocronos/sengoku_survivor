@@ -27,7 +27,7 @@ namespace SengokuSurvivors
             commentPrefab.gameObject.SetActive(false);
         }
 
-        public void AddComment(string text, bool isAction = false)
+        public void AddComment(string text, bool isAction = false, bool isAuthorComment = false)
         {
             GameObject obj;
 
@@ -56,19 +56,27 @@ namespace SengokuSurvivors
                 Color color;
                 if (isAction)
                 {
-                    // isAction=trueの場合、#FF3838（赤色）に設定
-                    ColorUtility.TryParseHtmlString("#FF3838", out color);
+                    if (isAuthorComment)
+                    {
+                        // isAuthorComment=trueの場合、#FF3838（赤色）に設定
+                        ColorUtility.TryParseHtmlString("#FF3838", out color);
+                    }
+                    else
+                    {
+                        // isAuthorComment=falseの場合、#005DFF（青色）に設定
+                        ColorUtility.TryParseHtmlString("#005DFF", out color);
+                    }
+                    color.a = 0.2f;
                 }
                 else
                 {
-                    // isAction=falseの場合、#005DFF（青色）に設定
-                    ColorUtility.TryParseHtmlString("#005DFF", out color);
+                    // isAction=falseの場合、透過に設定
+                    ColorUtility.TryParseHtmlString("#000000", out color);
+                    color.a = 0f;
                 }
-                // 既存のアルファ値を保持
-                color.a = image.color.a;
                 image.color = color;
             }
-            
+
             // レイアウト更新後にスクロール位置を設定（見切れを防ぐため）
             StartCoroutine(ScrollToBottomAfterLayout());
             

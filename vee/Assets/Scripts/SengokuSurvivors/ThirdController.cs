@@ -77,7 +77,8 @@ public class ThirdController : MonoBehaviour
     public void OnMessageReceived(ThirdResponse data)
     {
         Debug.Log($"{data.txId}, {data.streamId}, {data.actionId}, {data.quantity}, {data.commandKey}, {data.displayName}");
-        bool isAction = false;
+        bool isAction = true;
+        bool isAuthorComment = false;
 
         string symbol = $"{data.commandKey}";
         string text =GameManager.Instance.GetTextFromMst(symbol);
@@ -94,27 +95,27 @@ public class ThirdController : MonoBehaviour
                 item_id = 10100101;
 
                 DropManager.Instance.DropItem(position, item_id);
-                isAction = true;
+                isAuthorComment = true;
                 break;
             case "HEAL_MEDIUM":
                 item_id = 10100102;
 
                 DropManager.Instance.DropItem(position, item_id);
-                isAction = true;
+                isAuthorComment = true;
                 break;
             case "HEAL_LARGE":
                 item_id = 10100103;
 
                 DropManager.Instance.DropItem(position, item_id);
-                isAction = true;
+                isAuthorComment = true;
                 break;
             case "SPEED_BOOST_ITEM":
                 BuffsController.AddSpeedupBuff();
-                isAction = true;
+                isAuthorComment = true;
                 break;
             case "KNOCKBACK_BOOST_ITEM":
                 BuffsController.AddKnockbackBuff();
-                isAction = true;
+                isAuthorComment = true;
                 break;
             case "CHAT_TEXT_QUESTION_DOG":
                 break;
@@ -126,40 +127,46 @@ public class ThirdController : MonoBehaviour
                 break;
             case "NAMECHAT_TEXT_QUESTION_DOG":
                 text = string.Format("{0}: {1}", data.displayName, text);
+                isAuthorComment = true;
                 break;
             case "NAMECHAT_TEXT_888":
                 text = string.Format("{0}: {1}", data.displayName, text);
+                isAuthorComment = true;
                 break;
             case "NAMECHAT_TEXT_FIRST_VISIT":
                 text = string.Format("{0}: {1}", data.displayName, text);
+                isAuthorComment = true;
                 break;
             case "NAMECHAT_TEXT_LIKE":
                 text = string.Format("{0}: {1}", data.displayName, text);
+                isAuthorComment = true;
                 break;
             case "ENEMY_SEND_1":
                 enemy_id = 10100013;
                 EnemySpawner.Instance.LimitSpawn(enemy_id, (int)enemy_position.y, (int)enemy_position.x, data.displayName);
-                isAction = true;
+                isAuthorComment = true;
                 break;
             case "ENEMY_SEND_2":
                 enemy_id = 10100011;
                 EnemySpawner.Instance.LimitSpawn(enemy_id, (int)enemy_position.y, (int)enemy_position.x, data.displayName);
-                isAction = true;
+                isAuthorComment = true;
                 break;
             case "ENEMY_SEND_3":
                 enemy_id = 10100014;
                 EnemySpawner.Instance.LimitSpawn(enemy_id, (int)enemy_position.y, (int)enemy_position.x, data.displayName);
-                isAction = true;
+                isAuthorComment = true;
                 break;
             case "EXPLOSION":
                 GameManager.Instance.SpawnExplosion();
-                isAction = true;
+                isAuthorComment = true;
                 break;
             default:
                 break;
         }
-        if (isAction) CommentsUi.AddComment(string.Format("[{0}] {1} ({2})", GameManager.Instance.GetTimeText(), text, data.displayName), isAction);
-        else CommentsUi.AddComment(text, isAction);
+        if(isAuthorComment)
+            CommentsUi.AddComment(string.Format("[{0}] {1} ({2})", GameManager.Instance.GetTimeText(), text, data.displayName), isAction, isAuthorComment);
+        else
+            CommentsUi.AddComment(string.Format("[{0}] {1}", GameManager.Instance.GetTimeText(), text), isAction, isAuthorComment);
     }
 
     public void OnErrorMessageReceived(string message)
