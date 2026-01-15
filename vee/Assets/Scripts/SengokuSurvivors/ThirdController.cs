@@ -174,7 +174,7 @@ public class ThirdController : MonoBehaviour
                 break;
         }
         if(isAuthorComment)
-            CommentsUi.AddComment(string.Format("[{0}] {1} ({2})", GameManager.Instance.GetTimeText(), text, data.displayName), isAction, isAuthorComment);
+            CommentsUi.AddComment(string.Format("[{0}] {1} <color=#84549B>({2})</color>", GameManager.Instance.GetTimeText(), text, data.displayName), isAction, isAuthorComment);
         else
             CommentsUi.AddComment(string.Format("[{0}] {1}", GameManager.Instance.GetTimeText(), text), isAction, isAuthorComment);
     }
