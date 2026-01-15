@@ -173,10 +173,15 @@ public class ThirdController : MonoBehaviour
             default:
                 break;
         }
-        if(isAuthorComment)
-            CommentsUi.AddComment(string.Format("[{0}] {1} <color=#84549B>({2})</color>", GameManager.Instance.GetTimeText(), text, data.displayName), isAction, isAuthorComment);
+        if (isAuthorComment)
+        {
+            var t = string.Format("[{0}] {1} <color=#84549B>({2})</color>", GameManager.Instance.GetTimeText(), text, data.displayName);
+            CommentsUi.AddComment(t, isAction, isAuthorComment);
+        }
         else
+        {
             CommentsUi.AddComment(string.Format("[{0}] {1}", GameManager.Instance.GetTimeText(), text), isAction, isAuthorComment);
+        }
     }
 
     public void OnErrorMessageReceived(string message)
